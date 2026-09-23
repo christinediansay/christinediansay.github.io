@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Christine Diansay</title>
 
+    <title>Work | Christine Diansay</title>
+
+    <meta name="description" content="Explore Christine Diansay's work across financial services, media and publishing, real estate, and digital services.">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
     <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
         :root {
             --ivory: #F7F4EE;
             --cream: #EFEAE0;
@@ -48,310 +57,399 @@
             margin: 0 auto;
         }
 
-        /* NAVIGATION */
+
+        /* =========================
+           NAVIGATION
+        ========================= */
 
         nav {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border);
-            background: rgba(247, 244, 238, 0.95);
+            padding: 28px 0;
+            position: relative;
+            z-index: 100;
         }
 
         .nav-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 30px;
         }
 
         .logo {
             font-family: "Playfair Display", serif;
-            font-size: 23px;
+            font-size: 24px;
             font-weight: 600;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
+            gap: 34px;
             align-items: center;
-            gap: 30px;
-            font-size: 14px;
-            color: var(--muted);
         }
 
         .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--muted);
             transition: color 0.25s ease;
         }
 
-        .nav-links a:hover,
         .nav-links a.active {
+            color: var(--sage-dark);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            height: 2px;
+            background: var(--sage);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
             color: var(--charcoal);
         }
 
-        .nav-button {
+        .nav-contact {
             padding: 10px 18px;
             border: 1px solid var(--charcoal);
-            border-radius: 30px;
+            border-radius: 50px;
             color: var(--charcoal) !important;
-            transition: all 0.25s ease;
         }
 
-        .nav-button:hover {
+        .nav-contact:hover {
             background: var(--charcoal);
             color: var(--white) !important;
         }
 
-        /* HERO */
 
-        .hero {
-            padding: 105px 0 90px;
+        /* =========================
+           MOBILE MENU BUTTON
+        ========================= */
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--charcoal);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .menu-toggle:hover {
+            background: var(--cream);
+        }
+
+
+        /* =========================
+           PAGE HERO
+        ========================= */
+
+        .page-hero {
+            padding: 100px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: var(--cream);
+            right: -170px;
+            top: 20px;
+            z-index: -1;
+        }
+
+        .page-hero-content {
+            max-width: 850px;
         }
 
         .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--sage-dark);
-            margin-bottom: 18px;
+            margin-bottom: 24px;
         }
 
-        .hero h1 {
-            max-width: 850px;
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--sage);
+        }
+
+        .page-hero h1 {
             font-family: "Playfair Display", serif;
-            font-size: clamp(48px, 7vw, 78px);
+            font-size: clamp(52px, 7vw, 82px);
             line-height: 1.05;
-            letter-spacing: -2px;
+            letter-spacing: -2.5px;
             font-weight: 500;
+            max-width: 900px;
             margin-bottom: 28px;
         }
 
-        .hero p {
+        .page-hero h1 span {
+            color: var(--sage-dark);
+        }
+
+        .page-hero-description {
             max-width: 720px;
             font-size: 19px;
             color: var(--muted);
             line-height: 1.8;
         }
 
-        /* PORTFOLIO */
 
-        .portfolio {
-            padding: 20px 0 110px;
+        /* =========================
+           CASE STUDIES
+        ========================= */
+
+        .work {
+            padding: 100px 0 110px;
+            background: var(--white);
+        }
+
+        .section-intro {
+            max-width: 700px;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 14px;
+        }
+
+        .section-heading {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 5vw, 56px);
+            line-height: 1.15;
+            font-weight: 500;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 17px;
         }
 
         .case-study {
-            margin-bottom: 90px;
-            padding: 48px;
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 22px;
+            padding: 70px 0;
+            border-top: 1px solid var(--border);
         }
 
         .case-study:last-child {
-            margin-bottom: 0;
-        }
-
-        .case-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 40px;
-            padding-bottom: 34px;
             border-bottom: 1px solid var(--border);
         }
 
-        .case-number {
-            min-width: 52px;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--cream);
+        .case-header {
+            display: grid;
+            grid-template-columns: 0.75fr 1.25fr;
+            gap: 90px;
+            margin-bottom: 45px;
+        }
+
+        .case-meta {
             color: var(--sage-dark);
-            border-radius: 50%;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .case-title-wrap {
-            flex: 1;
-        }
-
-        .case-label {
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--sage-dark);
-            margin-bottom: 9px;
+            margin-bottom: 18px;
         }
 
-        .case-study h2 {
+        .case-number {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .case-title {
             font-family: "Playfair Display", serif;
-            font-size: clamp(30px, 4vw, 43px);
-            line-height: 1.2;
+            font-size: clamp(32px, 4vw, 46px);
+            line-height: 1.15;
             font-weight: 500;
             letter-spacing: -0.8px;
         }
 
         .case-intro {
-            max-width: 760px;
-            margin-top: 18px;
-            font-size: 17px;
             color: var(--muted);
+            font-size: 17px;
+            line-height: 1.85;
         }
 
-        .case-body {
+        .case-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            padding-top: 40px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 45px;
         }
 
-        .case-section h3 {
-            font-size: 14px;
+        .case-block h3 {
+            font-size: 15px;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 13px;
+            margin-bottom: 10px;
         }
 
-        .case-section p {
+        .case-block p {
             color: var(--muted);
             font-size: 15px;
             line-height: 1.8;
+            margin-bottom: 20px;
         }
 
-        .case-section.full {
-            grid-column: 1 / -1;
+        .case-block ul {
+            list-style: none;
+            display: grid;
+            gap: 8px;
         }
 
-        /* RESPONSIBILITIES */
-
-        .responsibilities {
-            margin-top: 22px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
+        .case-block li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--muted);
+            font-size: 14px;
         }
 
-        .tag {
-            display: inline-block;
-            padding: 8px 13px;
-            background: var(--cream);
-            border-radius: 30px;
-            font-size: 12px;
-            color: var(--charcoal);
+        .case-block li::before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--sage);
+            left: 0;
+            top: 10px;
         }
-
-        /* FEATURED CASE STUDY */
-
-        .featured {
-            background: var(--charcoal);
-            color: var(--white);
-        }
-
-        .featured .case-label,
-        .featured .case-section h3 {
-            color: #D7DCCC;
-        }
-
-        .featured .case-intro,
-        .featured .case-section p {
-            color: #D1D0C9;
-        }
-
-        .featured .case-header {
-            border-color: rgba(255,255,255,0.15);
-        }
-
-        .featured .case-number {
-            background: rgba(255,255,255,0.1);
-            color: #E5E9DE;
-        }
-
-        .featured .tag {
-            background: rgba(255,255,255,0.09);
-            color: #F3F2ED;
-        }
-
-        /* WORKFLOW */
 
         .workflow {
-            margin-top: 28px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .workflow-step {
-            padding: 20px;
-            border: 1px solid rgba(255,255,255,0.13);
-            border-radius: 14px;
+            padding: 18px;
+            background: var(--ivory);
+            border: 1px solid var(--border);
+            border-radius: 12px;
         }
 
         .workflow-step span {
             display: block;
-            margin-bottom: 8px;
             font-size: 11px;
             font-weight: 700;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            color: #BFC8B8;
+            color: var(--sage-dark);
+            margin-bottom: 7px;
         }
 
         .workflow-step strong {
-            display: block;
             font-size: 14px;
-            line-height: 1.5;
         }
 
-        /* CTA */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .tags span {
+            padding: 7px 11px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            background: var(--ivory);
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           CTA
+        ========================= */
 
         .cta {
             padding: 100px 0;
-            background: var(--cream);
+            background: var(--charcoal);
+            color: var(--white);
             text-align: center;
         }
 
+        .cta .section-label {
+            color: #B9C2B3;
+        }
+
         .cta h2 {
-            max-width: 700px;
-            margin: 0 auto 20px;
             font-family: "Playfair Display", serif;
-            font-size: clamp(38px, 5vw, 58px);
+            font-size: clamp(40px, 5vw, 60px);
             line-height: 1.15;
             font-weight: 500;
-            letter-spacing: -1px;
+            margin-bottom: 20px;
         }
 
         .cta p {
-            max-width: 600px;
-            margin: 0 auto 30px;
-            color: var(--muted);
-            font-size: 16px;
+            max-width: 620px;
+            margin: 0 auto 32px;
+            color: #C8C8C2;
+            font-size: 17px;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 14px 25px;
-            background: var(--charcoal);
-            color: var(--white);
-            border-radius: 30px;
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
             transition: all 0.25s ease;
         }
 
-        .cta-button:hover {
-            background: var(--sage-dark);
+        .button-primary {
+            background: var(--white);
+            color: var(--charcoal);
+        }
+
+        .button-primary:hover {
+            background: var(--cream);
             transform: translateY(-2px);
         }
 
-        /* FOOTER */
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             padding: 28px 0;
             background: var(--charcoal);
-            color: #C9C8C1;
-            font-size: 13px;
+            color: #9F9F99;
+            border-top: 1px solid #454640;
         }
 
         .footer-inner {
@@ -359,83 +457,141 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
+            font-size: 13px;
         }
 
-        /* RESPONSIVE */
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        .fade-up {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 800px) {
 
-            .nav-inner {
-                flex-direction: column;
-                align-items: flex-start;
+            nav {
+                padding: 20px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
             }
 
             .nav-links {
-                flex-wrap: wrap;
-                gap: 18px;
+                display: none;
+                position: absolute;
+                top: calc(100% + 5px);
+                left: 5%;
+                right: 5%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 10px;
+                background: var(--white);
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                box-shadow: 0 15px 35px rgba(40, 40, 35, 0.10);
             }
 
-            .hero {
-                padding: 75px 0 65px;
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 13px 14px;
+                border-radius: 10px;
+            }
+
+            .nav-links a.active {
+                background: var(--cream);
+            }
+
+            .nav-links a.active::after {
+                display: none;
+            }
+
+            .nav-links a:hover {
+                background: var(--cream);
+            }
+
+            .nav-contact {
+                margin-top: 5px;
+                text-align: center;
+            }
+
+            .page-hero {
+                padding: 70px 0 80px;
+            }
+
+            .page-hero h1 {
+                font-size: 52px;
+                letter-spacing: -1.5px;
+            }
+
+            .page-hero-description {
+                font-size: 16px;
+            }
+
+            .work {
+                padding: 75px 0;
             }
 
             .case-study {
-                padding: 30px;
-                border-radius: 18px;
+                padding: 55px 0;
             }
 
             .case-header {
-                gap: 20px;
+                grid-template-columns: 1fr;
+                gap: 25px;
+                margin-bottom: 35px;
             }
 
-            .case-body {
+            .case-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
 
-            .case-section.full {
-                grid-column: auto;
+            .workflow {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .workflow {
-                grid-template-columns: 1fr;
+            .cta {
+                padding: 75px 0;
             }
 
             .footer-inner {
                 flex-direction: column;
-                align-items: flex-start;
+                text-align: center;
             }
         }
 
-        @media (max-width: 520px) {
-
-            .hero h1 {
-                font-size: 44px;
-                letter-spacing: -1.2px;
-            }
-
-            .hero p {
-                font-size: 17px;
-            }
-
-            .case-header {
-                flex-direction: column;
-            }
-
-            .case-study {
-                padding: 24px;
-            }
-
-            .case-study h2 {
-                font-size: 31px;
-            }
-        }
     </style>
 </head>
 
 <body>
 
     <!-- NAVIGATION -->
+
     <nav>
         <div class="container nav-inner">
 
@@ -443,551 +599,555 @@
                 Christine Diansay
             </a>
 
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+                ☰
+            </button>
+
             <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html" class="active">Work</a>
-    <a href="contact.html">Let's Connect</a>
-</div>
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="services.html">Services</a>
+
+                <a href="portfolio.html" class="active">Work</a>
+
+                <a href="contact.html" class="nav-contact">Let's Connect</a>
+
+            </div>
 
         </div>
     </nav>
 
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container">
+    <!-- PAGE HERO -->
 
-            <div class="eyebrow">Selected Work</div>
+    <main>
 
-            <h1>
-                Work that shows how I operate.
-            </h1>
+        <section class="page-hero">
 
-            <p>
-                A look at the systems, projects, and day-to-day operations
-                I've helped manage across different businesses and industries.
-            </p>
+            <div class="container">
 
-        </div>
-    </section>
+                <div class="page-hero-content fade-up">
 
-
-    <!-- PORTFOLIO -->
-    <section class="portfolio">
-        <div class="container">
-
-
-            <!-- CASE STUDY 01 -->
-            <article class="case-study featured">
-
-                <div class="case-header">
-
-                    <div class="case-number">
-                        01
+                    <div class="eyebrow">
+                        Selected Work
                     </div>
 
-                    <div class="case-title-wrap">
+                    <h1>
+                        Work that shows
+                        <span>how I operate.</span>
+                    </h1>
 
-                        <div class="case-label">
-                            Media & Publishing | United States
-                        </div>
+                    <p class="page-hero-description">
+                        A look at the systems, projects, and day-to-day operations
+                        I've helped manage across different businesses and industries.
+                    </p>
 
-                        <h2>
-                            End-to-End Magazine Production & Team Coordination
-                        </h2>
+                </div>
 
-                        <p class="case-intro">
-                            Managing a multi-stage publishing process involving
-                            contributors, editors, designers, web, social media,
-                            and distribution, while keeping the client out of
-                            the day-to-day technical complexity.
-                        </p>
+            </div>
 
+        </section>
+
+
+        <!-- WORK -->
+
+        <section class="work">
+
+            <div class="container">
+
+                <div class="section-intro">
+
+                    <div class="section-label">
+                        Case Studies
                     </div>
+
+                    <h2 class="section-heading">
+                        The work is more than a list of tasks.
+                    </h2>
+
+                    <p class="section-description">
+                        These examples show how I approach complex work, coordinate across people and systems,
+                        and keep projects moving from start to finish.
+                    </p>
 
                 </div>
 
 
-                <div class="case-body">
+                <!-- CASE STUDY 01 -->
 
-                    <div class="case-section">
+                <article class="case-study">
 
-                        <h3>The Challenge</h3>
+                    <div class="case-header">
 
-                        <p>
-                            Magazine production involved multiple people,
-                            deadlines, files, approvals, and platforms.
-                            Contributors needed to submit materials, editors
-                            needed access to content, designers needed clear
-                            production status, and the client needed visibility
-                            without having to manage the technical workflow
-                            herself.
-                        </p>
+                        <div>
 
-                    </div>
-
-
-                    <div class="case-section">
-
-                        <h3>My Approach</h3>
-
-                        <p>
-                            I built a practical production workflow around the
-                            way the team actually worked. The goal was not to
-                            introduce more technology, but to create a clear
-                            structure for moving information, responsibilities,
-                            and deliverables from one stage to the next.
-                        </p>
-
-                    </div>
-
-
-                    <div class="case-section full">
-
-                        <h3>What I Managed</h3>
-
-                        <div class="responsibilities">
-
-                            <span class="tag">Contributor Outreach</span>
-                            <span class="tag">Submission Management</span>
-                            <span class="tag">Google Drive Organization</span>
-                            <span class="tag">Production Tracking</span>
-                            <span class="tag">Editorial Coordination</span>
-                            <span class="tag">Trello Production Workflow</span>
-                            <span class="tag">Design Team Coordination</span>
-                            <span class="tag">Quality Control</span>
-                            <span class="tag">Social Media Production</span>
-                            <span class="tag">Website Updates</span>
-                            <span class="tag">Digital Distribution</span>
-                            <span class="tag">Print-on-Demand</span>
-                            <span class="tag">Contributor Communication</span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="case-section full">
-
-                        <h3>How the Workflow Worked</h3>
-
-                        <div class="workflow">
-
-                            <div class="workflow-step">
-                                <span>01 · Intake</span>
-                                <strong>
-                                    Contributor outreach and submission
-                                    collection
-                                </strong>
+                            <div class="case-number">
+                                01
                             </div>
 
-                            <div class="workflow-step">
-                                <span>02 · Organize</span>
-                                <strong>
-                                    Files, author information, photos, and
-                                    notes organized by issue
-                                </strong>
+                            <div class="case-meta">
+                                Media & Publishing | United States
                             </div>
 
-                            <div class="workflow-step">
-                                <span>03 · Track</span>
-                                <strong>
-                                    High-level issue tracker maintained for
-                                    status and accountability
-                                </strong>
+                            <h2 class="case-title">
+                                End-to-End Magazine Production & Team Coordination
+                            </h2>
+
+                        </div>
+
+                        <div class="case-intro">
+
+                            <p>
+                                Managed the operational side of magazine production from contributor outreach
+                                through publication, coordinating editorial, design, social media, website,
+                                and distribution work across multiple teams.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="case-content">
+
+                        <div class="case-block">
+
+                            <h3>
+                                Challenge
+                            </h3>
+
+                            <p>
+                                Magazine production involved a large number of contributors, files,
+                                deadlines, approvals, and team dependencies. The client needed a clear
+                                production process without having to manage the technical details of every stage.
+                            </p>
+
+                            <h3>
+                                What I Managed
+                            </h3>
+
+                            <ul>
+                                <li>Contributor outreach and submission management</li>
+                                <li>Google Drive and database organization</li>
+                                <li>Production tracking and editorial coordination</li>
+                                <li>Trello workflow and team coordination</li>
+                                <li>Design and layout coordination</li>
+                                <li>Quality control before client review</li>
+                                <li>Website updates and digital distribution</li>
+                                <li>Contributor communication after publication</li>
+                            </ul>
+
+                        </div>
+
+
+                        <div class="case-block">
+
+                            <h3>
+                                How the Workflow Worked
+                            </h3>
+
+                            <div class="workflow">
+
+                                <div class="workflow-step">
+                                    <span>01</span>
+                                    <strong>Intake</strong>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <span>02</span>
+                                    <strong>Organize</strong>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <span>03</span>
+                                    <strong>Track</strong>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <span>04</span>
+                                    <strong>Edit</strong>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <span>05</span>
+                                    <strong>Produce</strong>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <span>06</span>
+                                    <strong>Publish</strong>
+                                </div>
+
                             </div>
 
-                            <div class="workflow-step">
-                                <span>04 · Edit</span>
-                                <strong>
-                                    Articles coordinated with the editorial
-                                    team
-                                </strong>
+                            <h3 style="margin-top: 30px;">
+                                What This Demonstrates
+                            </h3>
+
+                            <p>
+                                I don't just move tasks from one person to another. I look at the dependencies
+                                between them, anticipate what each team needs next, and check the details before
+                                work reaches the client.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tags">
+
+                        <span>Contributor Outreach</span>
+                        <span>Submission Management</span>
+                        <span>Google Drive Organization</span>
+                        <span>Production Tracking</span>
+                        <span>Editorial Coordination</span>
+                        <span>Trello Production Workflow</span>
+                        <span>Design Team Coordination</span>
+                        <span>Quality Control</span>
+                        <span>Social Media Production</span>
+                        <span>Website Updates</span>
+                        <span>Digital Distribution</span>
+                        <span>Print-on-Demand</span>
+                        <span>Contributor Communication</span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CASE STUDY 02 -->
+
+                <article class="case-study">
+
+                    <div class="case-header">
+
+                        <div>
+
+                            <div class="case-number">
+                                02
                             </div>
 
-                            <div class="workflow-step">
-                                <span>05 · Produce</span>
-                                <strong>
-                                    Article-level Trello cards used to
-                                    coordinate layout and design
-                                </strong>
+                            <div class="case-meta">
+                                Financial Services | United States
                             </div>
 
-                            <div class="workflow-step">
-                                <span>06 · Publish</span>
-                                <strong>
-                                    Final checks, distribution, website
-                                    updates, and contributor communication
-                                </strong>
+                            <h2 class="case-title">
+                                Executive & Marketing Operations
+                            </h2>
+
+                        </div>
+
+                        <div class="case-intro">
+
+                            <p>
+                                A long-term cross-functional role combining executive administration
+                                with CRM management, marketing operations, website maintenance,
+                                content production, and campaign execution.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="case-content">
+
+                        <div class="case-block">
+
+                            <h3>
+                                What I Managed
+                            </h3>
+
+                            <ul>
+                                <li>Executive and administrative tasks</li>
+                                <li>Inbox and information management</li>
+                                <li>GoHighLevel CRM maintenance</li>
+                                <li>Forms and lead capture</li>
+                                <li>Email campaigns and newsletters</li>
+                                <li>Social media management and engagement</li>
+                                <li>Google Business Profile management</li>
+                                <li>WordPress website updates and maintenance</li>
+                            </ul>
+
+                        </div>
+
+
+                        <div class="case-block">
+
+                            <h3>
+                                Additional Operations
+                            </h3>
+
+                            <ul>
+                                <li>YouTube production and content repurposing</li>
+                                <li>Podcast content production</li>
+                                <li>Marketing campaign execution</li>
+                                <li>Email automation</li>
+                                <li>Amazon book administration</li>
+                                <li>Website content and page updates</li>
+                                <li>Ad hoc operational tasks</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tags">
+
+                        <span>Executive Assistance</span>
+                        <span>Inbox & Admin Management</span>
+                        <span>GoHighLevel</span>
+                        <span>CRM Maintenance</span>
+                        <span>Forms & Lead Capture</span>
+                        <span>Email Campaigns</span>
+                        <span>Newsletters</span>
+                        <span>Social Media</span>
+                        <span>Google Business Profile</span>
+                        <span>WordPress</span>
+                        <span>Website Maintenance</span>
+                        <span>YouTube Production</span>
+                        <span>Content Repurposing</span>
+                        <span>Marketing Campaigns</span>
+                        <span>Amazon Book Administration</span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CASE STUDY 03 -->
+
+                <article class="case-study">
+
+                    <div class="case-header">
+
+                        <div>
+
+                            <div class="case-number">
+                                03
                             </div>
 
+                            <div class="case-meta">
+                                Real Estate | Canada
+                            </div>
+
+                            <h2 class="case-title">
+                                Administrative & Marketing Operations
+                            </h2>
+
                         </div>
 
-                    </div>
+                        <div class="case-intro">
 
-
-                    <div class="case-section full">
-
-                        <h3>What This Demonstrates</h3>
-
-                        <p>
-                            This project required more than keeping a task list.
-                            It required understanding how different parts of
-                            production depended on one another, anticipating
-                            what each team member needed next, checking details
-                            before they reached the client, and keeping the
-                            entire process moving toward publication.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- CASE STUDY 02 -->
-            <article class="case-study">
-
-                <div class="case-header">
-
-                    <div class="case-number">
-                        02
-                    </div>
-
-                    <div class="case-title-wrap">
-
-                        <div class="case-label">
-                            Financial Services | United States
-                        </div>
-
-                        <h2>
-                            Executive & Marketing Operations
-                        </h2>
-
-                        <p class="case-intro">
-                            A long-term role combining executive assistance,
-                            marketing operations, CRM management, website
-                            work, content production, and campaign execution.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="case-body">
-
-                    <div class="case-section">
-
-                        <h3>The Role</h3>
-
-                        <p>
-                            I worked across both administrative and marketing
-                            responsibilities, adapting to what the business
-                            needed rather than staying within a single narrow
-                            function.
-                        </p>
-
-                    </div>
-
-
-                    <div class="case-section">
-
-                        <h3>My Approach</h3>
-
-                        <p>
-                            I became familiar with the business, its systems,
-                            its audience, and its recurring processes so I could
-                            manage work independently and keep projects moving
-                            without requiring constant direction.
-                        </p>
-
-                    </div>
-
-
-                    <div class="case-section full">
-
-                        <h3>What I Managed</h3>
-
-                        <div class="responsibilities">
-
-                            <span class="tag">Executive Assistance</span>
-                            <span class="tag">Inbox & Admin Management</span>
-                            <span class="tag">GoHighLevel</span>
-                            <span class="tag">CRM Maintenance</span>
-                            <span class="tag">Forms & Lead Capture</span>
-                            <span class="tag">Email Campaigns</span>
-                            <span class="tag">Newsletters</span>
-                            <span class="tag">Social Media</span>
-                            <span class="tag">Google Business Profile</span>
-                            <span class="tag">WordPress</span>
-                            <span class="tag">Website Maintenance</span>
-                            <span class="tag">YouTube Production</span>
-                            <span class="tag">Content Repurposing</span>
-                            <span class="tag">Marketing Campaigns</span>
-                            <span class="tag">Amazon Book Administration</span>
+                            <p>
+                                Supported a real estate professional across administrative work,
+                                marketing operations, CRM activity, social media, website setup,
+                                and research.
+                            </p>
 
                         </div>
 
                     </div>
 
 
-                    <div class="case-section full">
+                    <div class="case-content">
 
-                        <h3>What This Demonstrates</h3>
+                        <div class="case-block">
 
-                        <p>
-                            The role required moving comfortably between
-                            executive-level priorities, marketing execution,
-                            technical systems, and detailed administrative work.
-                            It also meant being able to pick up unfamiliar
-                            processes, understand how they fit into the larger
-                            operation, and follow them through to completion.
-                        </p>
+                            <h3>
+                                What I Managed
+                            </h3>
 
-                    </div>
+                            <ul>
+                                <li>Administrative support</li>
+                                <li>Social media management</li>
+                                <li>Brand development and visual materials</li>
+                                <li>Canva production</li>
+                                <li>KW Command CRM management</li>
+                                <li>Marketing email automation</li>
+                            </ul>
 
-                </div>
-
-            </article>
-
-
-            <!-- CASE STUDY 03 -->
-            <article class="case-study">
-
-                <div class="case-header">
-
-                    <div class="case-number">
-                        03
-                    </div>
-
-                    <div class="case-title-wrap">
-
-                        <div class="case-label">
-                            Real Estate | Canada
                         </div>
 
-                        <h2>
-                            Administrative & Marketing Operations
-                        </h2>
 
-                        <p class="case-intro">
-                            Supporting a real estate professional across
-                            administration, marketing, social media, website
-                            setup, CRM, and business visibility.
-                        </p>
+                        <div class="case-block">
 
-                    </div>
+                            <h3>
+                                Additional Work
+                            </h3>
 
-                </div>
-
-
-                <div class="case-body">
-
-                    <div class="case-section">
-
-                        <h3>The Focus</h3>
-
-                        <p>
-                            The work covered several areas of the business,
-                            from day-to-day administrative responsibilities
-                            to marketing and online presence.
-                        </p>
-
-                    </div>
-
-
-                    <div class="case-section">
-
-                        <h3>My Approach</h3>
-
-                        <p>
-                            I handled the operational details behind the
-                            business's marketing activity while keeping the
-                            different platforms and information organized.
-                        </p>
-
-                    </div>
-
-
-                    <div class="case-section full">
-
-                        <h3>What I Managed</h3>
-
-                        <div class="responsibilities">
-
-                            <span class="tag">Administrative Support</span>
-                            <span class="tag">Social Media Management</span>
-                            <span class="tag">Brand Development</span>
-                            <span class="tag">Canva</span>
-                            <span class="tag">KW Command</span>
-                            <span class="tag">CRM Management</span>
-                            <span class="tag">Marketing Email Automation</span>
-                            <span class="tag">Website Setup</span>
-                            <span class="tag">Google Business Profile</span>
-                            <span class="tag">Listing Research</span>
-                            <span class="tag">FSBO Research</span>
-                            <span class="tag">Google Drive</span>
+                            <ul>
+                                <li>Website setup through KW Command</li>
+                                <li>Google Business Profile</li>
+                                <li>Listing research</li>
+                                <li>FSBO research</li>
+                                <li>Google Drive organization</li>
+                                <li>Ongoing marketing coordination</li>
+                            </ul>
 
                         </div>
 
                     </div>
 
 
-                    <div class="case-section full">
+                    <div class="tags">
 
-                        <h3>What This Demonstrates</h3>
-
-                        <p>
-                            This role demonstrates my ability to combine
-                            administrative execution with marketing and
-                            platform management, while keeping the work
-                            aligned with the day-to-day needs of a busy
-                            business owner.
-                        </p>
+                        <span>Administrative Support</span>
+                        <span>Social Media Management</span>
+                        <span>Brand Development</span>
+                        <span>Canva</span>
+                        <span>KW Command</span>
+                        <span>CRM Management</span>
+                        <span>Marketing Email Automation</span>
+                        <span>Website Setup</span>
+                        <span>Google Business Profile</span>
+                        <span>Listing Research</span>
+                        <span>FSBO Research</span>
+                        <span>Google Drive</span>
 
                     </div>
 
-                </div>
-
-            </article>
+                </article>
 
 
-            <!-- CASE STUDY 04 -->
-            <article class="case-study">
+                <!-- CASE STUDY 04 -->
 
-                <div class="case-header">
+                <article class="case-study">
 
-                    <div class="case-number">
-                        04
-                    </div>
+                    <div class="case-header">
 
-                    <div class="case-title-wrap">
+                        <div>
 
-                        <div class="case-label">
-                            Digital Services | Australia
+                            <div class="case-number">
+                                04
+                            </div>
+
+                            <div class="case-meta">
+                                Digital Services | Australia
+                            </div>
+
+                            <h2 class="case-title">
+                                Website Project Management & Technical Coordination
+                            </h2>
+
                         </div>
 
-                        <h2>
-                            Website Project Management & Technical Support
-                        </h2>
+                        <div class="case-intro">
 
-                        <p class="case-intro">
-                            Coordinating website projects between clients and
-                            technical teams while handling ongoing website
-                            maintenance and implementation work.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="case-body">
-
-                    <div class="case-section">
-
-                        <h3>The Role</h3>
-
-                        <p>
-                            I acted as the connection between clients and the
-                            technical team, helping move website projects
-                            forward while also handling practical updates and
-                            maintenance.
-                        </p>
-
-                    </div>
-
-
-                    <div class="case-section">
-
-                        <h3>My Approach</h3>
-
-                        <p>
-                            I focused on keeping communication clear, making
-                            sure requirements were understood, following up
-                            on deliverables, and handling the website work
-                            that could be completed directly.
-                        </p>
-
-                    </div>
-
-
-                    <div class="case-section full">
-
-                        <h3>What I Managed</h3>
-
-                        <div class="responsibilities">
-
-                            <span class="tag">Website Project Management</span>
-                            <span class="tag">Client Communication</span>
-                            <span class="tag">WordPress</span>
-                            <span class="tag">Elementor</span>
-                            <span class="tag">GoHighLevel</span>
-                            <span class="tag">Shopify</span>
-                            <span class="tag">WooCommerce</span>
-                            <span class="tag">Page Creation</span>
-                            <span class="tag">Page Duplication</span>
-                            <span class="tag">Website Maintenance</span>
-                            <span class="tag">Technical Coordination</span>
-                            <span class="tag">Basic SEO Implementation</span>
+                            <p>
+                                Managed website projects between clients and technical teams,
+                                handling communication, page work, maintenance, and practical technical
+                                execution across multiple platforms.
+                            </p>
 
                         </div>
 
                     </div>
 
 
-                    <div class="case-section full">
+                    <div class="case-content">
 
-                        <h3>What This Demonstrates</h3>
+                        <div class="case-block">
 
-                        <p>
-                            This experience reflects my ability to work
-                            comfortably between clients, technical teams,
-                            and the systems involved in a website project,
-                            without positioning myself as a developer when
-                            the work requires deeper technical expertise.
-                        </p>
+                            <h3>
+                                What I Managed
+                            </h3>
+
+                            <ul>
+                                <li>Website project management</li>
+                                <li>Client communication</li>
+                                <li>WordPress page creation and duplication</li>
+                                <li>Elementor website updates</li>
+                                <li>GoHighLevel website work</li>
+                                <li>Website maintenance</li>
+                            </ul>
+
+                        </div>
+
+
+                        <div class="case-block">
+
+                            <h3>
+                                Technical Coordination
+                            </h3>
+
+                            <ul>
+                                <li>Shopify and WooCommerce tasks</li>
+                                <li>Coordination with technical teams</li>
+                                <li>Client requirements and updates</li>
+                                <li>Basic SEO implementation</li>
+                                <li>Local page implementation</li>
+                                <li>Ongoing technical coordination</li>
+                            </ul>
+
+                        </div>
 
                     </div>
 
+
+                    <div class="tags">
+
+                        <span>Website Project Management</span>
+                        <span>Client Communication</span>
+                        <span>WordPress</span>
+                        <span>Elementor</span>
+                        <span>GoHighLevel</span>
+                        <span>Shopify</span>
+                        <span>WooCommerce</span>
+                        <span>Page Creation</span>
+                        <span>Page Duplication</span>
+                        <span>Website Maintenance</span>
+                        <span>Technical Coordination</span>
+                        <span>Basic SEO Implementation</span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <section class="cta">
+
+            <div class="container">
+
+                <div class="section-label">
+                    Let's Work Together
                 </div>
 
-            </article>
+                <h2>
+                    Need someone who can<br>
+                    take ownership of the moving parts?
+                </h2>
 
+                <p>
+                    If you need someone who can step into the work,
+                    understand what's happening, coordinate what needs coordinating,
+                    and keep things moving, let's talk.
+                </p>
 
-        </div>
-    </section>
+                <a href="contact.html" class="button button-primary">
+                    Let's Connect
+                </a>
 
+            </div>
 
-    <!-- CTA -->
-    <section class="cta">
+        </section>
 
-        <div class="container">
-
-            <h2>
-                Need someone who can take ownership of the moving parts?
-            </h2>
-
-            <p>
-                If your business has projects, systems, and day-to-day
-                responsibilities that need someone to keep them moving,
-                let's talk.
-            </p>
-
-            <a href="mailto:christinediansay@gmail.com" class="cta-button">
-                Let's Connect
-            </a>
-
-        </div>
-
-    </section>
+    </main>
 
 
     <!-- FOOTER -->
+
     <footer>
 
         <div class="container footer-inner">
@@ -1003,6 +1163,53 @@
         </div>
 
     </footer>
+
+
+    <!-- MOBILE MENU SCRIPT -->
+
+    <script>
+
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+            menuToggle.textContent = isOpen ? "×" : "☰";
+
+        });
+
+
+        /* Close the menu after selecting a page */
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("open");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+                menuToggle.textContent = "☰";
+
+            });
+
+        });
+
+    </script>
 
 </body>
 </html>
