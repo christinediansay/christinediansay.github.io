@@ -6,13 +6,18 @@
 
     <title>Services | Christine Diansay</title>
 
-    <meta name="description" content="Administrative support, CRM and marketing operations, website support, and project coordination by Christine Diansay.">
+    <meta name="description" content="Christine Diansay provides executive and administrative support, CRM and marketing operations, website assistance, and project coordination.">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
     <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
 
         :root {
             --ivory: #F7F4EE;
@@ -53,11 +58,14 @@
         }
 
 
-        /* NAVIGATION */
+        /* =========================
+           NAVIGATION
+        ========================= */
 
         nav {
             padding: 28px 0;
-            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 100;
         }
 
         .nav-inner {
@@ -70,6 +78,7 @@
             font-family: "Playfair Display", serif;
             font-size: 24px;
             font-weight: 600;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
@@ -85,11 +94,24 @@
             transition: color 0.25s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--charcoal);
+        .nav-links a.active {
+            color: var(--sage-dark);
+            font-weight: 600;
+            position: relative;
         }
 
-        .nav-links .active {
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            height: 2px;
+            background: var(--sage);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
             color: var(--charcoal);
         }
 
@@ -106,10 +128,55 @@
         }
 
 
-        /* PAGE HERO */
+        /* =========================
+           MOBILE MENU BUTTON
+        ========================= */
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--charcoal);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .menu-toggle:hover {
+            background: var(--cream);
+        }
+
+
+        /* =========================
+           PAGE HERO
+        ========================= */
 
         .page-hero {
-            padding: 100px 0 90px;
+            padding: 100px 0 110px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: var(--cream);
+            right: -170px;
+            top: 20px;
+            z-index: -1;
+        }
+
+        .page-hero-content {
+            max-width: 850px;
         }
 
         .eyebrow {
@@ -135,7 +202,7 @@
             font-family: "Playfair Display", serif;
             font-size: clamp(52px, 7vw, 82px);
             line-height: 1.05;
-            letter-spacing: -2px;
+            letter-spacing: -2.5px;
             font-weight: 500;
             max-width: 900px;
             margin-bottom: 28px;
@@ -145,32 +212,63 @@
             color: var(--sage-dark);
         }
 
-        .intro {
-            max-width: 720px;
+        .page-hero-description {
+            max-width: 700px;
             font-size: 19px;
             color: var(--muted);
-            line-height: 1.85;
+            line-height: 1.8;
         }
 
 
-        /* SERVICES */
+        /* =========================
+           SERVICES
+        ========================= */
 
         .services {
-            padding: 90px 0 110px;
+            padding: 100px 0;
             background: var(--white);
         }
 
-        .service-grid {
+        .section-intro {
+            max-width: 680px;
+            margin-bottom: 55px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 14px;
+        }
+
+        .section-heading {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 5vw, 56px);
+            line-height: 1.15;
+            font-weight: 500;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
+            gap: 20px;
         }
 
         .service-card {
-            padding: 42px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
             background: var(--ivory);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 38px;
+            min-height: 300px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -183,50 +281,42 @@
             font-size: 13px;
             font-weight: 700;
             color: var(--sage-dark);
-            margin-bottom: 35px;
+            margin-bottom: 45px;
         }
 
-        .service-card h2 {
+        .service-card h3 {
             font-family: "Playfair Display", serif;
-            font-size: 34px;
-            line-height: 1.2;
+            font-size: 30px;
             font-weight: 500;
             margin-bottom: 14px;
         }
 
-        .service-card > p {
+        .service-card p {
             color: var(--muted);
             font-size: 15px;
             line-height: 1.75;
-            margin-bottom: 28px;
+            margin-bottom: 22px;
         }
 
         .service-list {
-            list-style: none;
-            border-top: 1px solid var(--border);
-            padding-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .service-list li {
-            position: relative;
-            padding: 8px 0 8px 20px;
-            color: var(--charcoal);
-            font-size: 14px;
-        }
-
-        .service-list li::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 18px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--sage);
+        .service-list span {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 12px;
+            color: var(--muted);
+            background: var(--white);
         }
 
 
-        /* APPROACH */
+        /* =========================
+           APPROACH
+        ========================= */
 
         .approach {
             padding: 110px 0;
@@ -239,45 +329,32 @@
             align-items: start;
         }
 
-        .section-label {
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-            color: var(--sage-dark);
-            margin-bottom: 16px;
-        }
-
-        .section-heading {
-            font-family: "Playfair Display", serif;
-            font-size: clamp(38px, 5vw, 54px);
-            line-height: 1.15;
-            font-weight: 500;
-            letter-spacing: -1px;
-        }
-
-        .approach-copy p {
+        .approach-text p {
             color: var(--muted);
             font-size: 17px;
             line-height: 1.85;
             margin-bottom: 22px;
         }
 
-        .approach-note {
-            margin-top: 32px;
-            padding: 25px 28px;
-            border-left: 3px solid var(--sage);
+        .approach-highlight {
+            margin-top: 35px;
+            padding: 28px 30px;
             background: var(--cream);
+            border-left: 3px solid var(--sage);
+            border-radius: 0 12px 12px 0;
         }
 
-        .approach-note p {
+        .approach-highlight p {
             margin: 0;
             color: var(--charcoal);
-            font-size: 16px;
+            font-size: 18px;
+            line-height: 1.7;
         }
 
 
-        /* CTA */
+        /* =========================
+           CTA
+        ========================= */
 
         .cta {
             padding: 100px 0;
@@ -313,18 +390,23 @@
             border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
-            background: var(--white);
-            color: var(--charcoal);
             transition: all 0.25s ease;
         }
 
-        .button:hover {
+        .button-primary {
+            background: var(--white);
+            color: var(--charcoal);
+        }
+
+        .button-primary:hover {
             background: var(--cream);
             transform: translateY(-2px);
         }
 
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             padding: 28px 0;
@@ -342,29 +424,104 @@
         }
 
 
-        /* MOBILE */
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        .fade-up {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 800px) {
 
+            nav {
+                padding: 20px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
             .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 5px);
+                left: 5%;
+                right: 5%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 10px;
+                background: var(--white);
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                box-shadow: 0 15px 35px rgba(40, 40, 35, 0.10);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 13px 14px;
+                border-radius: 10px;
+            }
+
+            .nav-links a.active {
+                background: var(--cream);
+            }
+
+            .nav-links a.active::after {
                 display: none;
             }
 
+            .nav-links a:hover {
+                background: var(--cream);
+            }
+
+            .nav-contact {
+                margin-top: 5px;
+                text-align: center;
+            }
+
             .page-hero {
-                padding: 70px 0;
+                padding: 70px 0 80px;
             }
 
             .page-hero h1 {
                 font-size: 52px;
+                letter-spacing: -1.5px;
             }
 
-            .service-grid {
+            .page-hero-description {
+                font-size: 16px;
+            }
+
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
             .approach-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 45px;
             }
 
             .services,
@@ -384,7 +541,6 @@
 
 <body>
 
-
     <!-- NAVIGATION -->
 
     <nav>
@@ -394,13 +550,23 @@
                 Christine Diansay
             </a>
 
-           <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-   <a href="services.html" class="active">Services</a>
-    <a href="portfolio.html">Work</a>
-    <a href="contact.html">Let's Connect</a>
-</div>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="nav-links">
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="services.html" class="active">Services</a>
+
+                <a href="portfolio.html">Work</a>
+
+                <a href="contact.html" class="nav-contact">Let's Connect</a>
+
+            </div>
 
         </div>
     </nav>
@@ -408,218 +574,174 @@
 
     <!-- PAGE HERO -->
 
-    <section class="page-hero">
+    <main>
 
-        <div class="container">
+        <section class="page-hero">
 
-            <div class="eyebrow">
-                What I Do
-            </div>
+            <div class="container">
 
-            <h1>
-                Practical support across
-                <span>the moving parts.</span>
-            </h1>
+                <div class="page-hero-content fade-up">
 
-            <p class="intro">
-                I work across administration, systems, marketing operations, websites,
-                and project coordination, depending on what the business actually needs.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- SERVICES -->
-
-    <section class="services">
-
-        <div class="container">
-
-            <div class="service-grid">
-
-
-                <!-- SERVICE 01 -->
-
-                <div class="service-card">
-
-                    <div class="service-number">
-                        01
+                    <div class="eyebrow">
+                        Services
                     </div>
 
-                    <h2>
-                        Executive & Administrative Support
-                    </h2>
+                    <h1>
+                        Practical support across
+                        <span>the moving parts.</span>
+                    </h1>
 
-                    <p>
-                        Keeping information, communication, files, research, and day-to-day
-                        responsibilities organized and moving forward.
+                    <p class="page-hero-description">
+                        I work across administration, systems, marketing operations, websites,
+                        and project coordination, depending on what the business actually needs.
                     </p>
-
-                    <ul class="service-list">
-                        <li>Executive assistance</li>
-                        <li>Inbox organization and prioritization</li>
-                        <li>Database and file management</li>
-                        <li>Research</li>
-                        <li>Client and partner communication</li>
-                        <li>Documentation</li>
-                        <li>Team coordination</li>
-                        <li>Administrative and operational tasks</li>
-                    </ul>
-
-                </div>
-
-
-                <!-- SERVICE 02 -->
-
-                <div class="service-card">
-
-                    <div class="service-number">
-                        02
-                    </div>
-
-                    <h2>
-                        CRM & Marketing Operations
-                    </h2>
-
-                    <p>
-                        Managing the systems and execution behind lead management,
-                        communications, campaigns, and ongoing marketing activity.
-                    </p>
-
-                    <ul class="service-list">
-                        <li>GoHighLevel management</li>
-                        <li>CRM organization and maintenance</li>
-                        <li>Forms and lead capture</li>
-                        <li>Workflows and automations</li>
-                        <li>Email campaigns and newsletters</li>
-                        <li>Social media management and engagement</li>
-                        <li>Google Business Profile</li>
-                        <li>Marketing campaign execution</li>
-                        <li>Content repurposing</li>
-                        <li>KW Command</li>
-                    </ul>
-
-                </div>
-
-
-                <!-- SERVICE 03 -->
-
-                <div class="service-card">
-
-                    <div class="service-number">
-                        03
-                    </div>
-
-                    <h2>
-                        Website & Technical Support
-                    </h2>
-
-                    <p>
-                        Handling the practical website and technical work that keeps a
-                        business's online presence current and functional.
-                    </p>
-
-                    <ul class="service-list">
-                        <li>WordPress updates and maintenance</li>
-                        <li>Elementor</li>
-                        <li>Beaver Builder</li>
-                        <li>GoHighLevel websites</li>
-                        <li>Page creation and duplication</li>
-                        <li>Forms and integrations</li>
-                        <li>Basic troubleshooting</li>
-                        <li>Shopify and WooCommerce support</li>
-                        <li>Basic SEO implementation</li>
-                    </ul>
-
-                </div>
-
-
-                <!-- SERVICE 04 -->
-
-                <div class="service-card">
-
-                    <div class="service-number">
-                        04
-                    </div>
-
-                    <h2>
-                        Project & Team Coordination
-                    </h2>
-
-                    <p>
-                        Connecting people, tasks, deadlines, and deliverables so projects
-                        continue moving without leaving the details behind.
-                    </p>
-
-                    <ul class="service-list">
-                        <li>Project and task coordination</li>
-                        <li>Team follow-up</li>
-                        <li>Production coordination</li>
-                        <li>Website project support</li>
-                        <li>Content and marketing projects</li>
-                        <li>Client communication</li>
-                        <li>Production administration</li>
-                        <li>Workflow and process organization</li>
-                    </ul>
 
                 </div>
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- APPROACH -->
+        <!-- SERVICES -->
 
-    <section class="approach">
+        <section class="services">
 
-        <div class="container">
+            <div class="container">
 
-            <div class="approach-grid">
-
-                <div>
+                <div class="section-intro">
 
                     <div class="section-label">
-                        My Approach
+                        What I Can Handle
                     </div>
 
                     <h2 class="section-heading">
-                        The right system is the one that works.
+                        The work behind the work.
                     </h2>
+
+                    <p class="section-description">
+                        My role can look different from one business to another.
+                        What stays consistent is taking ownership of the details,
+                        systems, and coordination needed to keep things moving.
+                    </p>
 
                 </div>
 
 
-                <div class="approach-copy">
+                <div class="services-grid">
 
-                    <p>
-                        I don't believe in adding complexity just to make a process
-                        look more sophisticated.
-                    </p>
+                    <!-- SERVICE 01 -->
 
-                    <p>
-                        I look at how the business actually operates, who is involved,
-                        what information needs to move, and what each person needs
-                        in order to do their part well.
-                    </p>
+                    <div class="service-card">
 
-                    <p>
-                        From there, I work within existing systems or create practical
-                        workflows where something new is needed.
-                    </p>
+                        <div class="service-number">
+                            01
+                        </div>
 
-                    <div class="approach-note">
+                        <h3>
+                            Executive & Administrative
+                        </h3>
 
                         <p>
-                            <strong>
-                                Good systems should make the work easier for the people using them,
-                                not make the people work harder to use the system.
-                            </strong>
+                            Keeping the day-to-day organized so business owners and teams
+                            can spend their time where it matters most.
                         </p>
+
+                        <div class="service-list">
+                            <span>Inbox Management</span>
+                            <span>Calendar & Scheduling</span>
+                            <span>Research</span>
+                            <span>File Organization</span>
+                            <span>Data Management</span>
+                            <span>Administrative Tasks</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- SERVICE 02 -->
+
+                    <div class="service-card">
+
+                        <div class="service-number">
+                            02
+                        </div>
+
+                        <h3>
+                            CRM & Marketing Operations
+                        </h3>
+
+                        <p>
+                            Managing the systems and execution behind campaigns,
+                            customer information, communications, and ongoing marketing activity.
+                        </p>
+
+                        <div class="service-list">
+                            <span>GoHighLevel</span>
+                            <span>CRM Management</span>
+                            <span>Email Campaigns</span>
+                            <span>Lead Management</span>
+                            <span>Social Media</span>
+                            <span>Marketing Operations</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- SERVICE 03 -->
+
+                    <div class="service-card">
+
+                        <div class="service-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Website & Technical
+                        </h3>
+
+                        <p>
+                            Handling practical website and technical tasks across the platforms
+                            a business already uses, while coordinating with technical teams when needed.
+                        </p>
+
+                        <div class="service-list">
+                            <span>WordPress</span>
+                            <span>Elementor</span>
+                            <span>Beaver Builder</span>
+                            <span>GoHighLevel</span>
+                            <span>Website Maintenance</span>
+                            <span>Basic SEO Implementation</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- SERVICE 04 -->
+
+                    <div class="service-card">
+
+                        <div class="service-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Project & Team Coordination
+                        </h3>
+
+                        <p>
+                            Keeping projects organized across people, deadlines, systems,
+                            and deliverables so everyone knows what needs to happen next.
+                        </p>
+
+                        <div class="service-list">
+                            <span>Project Coordination</span>
+                            <span>Team Coordination</span>
+                            <span>Task Tracking</span>
+                            <span>Production Workflows</span>
+                            <span>Quality Control</span>
+                            <span>Client Communication</span>
+                        </div>
 
                     </div>
 
@@ -627,37 +749,91 @@
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- CTA -->
+        <!-- APPROACH -->
 
-    <section class="cta">
+        <section class="approach">
 
-        <div class="container">
+            <div class="container">
 
-            <div class="section-label">
-                Let's Work Together
+                <div class="approach-grid">
+
+                    <div>
+
+                        <div class="section-label">
+                            My Approach
+                        </div>
+
+                        <h2 class="section-heading">
+                            The right system is the one that works.
+                        </h2>
+
+                    </div>
+
+
+                    <div class="approach-text">
+
+                        <p>
+                            I don't start with a tool and try to fit the business around it.
+                            I look at how the work actually operates, who is involved,
+                            what information needs to move, and what each person needs to do their part.
+                        </p>
+
+                        <p>
+                            Sometimes the answer is working within an existing system.
+                            Sometimes it means creating a practical workflow around it.
+                            The goal is not to make things more technical. It's to make the work easier to manage.
+                        </p>
+
+                        <div class="approach-highlight">
+
+                            <p>
+                                Good systems should make the work easier for the people using them,
+                                not make the people work harder to use the system.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <h2>
-                Have moving parts<br>
-                that need managing?
-            </h2>
+        </section>
 
-            <p>
-                Let's talk about what you need handled and where I can step in.
-            </p>
 
-            <a href="index.html#contact" class="button">
-                Let's Connect
-            </a>
+        <!-- CTA -->
 
-        </div>
+        <section class="cta">
 
-    </section>
+            <div class="container">
+
+                <div class="section-label">
+                    Let's Work Together
+                </div>
+
+                <h2>
+                    Have moving parts<br>
+                    that need managing?
+                </h2>
+
+                <p>
+                    Tell me what you're working with, what needs to move,
+                    and where you need someone to take ownership.
+                </p>
+
+                <a href="contact.html" class="button button-primary">
+                    Let's Connect
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
 
 
     <!-- FOOTER -->
@@ -677,6 +853,53 @@
         </div>
 
     </footer>
+
+
+    <!-- MOBILE MENU SCRIPT -->
+
+    <script>
+
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+            menuToggle.textContent = isOpen ? "×" : "☰";
+
+        });
+
+
+        /* Close the menu after selecting a page */
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("open");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+                menuToggle.textContent = "☰";
+
+            });
+
+        });
+
+    </script>
 
 </body>
 </html>
