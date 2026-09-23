@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Services | Christine Diansay</title>
+
+    <meta name="description" content="Administrative support, CRM and marketing operations, website support, and project coordination by Christine Diansay.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+            --ivory: #F7F4EE;
+            --cream: #EFEAE0;
+            --charcoal: #292A27;
+            --muted: #686963;
+            --sage: #65735F;
+            --sage-dark: #4F5D4A;
+            --white: #FFFFFF;
+            --border: #DDD8CD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--ivory);
+            color: var(--charcoal);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+        }
+
+
+        /* NAVIGATION */
+
+        nav {
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 34px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--muted);
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--charcoal);
+        }
+
+        .nav-links .active {
+            color: var(--charcoal);
+        }
+
+        .nav-contact {
+            padding: 10px 18px;
+            border: 1px solid var(--charcoal);
+            border-radius: 50px;
+            color: var(--charcoal) !important;
+        }
+
+        .nav-contact:hover {
+            background: var(--charcoal);
+            color: var(--white) !important;
+        }
+
+
+        /* PAGE HERO */
+
+        .page-hero {
+            padding: 100px 0 90px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 24px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--sage);
+        }
+
+        .page-hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(52px, 7vw, 82px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            font-weight: 500;
+            max-width: 900px;
+            margin-bottom: 28px;
+        }
+
+        .page-hero h1 span {
+            color: var(--sage-dark);
+        }
+
+        .intro {
+            max-width: 720px;
+            font-size: 19px;
+            color: var(--muted);
+            line-height: 1.85;
+        }
+
+
+        /* SERVICES */
+
+        .services {
+            padding: 90px 0 110px;
+            background: var(--white);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            padding: 42px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--ivory);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(40, 40, 35, 0.07);
+        }
+
+        .service-number {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--sage-dark);
+            margin-bottom: 35px;
+        }
+
+        .service-card h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 34px;
+            line-height: 1.2;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+
+        .service-card > p {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.75;
+            margin-bottom: 28px;
+        }
+
+        .service-list {
+            list-style: none;
+            border-top: 1px solid var(--border);
+            padding-top: 18px;
+        }
+
+        .service-list li {
+            position: relative;
+            padding: 8px 0 8px 20px;
+            color: var(--charcoal);
+            font-size: 14px;
+        }
+
+        .service-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--sage);
+        }
+
+
+        /* APPROACH */
+
+        .approach {
+            padding: 110px 0;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 90px;
+            align-items: start;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 16px;
+        }
+
+        .section-heading {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 5vw, 54px);
+            line-height: 1.15;
+            font-weight: 500;
+            letter-spacing: -1px;
+        }
+
+        .approach-copy p {
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.85;
+            margin-bottom: 22px;
+        }
+
+        .approach-note {
+            margin-top: 32px;
+            padding: 25px 28px;
+            border-left: 3px solid var(--sage);
+            background: var(--cream);
+        }
+
+        .approach-note p {
+            margin: 0;
+            color: var(--charcoal);
+            font-size: 16px;
+        }
+
+
+        /* CTA */
+
+        .cta {
+            padding: 100px 0;
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta .section-label {
+            color: #B9C2B3;
+        }
+
+        .cta h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(40px, 5vw, 60px);
+            line-height: 1.15;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 32px;
+            color: #C8C8C2;
+            font-size: 17px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            background: var(--white);
+            color: var(--charcoal);
+            transition: all 0.25s ease;
+        }
+
+        .button:hover {
+            background: var(--cream);
+            transform: translateY(-2px);
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            padding: 28px 0;
+            background: var(--charcoal);
+            color: #9F9F99;
+            border-top: 1px solid #454640;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .page-hero {
+                padding: 70px 0;
+            }
+
+            .page-hero h1 {
+                font-size: 52px;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .approach-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services,
+            .approach,
+            .cta {
+                padding: 75px 0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav>
+        <div class="container nav-inner">
+
+            <a href="index.html" class="logo">
+                Christine Diansay
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="index.html#contact" class="nav-contact">Let's Connect</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- PAGE HERO -->
+
+    <section class="page-hero">
+
+        <div class="container">
+
+            <div class="eyebrow">
+                What I Do
+            </div>
+
+            <h1>
+                Practical support across
+                <span>the moving parts.</span>
+            </h1>
+
+            <p class="intro">
+                I work across administration, systems, marketing operations, websites,
+                and project coordination, depending on what the business actually needs.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+
+    <section class="services">
+
+        <div class="container">
+
+            <div class="service-grid">
+
+
+                <!-- SERVICE 01 -->
+
+                <div class="service-card">
+
+                    <div class="service-number">
+                        01
+                    </div>
+
+                    <h2>
+                        Executive & Administrative Support
+                    </h2>
+
+                    <p>
+                        Keeping information, communication, files, research, and day-to-day
+                        responsibilities organized and moving forward.
+                    </p>
+
+                    <ul class="service-list">
+                        <li>Executive assistance</li>
+                        <li>Inbox organization and prioritization</li>
+                        <li>Database and file management</li>
+                        <li>Research</li>
+                        <li>Client and partner communication</li>
+                        <li>Documentation</li>
+                        <li>Team coordination</li>
+                        <li>Administrative and operational tasks</li>
+                    </ul>
+
+                </div>
+
+
+                <!-- SERVICE 02 -->
+
+                <div class="service-card">
+
+                    <div class="service-number">
+                        02
+                    </div>
+
+                    <h2>
+                        CRM & Marketing Operations
+                    </h2>
+
+                    <p>
+                        Managing the systems and execution behind lead management,
+                        communications, campaigns, and ongoing marketing activity.
+                    </p>
+
+                    <ul class="service-list">
+                        <li>GoHighLevel management</li>
+                        <li>CRM organization and maintenance</li>
+                        <li>Forms and lead capture</li>
+                        <li>Workflows and automations</li>
+                        <li>Email campaigns and newsletters</li>
+                        <li>Social media management and engagement</li>
+                        <li>Google Business Profile</li>
+                        <li>Marketing campaign execution</li>
+                        <li>Content repurposing</li>
+                        <li>KW Command</li>
+                    </ul>
+
+                </div>
+
+
+                <!-- SERVICE 03 -->
+
+                <div class="service-card">
+
+                    <div class="service-number">
+                        03
+                    </div>
+
+                    <h2>
+                        Website & Technical Support
+                    </h2>
+
+                    <p>
+                        Handling the practical website and technical work that keeps a
+                        business's online presence current and functional.
+                    </p>
+
+                    <ul class="service-list">
+                        <li>WordPress updates and maintenance</li>
+                        <li>Elementor</li>
+                        <li>Beaver Builder</li>
+                        <li>GoHighLevel websites</li>
+                        <li>Page creation and duplication</li>
+                        <li>Forms and integrations</li>
+                        <li>Basic troubleshooting</li>
+                        <li>Shopify and WooCommerce support</li>
+                        <li>Basic SEO implementation</li>
+                    </ul>
+
+                </div>
+
+
+                <!-- SERVICE 04 -->
+
+                <div class="service-card">
+
+                    <div class="service-number">
+                        04
+                    </div>
+
+                    <h2>
+                        Project & Team Coordination
+                    </h2>
+
+                    <p>
+                        Connecting people, tasks, deadlines, and deliverables so projects
+                        continue moving without leaving the details behind.
+                    </p>
+
+                    <ul class="service-list">
+                        <li>Project and task coordination</li>
+                        <li>Team follow-up</li>
+                        <li>Production coordination</li>
+                        <li>Website project support</li>
+                        <li>Content and marketing projects</li>
+                        <li>Client communication</li>
+                        <li>Production administration</li>
+                        <li>Workflow and process organization</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- APPROACH -->
+
+    <section class="approach">
+
+        <div class="container">
+
+            <div class="approach-grid">
+
+                <div>
+
+                    <div class="section-label">
+                        My Approach
+                    </div>
+
+                    <h2 class="section-heading">
+                        The right system is the one that works.
+                    </h2>
+
+                </div>
+
+
+                <div class="approach-copy">
+
+                    <p>
+                        I don't believe in adding complexity just to make a process
+                        look more sophisticated.
+                    </p>
+
+                    <p>
+                        I look at how the business actually operates, who is involved,
+                        what information needs to move, and what each person needs
+                        in order to do their part well.
+                    </p>
+
+                    <p>
+                        From there, I work within existing systems or create practical
+                        workflows where something new is needed.
+                    </p>
+
+                    <div class="approach-note">
+
+                        <p>
+                            <strong>
+                                Good systems should make the work easier for the people using them,
+                                not make the people work harder to use the system.
+                            </strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="cta">
+
+        <div class="container">
+
+            <div class="section-label">
+                Let's Work Together
+            </div>
+
+            <h2>
+                Have moving parts<br>
+                that need managing?
+            </h2>
+
+            <p>
+                Let's talk about what you need handled and where I can step in.
+            </p>
+
+            <a href="index.html#contact" class="button">
+                Let's Connect
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container footer-inner">
+
+            <div>
+                © 2026 Christine Diansay
+            </div>
+
+            <div>
+                Technical VA | Website, GoHighLevel & Admin Support
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
