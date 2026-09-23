@@ -1,15 +1,788 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Christine Joy Diansay</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Christine Joy Diansay | Technical VA</title>
+
+    <meta name="description" content="Christine Joy Diansay is a Technical VA specializing in administrative support, GoHighLevel, marketing operations, websites, and project coordination.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
+
+        :root {
+            --ivory: #F7F4EE;
+            --cream: #EFEAE0;
+            --charcoal: #292A27;
+            --muted: #686963;
+            --sage: #65735F;
+            --sage-dark: #4F5D4A;
+            --white: #FFFFFF;
+            --border: #DDD8CD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--ivory);
+            color: var(--charcoal);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            padding: 28px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 34px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--muted);
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--charcoal);
+        }
+
+        .nav-contact {
+            padding: 10px 18px;
+            border: 1px solid var(--charcoal);
+            border-radius: 50px;
+            color: var(--charcoal) !important;
+        }
+
+        .nav-contact:hover {
+            background: var(--charcoal);
+            color: var(--white) !important;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0 110px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: var(--cream);
+            right: -180px;
+            top: 40px;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 24px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--sage);
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(52px, 7vw, 88px);
+            line-height: 1.02;
+            letter-spacing: -2.5px;
+            font-weight: 500;
+            max-width: 900px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 span {
+            color: var(--sage-dark);
+        }
+
+        .hero-title {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            max-width: 680px;
+            font-size: 18px;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 36px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .button-primary {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+
+        .button-primary:hover {
+            background: var(--sage-dark);
+            transform: translateY(-2px);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--border);
+            color: var(--charcoal);
+            background: transparent;
+        }
+
+        .button-secondary:hover {
+            border-color: var(--charcoal);
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           CAPABILITIES
+        ========================= */
+
+        .capabilities {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .section-intro {
+            max-width: 650px;
+            margin-bottom: 55px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 14px;
+        }
+
+        .section-heading {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 5vw, 56px);
+            line-height: 1.15;
+            font-weight: 500;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .capability-card {
+            background: var(--ivory);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 34px;
+            min-height: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .capability-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(40, 40, 35, 0.07);
+        }
+
+        .capability-number {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--sage-dark);
+            margin-bottom: 45px;
+        }
+
+        .capability-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .capability-card p {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           HOW I WORK
+        ========================= */
+
+        .approach {
+            padding: 110px 0;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 90px;
+            align-items: start;
+        }
+
+        .approach-text p {
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+
+        .approach-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .approach-item {
+            display: flex;
+            gap: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .approach-item:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .approach-item span {
+            color: var(--sage-dark);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .approach-item h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .approach-item p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            padding: 100px 0;
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta .section-label {
+            color: #B9C2B3;
+        }
+
+        .cta h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(40px, 5vw, 60px);
+            line-height: 1.15;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 32px;
+            color: #C8C8C2;
+            font-size: 17px;
+        }
+
+        .cta .button-primary {
+            background: var(--white);
+            color: var(--charcoal);
+        }
+
+        .cta .button-primary:hover {
+            background: var(--cream);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 28px 0;
+            background: var(--charcoal);
+            color: #9F9F99;
+            border-top: 1px solid #454640;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        .fade-up {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 70px 0 90px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+                letter-spacing: -1.5px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .capability-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .approach-grid {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .capabilities,
+            .approach,
+            .cta {
+                padding: 75px 0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
 
-    <h1>Christine Joy Diansay</h1>
+    <!-- NAVIGATION -->
 
-    <h2>Technical VA | Website, GoHighLevel & Admin Support</h2>
+    <nav>
+        <div class="container nav-inner">
 
-    <p>My portfolio website is coming together.</p>
+            <a href="#" class="logo">
+                Christine Joy
+            </a>
+
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#approach">How I Work</a>
+                <a href="#contact" class="nav-contact">Let's Connect</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-content fade-up">
+
+                    <div class="eyebrow">
+                        Virtual Assistant
+                    </div>
+
+                    <h1>
+                        Making the moving parts
+                        <span>work together.</span>
+                    </h1>
+
+                    <div class="hero-title">
+                        Technical VA | Website, GoHighLevel & Admin Support
+                    </div>
+
+                    <p class="hero-description">
+                        I help businesses keep their systems, projects, and day-to-day operations moving.
+                        From executive and administrative support to CRM management, marketing operations,
+                        websites, and project coordination, I work across the moving parts that keep a business running.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#work" class="button button-primary">
+                            View My Work
+                        </a>
+
+                        <a href="#contact" class="button button-secondary">
+                            Let's Connect
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CAPABILITIES -->
+
+        <section class="capabilities" id="work">
+
+            <div class="container">
+
+                <div class="section-intro">
+
+                    <div class="section-label">
+                        What I Do
+                    </div>
+
+                    <h2 class="section-heading">
+                        Practical execution across the business.
+                    </h2>
+
+                    <p class="section-description">
+                        I work across the operational details, systems, and people that need to stay connected
+                        for the work to move forward.
+                    </p>
+
+                </div>
+
+
+                <div class="capability-grid">
+
+                    <div class="capability-card">
+
+                        <div class="capability-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Executive & Admin
+                        </h3>
+
+                        <p>
+                            Keeping communication, information, files, research, and day-to-day responsibilities
+                            organized so business owners can stay focused on what matters.
+                        </p>
+
+                    </div>
+
+
+                    <div class="capability-card">
+
+                        <div class="capability-number">
+                            02
+                        </div>
+
+                        <h3>
+                            CRM & Marketing Operations
+                        </h3>
+
+                        <p>
+                            Managing the systems and execution behind CRM activity, campaigns, email,
+                            social media, lead management, and ongoing marketing operations.
+                        </p>
+
+                    </div>
+
+
+                    <div class="capability-card">
+
+                        <div class="capability-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Website & Technical
+                        </h3>
+
+                        <p>
+                            Handling website updates, maintenance, forms, pages, and technical tasks
+                            across the platforms a business already uses.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOW I WORK -->
+
+        <section class="approach" id="approach">
+
+            <div class="container">
+
+                <div class="approach-grid">
+
+                    <div>
+
+                        <div class="section-label">
+                            How I Work
+                        </div>
+
+                        <h2 class="section-heading">
+                            Not just getting things done. Making the work work.
+                        </h2>
+
+                    </div>
+
+
+                    <div class="approach-text">
+
+                        <p>
+                            I don't believe every business needs a more complicated system.
+                            I look at how the work actually needs to move, what the people involved need,
+                            and what will make the process easier to manage.
+                        </p>
+
+                        <p>
+                            Sometimes that means working within an existing system.
+                            Sometimes it means creating a practical workflow around it.
+                            Either way, the goal is to keep things organized, clear, and moving forward.
+                        </p>
+
+
+                        <div class="approach-list">
+
+                            <div class="approach-item">
+
+                                <span>01</span>
+
+                                <div>
+                                    <h3>Accountability</h3>
+
+                                    <p>
+                                        I take ownership of the work and follow it through to completion.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="approach-item">
+
+                                <span>02</span>
+
+                                <div>
+                                    <h3>Initiative</h3>
+
+                                    <p>
+                                        I look ahead, identify what needs to be done, and take action.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="approach-item">
+
+                                <span>03</span>
+
+                                <div>
+                                    <h3>Attention to Detail</h3>
+
+                                    <p>
+                                        I pay attention to the details that affect quality, consistency, and execution.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <section class="cta" id="contact">
+
+            <div class="container">
+
+                <div class="section-label">
+                    Let's Work Together
+                </div>
+
+                <h2>
+                    Need someone who can<br>
+                    take ownership?
+                </h2>
+
+                <p>
+                    If you're looking for someone who can step into your operations,
+                    manage the details, coordinate what needs coordinating, and keep things moving,
+                    let's talk.
+                </p>
+
+                <a href="mailto:christinediansay@gmail.com" class="button button-primary">
+                    Let's Connect
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container footer-inner">
+
+            <div>
+                © 2026 Christine Joy Diansay
+            </div>
+
+            <div>
+                Technical VA | Website, GoHighLevel & Admin Support
+            </div>
+
+        </div>
+
+    </footer>
 
 </body>
 </html>
