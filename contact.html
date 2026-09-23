@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Let's Connect | Christine Diansay</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ivory: #F7F4EE;
+            --cream: #EFEAE0;
+            --charcoal: #292A27;
+            --muted: #686963;
+            --sage: #65735F;
+            --sage-dark: #4F5D4A;
+            --white: #FFFFFF;
+            --border: #DDD8CD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--ivory);
+            color: var(--charcoal);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            background: rgba(247, 244, 238, 0.95);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 23px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .nav-links a {
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--charcoal);
+        }
+
+        .nav-button {
+            padding: 10px 18px;
+            border: 1px solid var(--charcoal);
+            border-radius: 30px;
+            color: var(--charcoal) !important;
+            transition: all 0.25s ease;
+        }
+
+        .nav-button:hover {
+            background: var(--charcoal);
+            color: var(--white) !important;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 110px 0 80px;
+        }
+
+        .eyebrow {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            max-width: 850px;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(48px, 7vw, 78px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            font-size: 19px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* CONTACT */
+
+        .contact-section {
+            padding: 20px 0 110px;
+        }
+
+        .contact-card {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 70px;
+            padding: 55px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+        }
+
+        .contact-main h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(32px, 4vw, 45px);
+            line-height: 1.2;
+            font-weight: 500;
+            letter-spacing: -0.8px;
+            margin-bottom: 20px;
+        }
+
+        .contact-main p {
+            max-width: 620px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .email-button {
+            display: inline-block;
+            padding: 14px 24px;
+            background: var(--charcoal);
+            color: var(--white);
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .email-button:hover {
+            background: var(--sage-dark);
+            transform: translateY(-2px);
+        }
+
+        /* SIDEBAR */
+
+        .contact-details {
+            padding-left: 40px;
+            border-left: 1px solid var(--border);
+        }
+
+        .detail {
+            margin-bottom: 30px;
+        }
+
+        .detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            margin-bottom: 7px;
+        }
+
+        .detail p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* CLOSING */
+
+        .closing {
+            padding: 90px 0;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .closing h2 {
+            max-width: 720px;
+            margin: 0 auto 20px;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 1.15;
+            font-weight: 500;
+            letter-spacing: -1px;
+        }
+
+        .closing p {
+            max-width: 620px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 28px 0;
+            background: var(--charcoal);
+            color: #C9C8C1;
+            font-size: 13px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .nav-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            .hero {
+                padding: 75px 0 60px;
+            }
+
+            .contact-card {
+                grid-template-columns: 1fr;
+                gap: 45px;
+                padding: 35px;
+            }
+
+            .contact-details {
+                padding-left: 0;
+                padding-top: 35px;
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 520px) {
+
+            .hero h1 {
+                font-size: 44px;
+                letter-spacing: -1.2px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .contact-card {
+                padding: 26px;
+                border-radius: 18px;
+            }
+
+            .contact-main h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container nav-inner">
+
+            <a href="index.html" class="logo">
+                Christine Diansay
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="portfolio.html">Work</a>
+                <a href="contact.html" class="active">Let's Connect</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+
+            <div class="eyebrow">Let's Connect</div>
+
+            <h1>
+                Let's talk about what you need.
+            </h1>
+
+            <p>
+                If you need someone who can step into the moving parts of
+                your business, take ownership, and keep things moving,
+                I'd be happy to hear what you're working on.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+
+        <div class="container">
+
+            <div class="contact-card">
+
+                <div class="contact-main">
+
+                    <h2>
+                        Tell me where you need help.
+                    </h2>
+
+                    <p>
+                        Whether you need ongoing administrative support,
+                        help managing your CRM and marketing operations,
+                        website assistance, or someone to coordinate the
+                        details of a project, send me a message.
+                    </p>
+
+                    <p>
+                        You don't need to have everything figured out before
+                        reaching out. A quick overview of what you're working
+                        on and where things are getting stuck is a good place
+                        to start.
+                    </p>
+
+                    <a href="mailto:YOUR-EMAIL-HERE" class="email-button">
+                        Send Me an Email
+                    </a>
+
+                </div>
+
+
+                <div class="contact-details">
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Based In
+                        </div>
+
+                        <p>
+                            Davao City, Philippines
+                        </p>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Working With
+                        </div>
+
+                        <p>
+                            Business owners, professionals, and teams
+                            who need reliable hands-on support across
+                            their operations.
+                        </p>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Areas I Work In
+                        </div>
+
+                        <p>
+                            Administration · CRM & Marketing Operations ·
+                            Websites · Project & Team Coordination
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CLOSING -->
+    <section class="closing">
+
+        <div class="container">
+
+            <h2>
+                Good work starts with a clear understanding of what needs to be done.
+            </h2>
+
+            <p>
+                Let's start there.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="container footer-inner">
+
+            <div>
+                © 2026 Christine Diansay
+            </div>
+
+            <div>
+                Technical VA | Website, GoHighLevel & Admin Support
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>  
