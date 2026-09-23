@@ -6,13 +6,18 @@
 
     <title>About Christine Diansay | Technical VA</title>
 
-    <meta name="description" content="Learn more about Christine Diansay, a Technical VA specializing in administrative support, CRM and marketing operations, websites, and project coordination.">
+    <meta name="description" content="Learn more about Christine Diansay, a Technical VA working across administration, CRM, marketing operations, websites, and project coordination.">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
     <style>
+
+        /* =========================
+           GLOBAL
+        ========================= */
 
         :root {
             --ivory: #F7F4EE;
@@ -53,11 +58,14 @@
         }
 
 
-        /* NAVIGATION */
+        /* =========================
+           NAVIGATION
+        ========================= */
 
         nav {
             padding: 28px 0;
-            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 100;
         }
 
         .nav-inner {
@@ -70,6 +78,7 @@
             font-family: "Playfair Display", serif;
             font-size: 24px;
             font-weight: 600;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
@@ -85,11 +94,24 @@
             transition: color 0.25s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--charcoal);
+        .nav-links a.active {
+            color: var(--sage-dark);
+            font-weight: 600;
+            position: relative;
         }
 
-        .nav-links .active {
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            height: 2px;
+            background: var(--sage);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
             color: var(--charcoal);
         }
 
@@ -106,10 +128,55 @@
         }
 
 
-        /* PAGE HERO */
+        /* =========================
+           MOBILE MENU BUTTON
+        ========================= */
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--charcoal);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .menu-toggle:hover {
+            background: var(--cream);
+        }
+
+
+        /* =========================
+           PAGE HERO
+        ========================= */
 
         .page-hero {
-            padding: 100px 0 90px;
+            padding: 100px 0 110px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            background: var(--cream);
+            right: -170px;
+            top: 20px;
+            z-index: -1;
+        }
+
+        .page-hero-content {
+            max-width: 850px;
         }
 
         .eyebrow {
@@ -135,34 +202,36 @@
             font-family: "Playfair Display", serif;
             font-size: clamp(52px, 7vw, 82px);
             line-height: 1.05;
-            letter-spacing: -2px;
+            letter-spacing: -2.5px;
             font-weight: 500;
-            max-width: 850px;
-            margin-bottom: 30px;
+            max-width: 900px;
+            margin-bottom: 28px;
         }
 
         .page-hero h1 span {
             color: var(--sage-dark);
         }
 
-        .intro {
-            max-width: 720px;
+        .page-hero-description {
+            max-width: 700px;
             font-size: 19px;
             color: var(--muted);
-            line-height: 1.85;
+            line-height: 1.8;
         }
 
 
-        /* ABOUT */
+        /* =========================
+           INTRO
+        ========================= */
 
-        .about-section {
-            padding: 90px 0;
+        .intro {
+            padding: 100px 0;
             background: var(--white);
         }
 
-        .about-grid {
+        .intro-grid {
             display: grid;
-            grid-template-columns: 0.8fr 1.2fr;
+            grid-template-columns: 0.75fr 1.25fr;
             gap: 90px;
             align-items: start;
         }
@@ -173,38 +242,42 @@
             letter-spacing: 1.8px;
             text-transform: uppercase;
             color: var(--sage-dark);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .section-heading {
             font-family: "Playfair Display", serif;
-            font-size: clamp(36px, 5vw, 52px);
+            font-size: clamp(38px, 5vw, 56px);
             line-height: 1.15;
             font-weight: 500;
             letter-spacing: -1px;
+            margin-bottom: 18px;
         }
 
-        .about-copy p {
+        .intro-text p {
             color: var(--muted);
             font-size: 17px;
             line-height: 1.85;
             margin-bottom: 22px;
         }
 
-        .about-copy p:last-child {
-            margin-bottom: 0;
-        }
 
-
-        /* EXPERIENCE */
+        /* =========================
+           EXPERIENCE
+        ========================= */
 
         .experience {
-            padding: 100px 0;
+            padding: 110px 0;
         }
 
-        .experience-header {
-            max-width: 650px;
+        .section-intro {
+            max-width: 680px;
             margin-bottom: 55px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            font-size: 17px;
         }
 
         .experience-grid {
@@ -214,17 +287,24 @@
         }
 
         .experience-card {
-            padding: 34px;
+            background: var(--white);
             border: 1px solid var(--border);
             border-radius: 18px;
-            background: transparent;
+            padding: 34px;
+            min-height: 220px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .experience-card .number {
-            color: var(--sage-dark);
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(40, 40, 35, 0.07);
+        }
+
+        .experience-number {
             font-size: 13px;
             font-weight: 700;
-            margin-bottom: 30px;
+            color: var(--sage-dark);
+            margin-bottom: 38px;
         }
 
         .experience-card h3 {
@@ -237,47 +317,63 @@
         .experience-card p {
             color: var(--muted);
             font-size: 15px;
+            line-height: 1.7;
         }
 
 
-        /* HOW I WORK */
+        /* =========================
+           VALUES
+        ========================= */
 
         .values {
-            padding: 100px 0;
-            background: var(--cream);
-        }
-
-        .values-header {
-            max-width: 650px;
-            margin-bottom: 55px;
+            padding: 110px 0;
+            background: var(--white);
         }
 
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 0.75fr 1.25fr;
+            gap: 90px;
+            align-items: start;
+        }
+
+        .values-list {
+            display: grid;
+        }
+
+        .value-item {
+            display: grid;
+            grid-template-columns: 45px 1fr;
             gap: 20px;
+            padding: 26px 0;
+            border-bottom: 1px solid var(--border);
         }
 
-        .value-card {
-            background: var(--ivory);
-            padding: 36px;
-            border-radius: 18px;
+        .value-item:first-child {
+            border-top: 1px solid var(--border);
         }
 
-        .value-card h3 {
-            font-family: "Playfair Display", serif;
-            font-size: 29px;
-            font-weight: 500;
-            margin-bottom: 14px;
+        .value-number {
+            color: var(--sage-dark);
+            font-size: 14px;
+            font-weight: 700;
         }
 
-        .value-card p {
+        .value-item h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .value-item p {
             color: var(--muted);
             font-size: 15px;
+            line-height: 1.7;
         }
 
 
-        /* CTA */
+        /* =========================
+           CTA
+        ========================= */
 
         .cta {
             padding: 100px 0;
@@ -313,18 +409,23 @@
             border-radius: 50px;
             font-size: 14px;
             font-weight: 600;
-            background: var(--white);
-            color: var(--charcoal);
             transition: all 0.25s ease;
         }
 
-        .button:hover {
+        .button-primary {
+            background: var(--white);
+            color: var(--charcoal);
+        }
+
+        .button-primary:hover {
             background: var(--cream);
             transform: translateY(-2px);
         }
 
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             padding: 28px 0;
@@ -342,33 +443,108 @@
         }
 
 
-        /* MOBILE */
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        .fade-up {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 800px) {
 
+            nav {
+                padding: 20px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
             .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 5px);
+                left: 5%;
+                right: 5%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 10px;
+                background: var(--white);
+                border: 1px solid var(--border);
+                border-radius: 18px;
+                box-shadow: 0 15px 35px rgba(40, 40, 35, 0.10);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 13px 14px;
+                border-radius: 10px;
+            }
+
+            .nav-links a.active {
+                background: var(--cream);
+            }
+
+            .nav-links a.active::after {
                 display: none;
             }
 
+            .nav-links a:hover {
+                background: var(--cream);
+            }
+
+            .nav-contact {
+                margin-top: 5px;
+                text-align: center;
+            }
+
             .page-hero {
-                padding: 70px 0;
+                padding: 70px 0 80px;
             }
 
             .page-hero h1 {
                 font-size: 52px;
+                letter-spacing: -1.5px;
             }
 
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .page-hero-description {
+                font-size: 16px;
             }
 
-            .experience-grid,
+            .intro-grid,
             .values-grid {
                 grid-template-columns: 1fr;
+                gap: 45px;
             }
 
-            .about-section,
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intro,
             .experience,
             .values,
             .cta {
@@ -395,275 +571,338 @@
                 Christine Diansay
             </a>
 
-           <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
-    <a href="services.html">Services</a>
-    <a href="portfolio.html">Work</a>
-    <a href="contact.html">Let's Connect</a>
-</div>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="nav-links">
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html" class="active">About</a>
+
+                <a href="services.html">Services</a>
+
+                <a href="portfolio.html">Work</a>
+
+                <a href="contact.html" class="nav-contact">Let's Connect</a>
+
+            </div>
 
         </div>
     </nav>
 
 
-    <!-- PAGE INTRO -->
+    <!-- PAGE HERO -->
 
-    <section class="page-hero">
+    <main>
 
-        <div class="container">
+        <section class="page-hero">
 
-            <div class="eyebrow">
-                About Me
+            <div class="container">
+
+                <div class="page-hero-content fade-up">
+
+                    <div class="eyebrow">
+                        About Me
+                    </div>
+
+                    <h1>
+                        More than task support.
+                        <span>More than systems.</span>
+                    </h1>
+
+                    <p class="page-hero-description">
+                        I work across the details, systems, and people that keep a business moving,
+                        with a focus on making the work practical, organized, and easier to manage.
+                    </p>
+
+                </div>
+
             </div>
 
-            <h1>
-                More than task support.
-                <span>More than systems.</span>
-            </h1>
-
-            <p class="intro">
-                I work across the details, systems, and people that keep a business moving,
-                with a focus on making the work practical, organized, and easier to manage.
-            </p>
-
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- ABOUT -->
+        <!-- INTRO -->
 
-    <section class="about-section">
+        <section class="intro">
 
-        <div class="container">
+            <div class="container">
 
-            <div class="about-grid">
+                <div class="intro-grid">
 
-                <div>
+                    <div>
+
+                        <div class="section-label">
+                            My Approach
+                        </div>
+
+                        <h2 class="section-heading">
+                            Understand the work first.
+                        </h2>
+
+                    </div>
+
+
+                    <div class="intro-text">
+
+                        <p>
+                            I've spent the last six years working across administration, marketing operations,
+                            CRM management, websites, and project coordination for different types of businesses.
+                        </p>
+
+                        <p>
+                            Over time, I've learned that effective support isn't just about completing a list of tasks.
+                            It's about understanding how the work fits together, what needs to happen next,
+                            and what the people involved need in order to keep things moving.
+                        </p>
+
+                        <p>
+                            I work within the systems a business already has when they make sense.
+                            When they don't, I look for practical ways to improve the workflow without adding
+                            unnecessary complexity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXPERIENCE -->
+
+        <section class="experience">
+
+            <div class="container">
+
+                <div class="section-intro">
 
                     <div class="section-label">
-                        My Approach
+                        Experience
                     </div>
 
                     <h2 class="section-heading">
-                        Understand the work first.
+                        Different industries. Similar need for things to work.
                     </h2>
 
+                    <p class="section-description">
+                        My experience spans different business environments, but the role is often the same:
+                        understand what needs to happen, coordinate the moving parts, and make sure nothing gets lost.
+                    </p>
+
                 </div>
 
 
-                <div class="about-copy">
+                <div class="experience-grid">
 
-                    <p>
-                        For more than six years, I've worked alongside business owners and teams
-                        across administration, marketing operations, CRM management, websites,
-                        and project coordination.
-                    </p>
+                    <div class="experience-card">
 
-                    <p>
-                        My role often goes beyond completing individual tasks. I learn how the work
-                        moves, understand who needs what, keep track of the details, and make sure
-                        things continue moving from one stage to the next.
-                    </p>
+                        <div class="experience-number">
+                            01
+                        </div>
 
-                    <p>
-                        When an existing process works, I work within it. When it doesn't,
-                        I look for a practical way to improve it without adding unnecessary complexity.
-                    </p>
+                        <h3>
+                            Real Estate
+                        </h3>
 
-                    <p>
-                        I've supported businesses across real estate, financial services,
-                        media and publishing, and digital services.
-                    </p>
+                        <p>
+                            Administrative and marketing operations, social media, CRM management,
+                            website setup, research, and marketing automation.
+                        </p>
+
+                    </div>
+
+
+                    <div class="experience-card">
+
+                        <div class="experience-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Financial Services
+                        </h3>
+
+                        <p>
+                            Executive and administrative work combined with CRM, marketing operations,
+                            website management, content production, and campaign execution.
+                        </p>
+
+                    </div>
+
+
+                    <div class="experience-card">
+
+                        <div class="experience-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Media & Publishing
+                        </h3>
+
+                        <p>
+                            End-to-end magazine production, contributor coordination, team management,
+                            production tracking, quality control, website updates, and digital distribution.
+                        </p>
+
+                    </div>
+
+
+                    <div class="experience-card">
+
+                        <div class="experience-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Digital Services
+                        </h3>
+
+                        <p>
+                            Website project management, client communication, technical coordination,
+                            WordPress, GoHighLevel, Shopify, WooCommerce, and basic SEO implementation.
+                        </p>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- EXPERIENCE -->
+        <!-- VALUES -->
 
-    <section class="experience">
+        <section class="values">
 
-        <div class="container">
+            <div class="container">
 
-            <div class="experience-header">
+                <div class="values-grid">
 
-                <div class="section-label">
-                    Experience
+                    <div>
+
+                        <div class="section-label">
+                            How I Work
+                        </div>
+
+                        <h2 class="section-heading">
+                            The way I approach the work matters.
+                        </h2>
+
+                    </div>
+
+
+                    <div class="values-list">
+
+                        <div class="value-item">
+
+                            <div class="value-number">
+                                01
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Accountability
+                                </h3>
+
+                                <p>
+                                    I take ownership of the work and follow it through to completion,
+                                    rather than treating a task as finished when my part is done.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="value-item">
+
+                            <div class="value-number">
+                                02
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Initiative
+                                </h3>
+
+                                <p>
+                                    I actively look for what needs to be done, anticipate what is coming next,
+                                    and take action instead of waiting to be assigned every step.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="value-item">
+
+                            <div class="value-number">
+                                03
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Attention to Detail
+                                </h3>
+
+                                <p>
+                                    I pay attention to the details that affect quality, consistency,
+                                    and how smoothly the work moves from one stage to the next.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <h2 class="section-heading">
-                    Cross-functional experience.
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <section class="cta">
+
+            <div class="container">
+
+                <div class="section-label">
+                    Let's Work Together
+                </div>
+
+                <h2>
+                    Let's make the work<br>
+                    easier to manage.
                 </h2>
 
-                <p class="intro">
-                    My work has taken me across different industries and different types of operations,
-                    giving me the ability to step into unfamiliar systems and understand what needs to happen.
+                <p>
+                    If you need someone who can understand the moving parts,
+                    take ownership, and help keep the business moving, let's talk.
                 </p>
 
-            </div>
-
-
-            <div class="experience-grid">
-
-                <div class="experience-card">
-
-                    <div class="number">01</div>
-
-                    <h3>Real Estate</h3>
-
-                    <p>
-                        Administrative and marketing operations, CRM, website setup,
-                        social media, research, and client-facing marketing support.
-                    </p>
-
-                </div>
-
-
-                <div class="experience-card">
-
-                    <div class="number">02</div>
-
-                    <h3>Financial Services</h3>
-
-                    <p>
-                        Executive support, GoHighLevel, websites, email marketing,
-                        social media, content operations, campaigns, and ongoing administration.
-                    </p>
-
-                </div>
-
-
-                <div class="experience-card">
-
-                    <div class="number">03</div>
-
-                    <h3>Media & Publishing</h3>
-
-                    <p>
-                        Executive support, production coordination, contributor management,
-                        team coordination, website operations, and end-to-end magazine production.
-                    </p>
-
-                </div>
-
-
-                <div class="experience-card">
-
-                    <div class="number">04</div>
-
-                    <h3>Digital Services</h3>
-
-                    <p>
-                        Website project coordination, client communication, technical team coordination,
-                        website maintenance, and platform support.
-                    </p>
-
-                </div>
+                <a href="contact.html" class="button button-primary">
+                    Let's Connect
+                </a>
 
             </div>
 
-        </div>
+        </section>
 
-    </section>
-
-
-    <!-- VALUES -->
-
-    <section class="values">
-
-        <div class="container">
-
-            <div class="values-header">
-
-                <div class="section-label">
-                    How I Work
-                </div>
-
-                <h2 class="section-heading">
-                    The way I approach the work matters.
-                </h2>
-
-            </div>
-
-
-            <div class="values-grid">
-
-                <div class="value-card">
-
-                    <h3>Accountability</h3>
-
-                    <p>
-                        I take ownership of the work I handle and follow it through,
-                        from the initial task to the final result.
-                    </p>
-
-                </div>
-
-
-                <div class="value-card">
-
-                    <h3>Initiative</h3>
-
-                    <p>
-                        I don't wait to be handed every task. I look ahead,
-                        identify what needs to be done, and take action.
-                    </p>
-
-                </div>
-
-
-                <div class="value-card">
-
-                    <h3>Attention to Detail</h3>
-
-                    <p>
-                        I pay attention to the details that affect quality,
-                        consistency, and whether the work gets done properly.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CTA -->
-
-    <section class="cta">
-
-        <div class="container">
-
-            <div class="section-label">
-                Let's Work Together
-            </div>
-
-            <h2>
-                Let's make the work<br>
-                easier to manage.
-            </h2>
-
-            <p>
-                If you're looking for someone who can step into your operations,
-                take ownership of the details, and keep things moving, let's talk.
-            </p>
-
-            <a href="index.html#contact" class="button">
-                Let's Connect
-            </a>
-
-        </div>
-
-    </section>
+    </main>
 
 
     <!-- FOOTER -->
@@ -683,6 +922,53 @@
         </div>
 
     </footer>
+
+
+    <!-- MOBILE MENU SCRIPT -->
+
+    <script>
+
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+            menuToggle.textContent = isOpen ? "×" : "☰";
+
+        });
+
+
+        /* Close the menu after selecting a page */
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("open");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+                menuToggle.textContent = "☰";
+
+            });
+
+        });
+
+    </script>
 
 </body>
 </html>
