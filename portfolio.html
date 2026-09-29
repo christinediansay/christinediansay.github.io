@@ -6,19 +6,13 @@
 
     <title>Work | Christine Diansay</title>
 
-    <meta name="description" content="Explore Christine Diansay's work across financial services, media and publishing, real estate, and digital services.">
+    <meta name="description" content="Selected work by Christine Diansay, Technical VA specialising in website management, GoHighLevel, administration, marketing operations, and project coordination.">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
     <style>
-
-        /* =========================
-           GLOBAL
-        ========================= */
-
         :root {
             --ivory: #F7F4EE;
             --cream: #EFEAE0;
@@ -31,9 +25,9 @@
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         html {
@@ -52,20 +46,22 @@
             text-decoration: none;
         }
 
+        img {
+            max-width: 100%;
+        }
+
         .container {
             width: min(1120px, 90%);
             margin: 0 auto;
         }
 
-
-        /* =========================
-           NAVIGATION
-        ========================= */
+        /* Navigation */
 
         nav {
-            padding: 28px 0;
             position: relative;
-            z-index: 100;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--ivory);
         }
 
         .nav-inner {
@@ -78,26 +74,29 @@
             font-family: "Playfair Display", serif;
             font-size: 24px;
             font-weight: 600;
-            letter-spacing: -0.5px;
+            color: var(--charcoal);
         }
 
         .nav-links {
             display: flex;
-            gap: 34px;
             align-items: center;
+            gap: 30px;
         }
 
         .nav-links a {
+            position: relative;
             font-size: 14px;
             font-weight: 500;
             color: var(--muted);
-            transition: color 0.25s ease;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--charcoal);
         }
 
         .nav-links a.active {
-            color: var(--sage-dark);
-            font-weight: 600;
-            position: relative;
+            color: var(--charcoal);
         }
 
         .nav-links a.active::after {
@@ -105,20 +104,15 @@
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -6px;
+            bottom: -8px;
             height: 2px;
             background: var(--sage);
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover {
-            color: var(--charcoal);
         }
 
         .nav-contact {
-            padding: 10px 18px;
+            padding: 10px 17px;
             border: 1px solid var(--charcoal);
-            border-radius: 50px;
+            border-radius: 30px;
             color: var(--charcoal) !important;
         }
 
@@ -127,265 +121,206 @@
             color: var(--white) !important;
         }
 
-
-        /* =========================
-           MOBILE MENU BUTTON
-        ========================= */
-
         .menu-toggle {
             display: none;
-            width: 42px;
-            height: 42px;
-            padding: 0;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            background: transparent;
-            color: var(--charcoal);
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            line-height: 1;
         }
 
-        .menu-toggle:hover {
-            background: var(--cream);
-        }
+        /* General */
 
-
-        /* =========================
-           PAGE HERO
-        ========================= */
-
-        .page-hero {
-            padding: 100px 0 100px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-hero::after {
-            content: "";
-            position: absolute;
-            width: 380px;
-            height: 380px;
-            border-radius: 50%;
-            background: var(--cream);
-            right: -170px;
-            top: 20px;
-            z-index: -1;
-        }
-
-        .page-hero-content {
-            max-width: 850px;
+        section {
+            padding: 95px 0;
         }
 
         .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--sage-dark);
-            margin-bottom: 24px;
         }
 
-        .eyebrow::before {
-            content: "";
-            width: 34px;
-            height: 1px;
-            background: var(--sage);
-        }
-
-        .page-hero h1 {
+        h1,
+        h2,
+        h3 {
             font-family: "Playfair Display", serif;
-            font-size: clamp(52px, 7vw, 82px);
-            line-height: 1.05;
-            letter-spacing: -2.5px;
             font-weight: 500;
-            max-width: 900px;
-            margin-bottom: 28px;
+            line-height: 1.2;
         }
 
-        .page-hero h1 span {
+        h1 {
+            max-width: 850px;
+            font-size: clamp(46px, 7vw, 78px);
+            letter-spacing: -1.5px;
+        }
+
+        h1 span {
             color: var(--sage-dark);
         }
 
-        .page-hero-description {
-            max-width: 720px;
-            font-size: 19px;
+        h2 {
+            font-size: clamp(34px, 4vw, 50px);
+        }
+
+        h3 {
+            font-size: 28px;
+        }
+
+        p {
             color: var(--muted);
+        }
+
+        /* Hero */
+
+        .hero {
+            padding: 105px 0 90px;
+        }
+
+        .hero-text {
+            max-width: 800px;
+        }
+
+        .hero-description {
+            max-width: 720px;
+            margin-top: 28px;
+            font-size: 18px;
             line-height: 1.8;
         }
 
-
-        /* =========================
-           CASE STUDIES
-        ========================= */
-
-        .work {
-            padding: 100px 0 110px;
-            background: var(--white);
-        }
+        /* Intro */
 
         .section-intro {
-            max-width: 700px;
-            margin-bottom: 60px;
+            max-width: 760px;
+            margin-bottom: 55px;
         }
 
-        .section-label {
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-            color: var(--sage-dark);
-            margin-bottom: 14px;
-        }
-
-        .section-heading {
-            font-family: "Playfair Display", serif;
-            font-size: clamp(38px, 5vw, 56px);
-            line-height: 1.15;
-            font-weight: 500;
-            letter-spacing: -1px;
-            margin-bottom: 18px;
-        }
-
-        .section-description {
-            color: var(--muted);
+        .section-intro p {
+            margin-top: 18px;
             font-size: 17px;
         }
+
+        /* Case Studies */
 
         .case-study {
             padding: 70px 0;
             border-top: 1px solid var(--border);
         }
 
-        .case-study:last-child {
-            border-bottom: 1px solid var(--border);
-        }
-
         .case-header {
             display: grid;
-            grid-template-columns: 0.75fr 1.25fr;
-            gap: 90px;
+            grid-template-columns: 0.3fr 1fr;
+            gap: 55px;
             margin-bottom: 45px;
-        }
-
-        .case-meta {
-            color: var(--sage-dark);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
         }
 
         .case-number {
             font-size: 13px;
             font-weight: 700;
-            color: var(--muted);
-            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+            color: var(--sage-dark);
         }
 
-        .case-title {
-            font-family: "Playfair Display", serif;
-            font-size: clamp(32px, 4vw, 46px);
-            line-height: 1.15;
-            font-weight: 500;
-            letter-spacing: -0.8px;
+        .case-meta {
+            margin-bottom: 13px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+        }
+
+        .case-header h3 {
+            font-size: clamp(30px, 4vw, 42px);
         }
 
         .case-intro {
-            color: var(--muted);
+            max-width: 760px;
+            margin-top: 20px;
             font-size: 17px;
-            line-height: 1.85;
         }
 
         .case-content {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 45px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
         }
 
-        .case-block h3 {
-            font-size: 15px;
+        .case-column h4 {
+            margin-bottom: 16px;
+            font-size: 13px;
             font-weight: 700;
-            margin-bottom: 10px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--sage-dark);
         }
 
-        .case-block p {
+        .case-column p {
+            margin-bottom: 25px;
+        }
+
+        .case-column ul {
+            padding-left: 20px;
             color: var(--muted);
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 20px;
         }
 
-        .case-block ul {
-            list-style: none;
-            display: grid;
+        .case-column li {
+            margin-bottom: 9px;
+        }
+
+        /* Workflow */
+
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
             gap: 8px;
+            margin-top: 20px;
         }
 
-        .case-block li {
-            position: relative;
-            padding-left: 18px;
-            color: var(--muted);
-            font-size: 14px;
+        .workflow span {
+            padding: 8px 13px;
+            background: var(--cream);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--charcoal);
         }
 
-        .case-block li::before {
-            content: "";
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--sage);
-            left: 0;
-            top: 10px;
-        }
-
-
-        /* =========================
-           PROJECT GALLERY
-        ========================= */
+        /* Gallery */
 
         .project-gallery {
             margin: 55px 0 10px;
         }
 
         .gallery-label {
+            margin-bottom: 18px;
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--sage-dark);
-            margin-bottom: 18px;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
         }
 
         .gallery-item {
             display: block;
-            background: var(--ivory);
-            border: 1px solid var(--border);
-            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: zoom-in;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
         }
 
         .gallery-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(40, 40, 35, 0.08);
-        }
-
-        .gallery-item.featured {
-            grid-column: span 2;
+            box-shadow: 0 10px 25px rgba(40, 40, 35, 0.08);
         }
 
         .gallery-item img {
@@ -394,159 +329,156 @@
             height: auto;
         }
 
+        /* Tags */
 
-        /* =========================
-           WORKFLOW
-        ========================= */
-
-        .workflow {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .workflow-step {
-            padding: 18px;
-            background: var(--ivory);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-
-        .workflow-step span {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--sage-dark);
-            margin-bottom: 7px;
-        }
-
-        .workflow-step strong {
-            font-size: 14px;
-        }
-
-        .tags {
+        .case-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 25px;
+            margin-top: 35px;
         }
 
-        .tags span {
-            padding: 7px 11px;
+        .case-tags span {
+            padding: 7px 12px;
             border: 1px solid var(--border);
-            border-radius: 50px;
-            background: var(--ivory);
+            border-radius: 20px;
+            font-size: 11px;
             color: var(--muted);
-            font-size: 12px;
+            background: var(--ivory);
         }
 
+        /* CTA */
 
-        /* =========================
-           CTA
-        ========================= */
-
-        .cta {
+        .cta-section {
             padding: 100px 0;
-            background: var(--charcoal);
-            color: var(--white);
-            text-align: center;
+            background: var(--cream);
         }
 
-        .cta .section-label {
-            color: #B9C2B3;
+        .cta-inner {
+            max-width: 760px;
         }
 
-        .cta h2 {
-            font-family: "Playfair Display", serif;
-            font-size: clamp(40px, 5vw, 60px);
-            line-height: 1.15;
-            font-weight: 500;
+        .cta-inner h2 {
             margin-bottom: 20px;
         }
 
-        .cta p {
-            max-width: 620px;
-            margin: 0 auto 32px;
-            color: #C8C8C2;
+        .cta-inner p {
+            margin-bottom: 30px;
             font-size: 17px;
         }
 
         .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 24px;
-            border-radius: 50px;
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 30px;
+            background: var(--charcoal);
+            color: var(--white);
             font-size: 14px;
             font-weight: 600;
-            transition: all 0.25s ease;
+            transition: background 0.2s ease;
         }
 
-        .button-primary {
-            background: var(--white);
-            color: var(--charcoal);
+        .button:hover {
+            background: var(--sage-dark);
         }
 
-        .button-primary:hover {
-            background: var(--cream);
-            transform: translateY(-2px);
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
+        /* Footer */
 
         footer {
-            padding: 28px 0;
-            background: var(--charcoal);
-            color: #9F9F99;
-            border-top: 1px solid #454640;
+            padding: 35px 0;
+            border-top: 1px solid var(--border);
         }
 
         .footer-inner {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             gap: 20px;
-            font-size: 13px;
         }
 
-
-        /* =========================
-           ANIMATION
-        ========================= */
-
-        .fade-up {
-            animation: fadeUp 0.8s ease forwards;
+        .footer-inner p {
+            font-size: 12px;
         }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
+        /* Lightbox */
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: rgba(25, 26, 23, 0.88);
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            display: block;
+            max-width: 90vw;
+            max-height: 88vh;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        /* Mobile */
+
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .case-header {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
         }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
 
         @media (max-width: 800px) {
-
             nav {
                 padding: 20px 0;
             }
 
             .menu-toggle {
                 display: flex;
+                width: 42px;
+                height: 42px;
+                padding: 0;
+                border: 1px solid var(--border);
+                border-radius: 50%;
+                background: transparent;
+                color: var(--charcoal);
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                font-size: 22px;
+                line-height: 1;
             }
 
             .nav-links {
@@ -555,6 +487,7 @@
                 top: calc(100% + 5px);
                 left: 5%;
                 right: 5%;
+                z-index: 100;
                 flex-direction: column;
                 align-items: stretch;
                 gap: 0;
@@ -592,66 +525,50 @@
                 text-align: center;
             }
 
-            .page-hero {
-                padding: 70px 0 80px;
+            section {
+                padding: 70px 0;
             }
 
-            .page-hero h1 {
-                font-size: 52px;
-                letter-spacing: -1.5px;
-            }
-
-            .page-hero-description {
-                font-size: 16px;
-            }
-
-            .work {
-                padding: 75px 0;
-            }
-
-            .case-study {
-                padding: 55px 0;
-            }
-
-            .case-header {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                margin-bottom: 35px;
+            .hero {
+                padding: 75px 0 65px;
             }
 
             .case-content {
                 grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-item.featured {
-                grid-column: span 1;
-            }
-
-            .workflow {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .cta {
-                padding: 75px 0;
+                gap: 40px;
             }
 
             .footer-inner {
                 flex-direction: column;
-                text-align: center;
+                align-items: flex-start;
             }
         }
 
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lightbox {
+                padding: 20px;
+            }
+
+            .lightbox img {
+                max-width: 94vw;
+                max-height: 82vh;
+            }
+
+            .lightbox-close {
+                top: 12px;
+                right: 12px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- Navigation -->
 
     <nav>
         <div class="container nav-inner">
@@ -660,78 +577,75 @@
                 Christine Diansay
             </a>
 
-            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
                 ☰
             </button>
 
             <div class="nav-links">
-
                 <a href="index.html">Home</a>
-
                 <a href="about.html">About</a>
-
                 <a href="services.html">Services</a>
-
                 <a href="portfolio.html" class="active">Work</a>
-
                 <a href="contact.html" class="nav-contact">Let's Connect</a>
-
             </div>
 
         </div>
     </nav>
 
 
-    <!-- PAGE HERO -->
+    <!-- Hero -->
 
-    <main>
+    <header class="hero">
+        <div class="container">
 
-        <section class="page-hero">
+            <div class="hero-text">
 
-            <div class="container">
-
-                <div class="page-hero-content fade-up">
-
-                    <div class="eyebrow">
-                        Selected Work
-                    </div>
-
-                    <h1>
-                        Work that shows
-                        <span>how I operate.</span>
-                    </h1>
-
-                    <p class="page-hero-description">
-                        A look at the systems, projects, and day-to-day operations
-                        I've helped manage across different businesses and industries.
-                    </p>
-
+                <div class="eyebrow">
+                    Selected Work
                 </div>
+
+                <h1>
+                    Work that shows
+                    <span>how I operate.</span>
+                </h1>
+
+                <p class="hero-description">
+                    A look at the systems, projects, and day-to-day operations
+                    I've helped manage across different businesses and industries.
+                </p>
 
             </div>
 
-        </section>
+        </div>
+    </header>
 
 
-        <!-- WORK -->
+    <!-- Case Studies -->
 
-        <section class="work">
+    <main>
 
+        <section>
             <div class="container">
 
                 <div class="section-intro">
 
-                    <div class="section-label">
+                    <div class="eyebrow">
                         Case Studies
                     </div>
 
-                    <h2 class="section-heading">
+                    <h2>
                         The work is more than a list of tasks.
                     </h2>
 
-                    <p class="section-description">
-                        These examples show how I approach complex work, coordinate across people and systems,
-                        and keep projects moving from start to finish.
+                    <p>
+                        These examples show how I approach complex work,
+                        coordinate across people and systems, and keep projects
+                        moving from start to finish.
                     </p>
 
                 </div>
@@ -743,28 +657,25 @@
 
                     <div class="case-header">
 
-                        <div>
-
-                            <div class="case-number">
-                                01
-                            </div>
-
-                            <div class="case-meta">
-                                Media & Publishing | United States
-                            </div>
-
-                            <h2 class="case-title">
-                                End-to-End Magazine Production & Team Coordination
-                            </h2>
-
+                        <div class="case-number">
+                            01
                         </div>
 
-                        <div class="case-intro">
+                        <div>
 
-                            <p>
-                                Managed the operational side of magazine production from contributor outreach
-                                through publication, coordinating editorial, design, social media, website,
-                                and distribution work across multiple teams.
+                            <div class="case-meta">
+                                Media &amp; Publishing · United States
+                            </div>
+
+                            <h3>
+                                End-to-End Magazine Production &amp; Team Coordination
+                            </h3>
+
+                            <p class="case-intro">
+                                Managed the operational side of magazine production
+                                from contributor outreach through publication,
+                                coordinating editorial, design, social media,
+                                website, and distribution work across multiple teams.
                             </p>
 
                         </div>
@@ -774,21 +685,19 @@
 
                     <div class="case-content">
 
-                        <div class="case-block">
+                        <div class="case-column">
 
-                            <h3>
-                                Challenge
-                            </h3>
+                            <h4>Challenge</h4>
 
                             <p>
-                                Magazine production involved a large number of contributors, files,
-                                deadlines, approvals, and team dependencies. The client needed a clear
-                                production process without having to manage the technical details of every stage.
+                                Magazine production involved a large number of
+                                contributors, files, deadlines, approvals, and team
+                                dependencies. The client needed a clear production
+                                process without having to manage the technical details
+                                of every stage.
                             </p>
 
-                            <h3>
-                                What I Managed
-                            </h3>
+                            <h4>What I Managed</h4>
 
                             <ul>
                                 <li>Contributor outreach and submission management</li>
@@ -804,54 +713,28 @@
                         </div>
 
 
-                        <div class="case-block">
+                        <div class="case-column">
 
-                            <h3>
-                                How the Workflow Worked
-                            </h3>
+                            <h4>Workflow</h4>
 
                             <div class="workflow">
-
-                                <div class="workflow-step">
-                                    <span>01</span>
-                                    <strong>Intake</strong>
-                                </div>
-
-                                <div class="workflow-step">
-                                    <span>02</span>
-                                    <strong>Organize</strong>
-                                </div>
-
-                                <div class="workflow-step">
-                                    <span>03</span>
-                                    <strong>Track</strong>
-                                </div>
-
-                                <div class="workflow-step">
-                                    <span>04</span>
-                                    <strong>Edit</strong>
-                                </div>
-
-                                <div class="workflow-step">
-                                    <span>05</span>
-                                    <strong>Produce</strong>
-                                </div>
-
-                                <div class="workflow-step">
-                                    <span>06</span>
-                                    <strong>Publish</strong>
-                                </div>
-
+                                <span>Intake</span>
+                                <span>Organize</span>
+                                <span>Track</span>
+                                <span>Edit</span>
+                                <span>Produce</span>
+                                <span>Publish</span>
                             </div>
 
-                            <h3 style="margin-top: 30px;">
+                            <h4 style="margin-top: 40px;">
                                 What This Demonstrates
-                            </h3>
+                            </h4>
 
                             <p>
-                                I don't just move tasks from one person to another. I look at the dependencies
-                                between them, anticipate what each team needs next, and check the details before
-                                work reaches the client.
+                                I don't just move tasks from one person to another.
+                                I look at the dependencies between them, anticipate
+                                what each team needs next, and check the details
+                                before work reaches the client.
                             </p>
 
                         </div>
@@ -859,7 +742,7 @@
                     </div>
 
 
-                    <!-- MEDIA & PUBLISHING GALLERY -->
+                    <!-- Gallery -->
 
                     <div class="project-gallery">
 
@@ -869,64 +752,103 @@
 
                         <div class="gallery-grid">
 
-                            <a href="images/Trello-1.png" target="_blank" class="gallery-item featured">
-                                <img src="images/Trello-1.png" alt="Trello production workflow">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/DyslexiaFriendlySpreadsheet.png"
+                                    alt="Dyslexia-friendly production spreadsheet"
+                                >
+                            </div>
 
-                            <a href="images/Trello-2.png" target="_blank" class="gallery-item">
-                                <img src="images/Trello-2.png" alt="Trello production workflow">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/DyslexiaFriendlySpreadsheet2.png"
+                                    alt="Production spreadsheet and workflow"
+                                >
+                            </div>
 
-                            <a href="images/DyslexiaFriendlySpreadsheet.png" target="_blank" class="gallery-item">
-                                <img src="images/DyslexiaFriendlySpreadsheet.png" alt="Production tracking spreadsheet">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/Trello-1.png"
+                                    alt="Trello production workflow"
+                                >
+                            </div>
 
-                            <a href="images/DyslexiaFriendlySpreadsheet2.png" target="_blank" class="gallery-item">
-                                <img src="images/DyslexiaFriendlySpreadsheet2.png" alt="Production tracking spreadsheet">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/Trello-2.png"
+                                    alt="Trello article production workflow"
+                                >
+                            </div>
 
-                            <a href="images/newsletter1.png" target="_blank" class="gallery-item">
-                                <img src="images/newsletter1.png" alt="Newsletter design">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/newsletter1.png"
+                                    alt="Newsletter production"
+                                >
+                            </div>
 
-                            <a href="images/newsletter2.png" target="_blank" class="gallery-item">
-                                <img src="images/newsletter2.png" alt="Newsletter design">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/newsletter2.png"
+                                    alt="Newsletter design and production"
+                                >
+                            </div>
 
-                            <a href="images/socialmedia1.png" target="_blank" class="gallery-item">
-                                <img src="images/socialmedia1.png" alt="Social media work">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/socialmedia1.png"
+                                    alt="Social media production"
+                                >
+                            </div>
 
-                            <a href="images/socialmedia2.png" target="_blank" class="gallery-item">
-                                <img src="images/socialmedia2.png" alt="Social media work">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/socialmedia2.png"
+                                    alt="Social media content"
+                                >
+                            </div>
 
-                            <a href="images/Socialmediatracker.png" target="_blank" class="gallery-item">
-                                <img src="images/Socialmediatracker.png" alt="Social media tracking system">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/Socialmediatracker.png"
+                                    alt="Social media tracking system"
+                                >
+                            </div>
 
-                            <a href="images/website1.png" target="_blank" class="gallery-item">
-                                <img src="images/website1.png" alt="Website work">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/website1.png"
+                                    alt="Website work"
+                                >
+                            </div>
 
-                            <a href="images/website2.png" target="_blank" class="gallery-item">
-                                <img src="images/website2.png" alt="Website work">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/website2.png"
+                                    alt="Website project"
+                                >
+                            </div>
 
-                            <a href="images/website3.png" target="_blank" class="gallery-item">
-                                <img src="images/website3.png" alt="Website work">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/website3.png"
+                                    alt="Website management work"
+                                >
+                            </div>
 
-                            <a href="images/website4.png" target="_blank" class="gallery-item">
-                                <img src="images/website4.png" alt="Website work">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/website4.png"
+                                    alt="Website project work"
+                                >
+                            </div>
 
                         </div>
 
                     </div>
 
 
-                    <div class="tags">
+                    <div class="case-tags">
 
                         <span>Contributor Outreach</span>
                         <span>Submission Management</span>
@@ -953,28 +875,24 @@
 
                     <div class="case-header">
 
-                        <div>
-
-                            <div class="case-number">
-                                02
-                            </div>
-
-                            <div class="case-meta">
-                                Financial Services | United States
-                            </div>
-
-                            <h2 class="case-title">
-                                Executive & Marketing Operations
-                            </h2>
-
+                        <div class="case-number">
+                            02
                         </div>
 
-                        <div class="case-intro">
+                        <div>
 
-                            <p>
-                                A long-term cross-functional role combining executive administration
-                                with CRM management, marketing operations, website maintenance,
-                                content production, and campaign execution.
+                            <div class="case-meta">
+                                Financial Services · United States
+                            </div>
+
+                            <h3>
+                                Executive &amp; Marketing Operations
+                            </h3>
+
+                            <p class="case-intro">
+                                A long-term cross-functional role combining executive
+                                administration with CRM management, marketing operations,
+                                website maintenance, content production, and campaign execution.
                             </p>
 
                         </div>
@@ -984,11 +902,9 @@
 
                     <div class="case-content">
 
-                        <div class="case-block">
+                        <div class="case-column">
 
-                            <h3>
-                                What I Managed
-                            </h3>
+                            <h4>What I Managed</h4>
 
                             <ul>
                                 <li>Executive and administrative tasks</li>
@@ -1004,11 +920,9 @@
                         </div>
 
 
-                        <div class="case-block">
+                        <div class="case-column">
 
-                            <h3>
-                                Additional Operations
-                            </h3>
+                            <h4>Additional Operations</h4>
 
                             <ul>
                                 <li>YouTube production and content repurposing</li>
@@ -1025,7 +939,7 @@
                     </div>
 
 
-                    <!-- FINANCIAL SERVICES GALLERY -->
+                    <!-- Gallery -->
 
                     <div class="project-gallery">
 
@@ -1035,62 +949,62 @@
 
                         <div class="gallery-grid">
 
-                            <a href="images/ghl1.png" target="_blank" class="gallery-item featured">
-                                <img src="images/ghl1.png" alt="GoHighLevel CRM">
-                            </a>
+                            <div class="gallery-item">
+                                <img src="images/ghl1.png" alt="GoHighLevel CRM work">
+                            </div>
 
-                            <a href="images/ghl2.png" target="_blank" class="gallery-item">
-                                <img src="images/ghl2.png" alt="GoHighLevel CRM">
-                            </a>
+                            <div class="gallery-item">
+                                <img src="images/ghl2.png" alt="GoHighLevel CRM management">
+                            </div>
 
-                            <a href="images/ghl3.png" target="_blank" class="gallery-item">
-                                <img src="images/ghl3.png" alt="GoHighLevel CRM">
-                            </a>
+                            <div class="gallery-item">
+                                <img src="images/ghl3.png" alt="GoHighLevel workflow">
+                            </div>
 
-                            <a href="images/ghl4.png" target="_blank" class="gallery-item">
-                                <img src="images/ghl4.png" alt="GoHighLevel CRM">
-                            </a>
+                            <div class="gallery-item">
+                                <img src="images/ghl4.png" alt="GoHighLevel marketing operations">
+                            </div>
 
-                            <a href="images/ghl5.png" target="_blank" class="gallery-item">
-                                <img src="images/ghl5.png" alt="GoHighLevel CRM">
-                            </a>
+                            <div class="gallery-item">
+                                <img src="images/ghl5.png" alt="GoHighLevel system">
+                            </div>
 
-                            <a href="images/ghl6.png" target="_blank" class="gallery-item">
-                                <img src="images/ghl6.png" alt="GoHighLevel CRM">
-                            </a>
+                            <div class="gallery-item">
+                                <img src="images/ghl6.png" alt="GoHighLevel campaign work">
+                            </div>
 
-                            <a href="images/ghl7.png" target="_blank" class="gallery-item">
-                                <img src="images/ghl7.png" alt="GoHighLevel CRM">
-                            </a>
+                            <div class="gallery-item">
+                                <img src="images/ghl7.png" alt="GoHighLevel CRM operations">
+                            </div>
 
-                            <a href="images/redtail.png" target="_blank" class="gallery-item">
-                                <img src="images/redtail.png" alt="Redtail CRM">
-                            </a>
-
-                            <a href="images/descript.png" target="_blank" class="gallery-item">
+                            <div class="gallery-item">
                                 <img src="images/descript.png" alt="Descript content production">
-                            </a>
+                            </div>
 
-                            <a href="images/Doodly.png" target="_blank" class="gallery-item">
+                            <div class="gallery-item">
                                 <img src="images/Doodly.png" alt="Doodly video production">
-                            </a>
+                            </div>
 
-                            <a href="images/metricool.png" target="_blank" class="gallery-item">
+                            <div class="gallery-item">
                                 <img src="images/metricool.png" alt="Metricool social media management">
-                            </a>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img src="images/redtail.png" alt="Redtail CRM work">
+                            </div>
 
                         </div>
 
                     </div>
 
 
-                    <div class="tags">
+                    <div class="case-tags">
 
                         <span>Executive Assistance</span>
-                        <span>Inbox & Admin Management</span>
+                        <span>Inbox &amp; Admin Management</span>
                         <span>GoHighLevel</span>
                         <span>CRM Maintenance</span>
-                        <span>Forms & Lead Capture</span>
+                        <span>Forms &amp; Lead Capture</span>
                         <span>Email Campaigns</span>
                         <span>Newsletters</span>
                         <span>Social Media</span>
@@ -1113,27 +1027,24 @@
 
                     <div class="case-header">
 
-                        <div>
-
-                            <div class="case-number">
-                                03
-                            </div>
-
-                            <div class="case-meta">
-                                Real Estate | Canada
-                            </div>
-
-                            <h2 class="case-title">
-                                Administrative & Marketing Operations
-                            </h2>
-
+                        <div class="case-number">
+                            03
                         </div>
 
-                        <div class="case-intro">
+                        <div>
 
-                            <p>
-                                Supported a real estate professional across administrative work,
-                                marketing operations, CRM activity, social media, website setup,
+                            <div class="case-meta">
+                                Real Estate · Canada
+                            </div>
+
+                            <h3>
+                                Administrative &amp; Marketing Operations
+                            </h3>
+
+                            <p class="case-intro">
+                                Supported a real estate professional across
+                                administrative work, marketing operations,
+                                CRM activity, social media, website setup,
                                 and research.
                             </p>
 
@@ -1144,11 +1055,9 @@
 
                     <div class="case-content">
 
-                        <div class="case-block">
+                        <div class="case-column">
 
-                            <h3>
-                                What I Managed
-                            </h3>
+                            <h4>What I Managed</h4>
 
                             <ul>
                                 <li>Administrative support</li>
@@ -1162,11 +1071,9 @@
                         </div>
 
 
-                        <div class="case-block">
+                        <div class="case-column">
 
-                            <h3>
-                                Additional Work
-                            </h3>
+                            <h4>Additional Work</h4>
 
                             <ul>
                                 <li>Website setup through KW Command</li>
@@ -1182,7 +1089,7 @@
                     </div>
 
 
-                    <!-- REAL ESTATE GALLERY -->
+                    <!-- Gallery -->
 
                     <div class="project-gallery">
 
@@ -1192,16 +1099,19 @@
 
                         <div class="gallery-grid">
 
-                            <a href="images/crm-kwcommand.png" target="_blank" class="gallery-item featured">
-                                <img src="images/crm-kwcommand.png" alt="KW Command CRM">
-                            </a>
+                            <div class="gallery-item">
+                                <img
+                                    src="images/crm-kwcommand.png"
+                                    alt="KW Command CRM and real estate marketing work"
+                                >
+                            </div>
 
                         </div>
 
                     </div>
 
 
-                    <div class="tags">
+                    <div class="case-tags">
 
                         <span>Administrative Support</span>
                         <span>Social Media Management</span>
@@ -1227,28 +1137,24 @@
 
                     <div class="case-header">
 
-                        <div>
-
-                            <div class="case-number">
-                                04
-                            </div>
-
-                            <div class="case-meta">
-                                Digital Services | Australia
-                            </div>
-
-                            <h2 class="case-title">
-                                Website Project Management & Technical Coordination
-                            </h2>
-
+                        <div class="case-number">
+                            04
                         </div>
 
-                        <div class="case-intro">
+                        <div>
 
-                            <p>
-                                Managed website projects between clients and technical teams,
-                                handling communication, page work, maintenance, and practical technical
-                                execution across multiple platforms.
+                            <div class="case-meta">
+                                Digital Services · Australia
+                            </div>
+
+                            <h3>
+                                Website Project Management &amp; Technical Coordination
+                            </h3>
+
+                            <p class="case-intro">
+                                Managed website projects between clients and technical
+                                teams, handling communication, page work, maintenance,
+                                and practical technical execution across multiple platforms.
                             </p>
 
                         </div>
@@ -1258,11 +1164,9 @@
 
                     <div class="case-content">
 
-                        <div class="case-block">
+                        <div class="case-column">
 
-                            <h3>
-                                What I Managed
-                            </h3>
+                            <h4>What I Managed</h4>
 
                             <ul>
                                 <li>Website project management</li>
@@ -1276,11 +1180,9 @@
                         </div>
 
 
-                        <div class="case-block">
+                        <div class="case-column">
 
-                            <h3>
-                                Technical Coordination
-                            </h3>
+                            <h4>Technical Coordination</h4>
 
                             <ul>
                                 <li>Shopify and WooCommerce tasks</li>
@@ -1296,7 +1198,7 @@
                     </div>
 
 
-                    <div class="tags">
+                    <div class="case-tags">
 
                         <span>Website Project Management</span>
                         <span>Client Communication</span>
@@ -1316,34 +1218,32 @@
                 </article>
 
             </div>
-
         </section>
 
 
         <!-- CTA -->
 
-        <section class="cta">
+        <section class="cta-section">
 
             <div class="container">
 
-                <div class="section-label">
-                    Let's Work Together
+                <div class="cta-inner">
+
+                    <h2>
+                        Need someone who can take ownership of the moving parts?
+                    </h2>
+
+                    <p>
+                        If you need someone who can step into the work,
+                        understand what's happening, coordinate what needs
+                        coordinating, and keep things moving, let's talk.
+                    </p>
+
+                    <a href="contact.html" class="button">
+                        Let's Connect
+                    </a>
+
                 </div>
-
-                <h2>
-                    Need someone who can<br>
-                    take ownership of the moving parts?
-                </h2>
-
-                <p>
-                    If you need someone who can step into the work,
-                    understand what's happening, coordinate what needs coordinating,
-                    and keep things moving, let's talk.
-                </p>
-
-                <a href="contact.html" class="button button-primary">
-                    Let's Connect
-                </a>
 
             </div>
 
@@ -1352,28 +1252,57 @@
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- Footer -->
 
     <footer>
 
         <div class="container footer-inner">
 
-            <div>
+            <p>
                 © 2026 Christine Diansay
-            </div>
+            </p>
 
-            <div>
-                Technical VA | Website, GoHighLevel & Admin Support
-            </div>
+            <p>
+                Technical VA | Website, GoHighLevel &amp; Admin Support
+            </p>
 
         </div>
 
     </footer>
 
 
-    <!-- MOBILE MENU SCRIPT -->
+    <!-- Image Lightbox -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Enlarged portfolio image"
+    >
+
+        <button
+            class="lightbox-close"
+            type="button"
+            aria-label="Close image"
+        >
+            ×
+        </button>
+
+        <img
+            id="lightbox-image"
+            src=""
+            alt=""
+        >
+
+    </div>
+
+
+    <!-- Scripts -->
 
     <script>
+
+        /* Mobile Navigation */
 
         const menuToggle = document.querySelector(".menu-toggle");
         const navLinks = document.querySelector(".nav-links");
@@ -1386,7 +1315,9 @@
 
             menuToggle.setAttribute(
                 "aria-label",
-                isOpen ? "Close navigation menu" : "Open navigation menu"
+                isOpen
+                    ? "Close navigation menu"
+                    : "Open navigation menu"
             );
 
             menuToggle.textContent = isOpen ? "×" : "☰";
@@ -1394,15 +1325,16 @@
         });
 
 
-        /* Close the menu after selecting a page */
-
         navLinks.querySelectorAll("a").forEach(function (link) {
 
             link.addEventListener("click", function () {
 
                 navLinks.classList.remove("open");
 
-                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
                 menuToggle.setAttribute(
                     "aria-label",
@@ -1414,6 +1346,82 @@
             });
 
         });
+
+
+        /* Portfolio Image Lightbox */
+
+        const galleryItems =
+            document.querySelectorAll(".gallery-item");
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxImage =
+            document.getElementById("lightbox-image");
+
+        const lightboxClose =
+            document.querySelector(".lightbox-close");
+
+
+        galleryItems.forEach(function (item) {
+
+            item.addEventListener("click", function () {
+
+                const image =
+                    item.querySelector("img");
+
+                lightboxImage.src = image.src;
+
+                lightboxImage.alt = image.alt;
+
+                lightbox.classList.add("open");
+
+                document.body.style.overflow = "hidden";
+
+            });
+
+        });
+
+
+        function closeLightbox() {
+
+            lightbox.classList.remove("open");
+
+            lightboxImage.src = "";
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        lightboxClose.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+
+        lightbox.addEventListener(
+            "click",
+            function (event) {
+
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Escape") {
+                    closeLightbox();
+                }
+
+            }
+        );
 
     </script>
 
