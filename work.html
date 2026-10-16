@@ -30,6 +30,8 @@ h1,h2,h3{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balanc
 .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
 /* Hero */
 .hero{padding-block:56px 32px}
+.avail{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:5px 12px;border-radius:999px;margin:0 0 18px}
+.avail::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
 .eyebrow{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 12px}
 .hero h1{font-size:clamp(34px,5.6vw,60px);font-weight:800;letter-spacing:-.02em;max-width:16ch}
 .hero p.lead{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:60ch;margin:18px 0 0}
@@ -104,6 +106,7 @@ footer{border-top:1px solid var(--line);padding-block:20px 32px;color:var(--mute
 
 <main>
   <div class="wrap hero">
+    <p class="avail">Available now for new clients</p>
     <p class="eyebrow" id="eyebrow">Selected work</p>
     <h1 id="headline">Work that shows how I operate.</h1>
     <p class="lead" id="lead"></p>
@@ -118,7 +121,7 @@ footer{border-top:1px solid var(--line);padding-block:20px 32px;color:var(--mute
     </section>
 
     <section class="block" id="sitesBlock" aria-labelledby="sitesH">
-      <div class="sec-head"><h2 id="sitesH">Live websites I've worked on</h2><p>Page builds, updates and QA.</p></div>
+      <div class="sec-head"><h2 id="sitesH">Live websites I've worked on</h2><p>Built, updated or QA'd, mostly as part of an agency team. Sites change after hand-off.</p></div>
       <div class="sites" id="sites"></div>
     </section>
 
@@ -128,7 +131,7 @@ footer{border-top:1px solid var(--line);padding-block:20px 32px;color:var(--mute
     </section>
 
     <div class="cta">
-      <div><h2 id="ctaH">Need someone who keeps the moving parts moving?</h2><p>Based in Davao City, Philippines, with reliable overlap with Australian business hours. EF SET C2 Proficient English (78/100).</p></div>
+      <div><h2 id="ctaH">Need someone who keeps the moving parts moving?</h2><p>Available now for new clients. Based in Davao City, Philippines, with reliable overlap with Australian business hours. EF SET C2 Proficient English (78/100).</p></div>
       <div class="contact" id="contact">
         <a class="btn" href="mailto:christinediansay@gmail.com">christinediansay@gmail.com</a>
         <a class="btn ghost-light" href="https://www.linkedin.com/in/christine-diansay-616313363" target="_blank" rel="noopener">LinkedIn</a>
@@ -153,7 +156,7 @@ const IMG="https://christinediansay.github.io/images/";
 
 const CASES={
  magazine:{label:"Media & Publishing · USA · 2023–2026",title:"Magazine production system for a publisher, speaker and coach",
-  win:"Took the magazine from one issue in about six months to four on-time issues a year, 12 issues and counting.",
+  win:"Took the magazine from one issue in about six months to four on-time issues a year, 13 issues and counting.",
   flow:["Invite","Submit","Approve","Edit","Layout","Publish"],
   points:[
    {t:"Replaced a manual spreadsheet process with Constant Contact contributor lists, invitation emails and a landing-page submission form.",k:["ghl","pm","marketing","admin","ea"]},
@@ -163,7 +166,7 @@ const CASES={
    {t:"Grew her social media from a few hundred to 10,000+ followers worldwide, mostly organic.",k:["marketing"]},
    {t:"Managed the WordPress site, newsletters and digital distribution, plus personal and executive assistance.",k:["web","ea","admin","marketing"]}],
   imgs:[["DyslexiaFriendlySpreadsheet.png","Color-coded production spreadsheet"],["DyslexiaFriendlySpreadsheet2.png","Production spreadsheet and workflow"],["Trello-1.png","Trello production workflow"],["Trello-2.png","Trello article workflow"],["newsletter1.png","Newsletter production"],["newsletter2.png","Newsletter design"],["socialmedia1.png","Social media production"],["socialmedia2.png","Social media content"],["Socialmediatracker.png","Social media tracking system"],["website1.png","Website work"],["website2.png","Website project"]],
-  tags:[["Production tracking","pm"],["Trello automation","ghl pm"],["Constant Contact","ghl marketing"],["Editorial coordination","pm ea"],["Quality control","pm web"],["Social media","marketing"],["Newsletters","marketing"],["Website updates","web"],["Contributor communication","admin cs"]],
+  tags:[["Production tracking","pm"],["Trello","ghl pm"],["Constant Contact","ghl marketing"],["Editorial coordination","pm ea"],["Quality control","pm web"],["Social media","marketing"],["Newsletters","marketing"],["Website updates","web"],["Contributor communication","admin cs"]],
   w:{pm:10,ea:9,marketing:8,ghl:7,admin:7,web:4,cs:3}},
  finance:{label:"Financial Services · Colorado, USA · 2023–2026",title:"GoHighLevel, marketing and website operations for a financial advisor",
   win:"Migrated her CRM and marketing to GoHighLevel and automated her newsletters and campaigns, then left it all documented with SOPs.",
@@ -175,21 +178,24 @@ const CASES={
    {t:"Maintained WordPress (Beaver Builder) pages, e.g. replaced a podcast embed and added a testimonial carousel.",k:["web"]},
    {t:"Produced YouTube and podcast content with Descript and Doodly; scheduled social posts in Metricool.",k:["marketing"]},
    {t:"Took ad hoc work off the team: Amazon book listing (including a new account) and a trademark application.",k:["ea","admin"]},
-   {t:"Handled inbox and executive admin tasks, and kept Redtail CRM records up to date.",k:["admin","ea"]}],
+   {t:"Kept some Redtail CRM records up to date.",k:["admin"]}],
   imgs:[["ghl1.png","GoHighLevel CRM work"],["ghl2.png","GoHighLevel CRM management"],["ghl3.png","GoHighLevel workflow"],["ghl4.png","GoHighLevel marketing operations"],["ghl5.png","GoHighLevel system"],["ghl6.png","GoHighLevel campaign work"],["ghl7.png","GoHighLevel CRM operations"],["descript.png","Descript content production"],["Doodly.png","Doodly video production"],["metricool.png","Metricool social media management"],["redtail.png","Redtail CRM work"],["website3.png","Website management work"],["website4.png","Website project work"]],
-  tags:[["GoHighLevel","ghl"],["Workflows & funnels","ghl"],["Forms & lead capture","ghl web"],["Email automation","ghl marketing"],["WordPress","web"],["Compliance-approved content","marketing"],["Video & podcast production","marketing"],["Executive admin","ea admin"],["Redtail CRM","admin"]],
-  w:{ghl:10,web:7,marketing:9,ea:6,admin:6,pm:4,cs:3}},
+  tags:[["GoHighLevel","ghl"],["Workflows & funnels","ghl"],["Forms & lead capture","ghl web"],["Email automation","ghl marketing"],["WordPress","web"],["Compliance-approved content","marketing"],["Video & podcast production","marketing"],["Redtail CRM","admin"]],
+  w:{ghl:10,web:7,marketing:9,ea:4,admin:3,pm:4,cs:2}},
  agency:{label:"Digital Marketing Agency · Australia · 2024",title:"Website builds, QA and project coordination for an Australian agency",
-  win:"Joined as QA and project manager, then built about 80% of several websites launched in a short period.",
-  flow:["Brief","Build","QA","Feedback","Launch"],
+  win:"Managed the agency's web projects and, between client calls, built several of its websites myself, most from the first page to the last.",
+  flow:["Brief","Build","Feedback","Action","QA","Feedback","Action","QA","Launch","Post-launch QA"],
   points:[
-   {t:"Built pages on WordPress, Elementor, WooCommerce and Shopify, including pages from developer templates.",k:["web"]},
+   {t:"As project manager, coordinated a web developer (major builds and maintenance such as plugins) and an intern.",k:["pm","ea"]},
+   {t:"Built websites myself on WordPress and Elementor, most from the first page to the last.",k:["web"]},
+   {t:"Helped with minor edits on other major projects and with website maintenance, some on WooCommerce and Shopify.",k:["web"]},
    {t:"Ran QA before client handover: forms, links, buttons, icons and responsiveness.",k:["web","pm"]},
    {t:"Coordinated the agency, clients, developers and third-party providers.",k:["pm","ea"]},
    {t:"Turned a 100+ item mid-build feedback round into billable extra work; the agency updated its contracts for future scope changes.",k:["pm","ea"]},
-   {t:"Created local SEO pages and handled GoHighLevel website work as the agency's needs shifted.",k:["web","marketing","ghl"]}],
+   {t:"Used GoHighLevel across all of the agency's clients.",k:["ghl"]},
+   {t:"Created local SEO pages as the agency's needs shifted.",k:["web","marketing"]}],
   imgs:[],
-  tags:[["WordPress","web"],["Elementor","web"],["Shopify","web"],["WooCommerce","web"],["Website QA","web pm"],["Project management","pm"],["Client communication","pm cs"],["Local SEO pages","marketing web"],["GoHighLevel","ghl"]],
+  tags:[["WordPress","web"],["Elementor","web"],["Website QA","web pm"],["Project management","pm"],["Client communication","pm cs"],["Local SEO pages","marketing web"],["GoHighLevel","ghl"]],
   w:{web:10,pm:9,ghl:5,marketing:5,ea:4,admin:3,cs:3}},
  realty:{label:"Real Estate · Canada · 2020–2023",title:"Back office and marketing for a Keller Williams agent",
   win:"After I took over her back office and social media, she became a consistent top-10 agent in her region by sales volume and closed sales.",
@@ -199,16 +205,17 @@ const CASES={
    {t:"Ran Facebook ads, newsletters and email marketing from KW Command.",k:["marketing"]},
    {t:"Built listing landing pages and set up her KW Command website.",k:["web","marketing"]},
    {t:"Added and edited MLS listings, and kept contacts organised.",k:["admin","ea"]},
-   {t:"Researched FSBO and listing leads; posted consistently on her social media.",k:["admin","marketing"]}],
+   {t:"Researched FSBO and listing leads.",k:["admin"]},
+   {t:"Posted consistently on her social media.",k:["marketing"]}],
   imgs:[["crm-kwcommand.png","KW Command CRM and real estate marketing work"]],
   tags:[["KW Command","ghl admin"],["Smart plans","ghl marketing"],["Facebook ads","marketing"],["Landing pages","web marketing"],["MLS listings","admin"],["Lead research","admin"],["Social media","marketing"],["Canva","marketing"]],
   w:{admin:10,marketing:9,ea:8,ghl:6,web:4,pm:3,cs:4}},
  support:{label:"Customer Support · 2009–2020",title:"10+ years of customer support: telco, retail, e-commerce and email",
-  win:"Consistently passed customer satisfaction targets in email-only support, where they are hardest to earn.",
+  win:"Met or beat KPIs on every account, especially customer satisfaction. Proudest of passing CSAT targets in email-only support, where they are hardest to earn without a voice on the line.",
   flow:[],
   points:[
-   {t:"Email support for a New York contact lens company (2017–2020): consistently passed CSAT targets in writing only.",k:["cs"]},
-   {t:"Telecommunications: consistently met or beat KPIs, especially customer satisfaction; handled billing and technical troubleshooting.",k:["cs"]},
+   {t:"Email support for a New York contact lens company with a Shopify store (2017–2020): consistently passed CSAT targets in writing only.",k:["cs"]},
+   {t:"Telecommunications: met or beat KPIs, especially customer satisfaction; handled billing and technical troubleshooting.",k:["cs"]},
    {t:"Won several upselling incentives for selling bundle packages, using a soft-sell approach.",k:["cs","marketing"]},
    {t:"Retail and e-commerce accounts: managed orders from inquiry to resolution with accurate records.",k:["cs","admin"]}],
   imgs:[],
@@ -217,11 +224,13 @@ const CASES={
 };
 
 const SITES=[
- ["Total Green Recycling","Pages from templates, final QA","https://www.totalgreenrecycling.com.au/"],
- ["Oasis Insurance (NZ)","Full website QA","https://oasisinsurance.co.nz/"],
- ["Empowering Humanity Magazine","Contributor pop-up, design QA","https://empoweringhumanitymagazine.com/"],
- ["SF Financial Services","Podcast embed, testimonial carousel","https://sffinancialservices.com/"],
- ["Retire Financially Fit","Site element updates","https://retirefinanciallyfit.com/"],
+ ["Total Green Recycling","Built out the full site from the developer's starting template: created the remaining pages and replaced all placeholder content","https://www.totalgreenrecycling.com.au/"],
+ ["Oasis Insurance (NZ)","Co-built with the developer (about half the pages each), plus QA","https://oasisinsurance.co.nz/"],
+ ["Dale Cottages","Aged care provider, Perth WA: website build","https://dalecottages.com.au/"],
+ ["Home on the Road","Campervan hire, Perth WA: website build","https://homeontheroad.com.au/"],
+ ["Empowering Humanity Magazine","Helped with site updates","https://empoweringhumanitymagazine.com/"],
+ ["SF Financial Services","Helped with site updates","https://sffinancialservices.com/"],
+ ["Retire Financially Fit","Helped with site elements","https://retirefinanciallyfit.com/"],
  ["Houseworks Plumbing","Local SEO page","https://houseworksplumbing.com.au/plumber-atwell/"],
  ["Southline Plumbing","Local SEO page","https://www.southlineplumbing.com.au/plumber-south-lake/"],
  ["Nu-Vision Painting","Local SEO page","https://www.nu-visionpainting.com.au/locations/painter-west-leederville-6007/"]
@@ -230,19 +239,19 @@ const SITES=[
 const ROLES={
  tech:{name:"Tech VA",mix:["web","ghl"],tag:"Technical VA | Websites, GoHighLevel & Automation",eyebrow:"Technical VA",
   h:"Websites, CRMs and automations, built and kept running.",
-  lead:"I build and QA WordPress and Shopify pages, migrate businesses to GoHighLevel, and automate the campaigns and hand-offs that eat your team's time.",
-  stats:[["80%","of several agency websites built by me","Australian agency, 2024"],["GHL","migration and automated campaigns","financial advisor, USA"],["4×","issues a year on a hand-off system I built","publisher, USA"]],
-  tools:["WordPress","Elementor","Beaver Builder","Shopify","WooCommerce","GoHighLevel","Constant Contact","KW Command","Trello automation","ClickUp","Basic HTML/CSS","Google Search Console"],cta:"Need your websites and systems handled?"},
- web:{name:"Websites",tag:"Technical VA | WordPress, Shopify & Website QA",eyebrow:"Technical VA · Websites",
+  lead:"I build and QA WordPress pages, migrate businesses to GoHighLevel, and automate the campaigns and hand-offs that eat your team's time.",
+  stats:[["PM + build","managed web projects and built sites myself","Australian agency, 2024"],["GHL","migration and automated campaigns","financial advisor, USA"],["4×","issues a year on a hand-off system I built","publisher, USA"]],
+  tools:["WordPress","Elementor","Beaver Builder","GoHighLevel","Constant Contact","KW Command","Redtail CRM","Trello","ClickUp","Notion","Nifty","Blue","Basic HTML/CSS","Google Search Console"],cta:"Need your websites and systems handled?"},
+ web:{name:"Websites",tag:"Technical VA | WordPress & Website QA",eyebrow:"Technical VA · Websites",
   h:"Websites built, updated and checked before anyone else sees them.",
-  lead:"I build and QA WordPress and Shopify pages for agencies and small businesses in Australia, New Zealand and the US.",
-  stats:[["80%","of several agency websites built by me","Australian agency, 2024"],["100+","feedback items turned into a clear plan","mid-build scope change"],["8","live sites and pages you can check","linked below"]],
-  tools:["WordPress","Elementor","Beaver Builder","Astra","Shopify","WooCommerce","GoHighLevel sites","Basic HTML/CSS","Google Search Console","Webvizio","Trello","Jira"],cta:"Need someone to build, update and QA your sites?"},
+  lead:"I build, update and QA WordPress pages for agencies and small businesses in Australia, New Zealand and the US.",
+  stats:[["PM + build","managed web projects and built sites myself","Australian agency, 2024"],["100+","feedback items turned into a clear plan","mid-build scope change"],["10","live sites and pages you can check","linked below"]],
+  tools:["WordPress","Elementor","Beaver Builder","Astra","GoHighLevel","Basic HTML/CSS","Google Search Console","Webvizio","Trello","ClickUp","Nifty","Blue","Notion","Jira"],cta:"Need someone to build, update and QA your sites?"},
  ghl:{name:"GoHighLevel",tag:"Technical VA | GoHighLevel, CRM & Automation",eyebrow:"Technical VA · GoHighLevel & CRM",
   h:"CRMs and automations that keep running after hand-off.",
   lead:"I migrate businesses to GoHighLevel, build workflows and funnels, and automate the newsletters and follow-ups nobody has time for.",
   stats:[["GHL","migration and automated campaigns","financial advisor, USA"],["4×","issues a year, on a hand-off system I built","publisher, USA"],["8x8","lead-nurture smart plans in KW Command","Keller Williams agent"]],
-  tools:["GoHighLevel","Constant Contact","KW Command","Redtail CRM","Trello automation","ClickUp","WordPress","Google Workspace","AI tools"],cta:"Need your CRM and automations set up properly?"},
+  tools:["GoHighLevel","Constant Contact","KW Command","Redtail CRM","Trello","ClickUp","Notion","WordPress","Google Workspace","AI tools"],cta:"Need your CRM and automations set up properly?"},
  marketing:{name:"Marketing",tag:"Marketing Assistant | Email, Content, Social & Local SEO",eyebrow:"Marketing assistant",
   h:"Marketing that actually goes out, on time, every time.",
   lead:"I execute email campaigns, newsletters, social content, local SEO pages and Canva designs from your strategy.",
@@ -251,16 +260,16 @@ const ROLES={
  pm:{name:"Project coordination",tag:"Project Coordinator | Web & Content Projects",eyebrow:"Project coordination",
   h:"Projects that ship on time, with fewer hand-off mistakes.",
   lead:"I coordinate people, files and deadlines from brief to launch, and build the boards and automations that keep everyone moving.",
-  stats:[["4×","issues a year, up from one in six months","magazine production"],["100+","item scope change handled and billed","web project"],["80%","of several websites built while managing them","Australian agency"]],
+  stats:[["4×","issues a year, up from one in six months","magazine production"],["100+","item scope change handled and billed","web project"],["PM + build","managed web projects and built sites myself","Australian agency"]],
   tools:["Trello","ClickUp","Jira","Blue","Nifty","Webvizio","Constant Contact","Google Workspace"],cta:"Need someone to keep your projects moving?"},
  cs:{name:"Customer support",tag:"Customer Support Specialist | Email, Chat & Technical Support",eyebrow:"Customer support",
   h:"Customers who leave happier than they arrived, even in writing.",
   lead:"Over 10 years of support across telecommunications, retail, e-commerce and email, plus 6 years serving clients directly as a VA.",
   stats:[["10+ yrs","customer support experience","telco, retail, e-commerce"],["CSAT","consistently passed in email-only support","contact lens company, NY"],["Incentives","won several times for upselling bundles","telecommunications"]],
-  tools:["Email & chat support","Ticketing (Jira, Trello)","Google Workspace","CRM records","AI-assisted drafting"],cta:"Need support your customers will thank you for?"},
+  tools:["Email & chat support","Shopify (store-side customer support)","Ticketing (Jira, Trello)","Google Workspace","CRM records","AI-assisted drafting"],cta:"Need support your customers will thank you for?"},
  admin:{name:"Admin",tag:"Virtual Assistant | Admin, CRM & Back Office",eyebrow:"Administrative support",
   h:"The back office handled, so you can do the work only you can do.",
-  lead:"I run inboxes, calendars, CRM records, listings and follow-ups for business owners in the USA, Canada and Australia.",
+  lead:"I run back-office tasks, CRM records, listings and follow-ups for business owners in the USA, Canada and Australia.",
   stats:[["Top 10","agent in her KW region after I took over the back office","Keller Williams, Canada"],["6+ yrs","as a VA for business owners","USA, Canada, Australia"],["SOPs","left behind so the work keeps running","financial advisor"]],
   tools:["Google Workspace","KW Command","MLS","Redtail CRM","GoHighLevel","Trello","ClickUp","Canva"],cta:"Need your back office off your plate?"},
  ea:{name:"Executive assistant",tag:"Executive VA | Operations, Projects & Admin",eyebrow:"Executive assistance",
@@ -271,8 +280,8 @@ const ROLES={
 };
 const DEFAULT={tag:"Virtual Assistant | Websites, GoHighLevel, Marketing & Admin",eyebrow:"Selected work",h:"Work that shows how I operate.",
   lead:"I build systems that keep running after I hand them over, and I step in wherever the business needs me.",
-  stats:[["4×","magazine issues a year, up from one in six months","publisher, USA"],["Top 10","agent in her KW region after I took over","Keller Williams, Canada"],["80%","of several agency websites built by me","Australian agency"]],
-  tools:["WordPress","Shopify","GoHighLevel","Constant Contact","KW Command","Trello","ClickUp","Canva","Google Workspace"],cta:"Need someone who keeps the moving parts moving?"};
+  stats:[["4×","magazine issues a year, up from one in six months","publisher, USA"],["Top 10","agent in her KW region after I took over","Keller Williams, Canada"],["10,000+","social followers, grown from a few hundred","publisher, USA"]],
+  tools:["WordPress","GoHighLevel","Constant Contact","KW Command","Trello","ClickUp","Notion","Canva","Google Workspace"],cta:"Need someone who keeps the moving parts moving?"};
 
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -322,7 +331,7 @@ function render(){
       <div class="tags">${c.tags.map(([t,ks])=>`<span class="${keys.some(k=>ks.split(" ").includes(k))?"on":""}">${esc(t)}</span>`).join("")}</div>
     </article>`}).join("");
   // sites: show high for web; hide for cs-only
-  const showSites=!keys.length||keys.some(k=>["web","ghl","pm","marketing"].includes(k));
+  const showSites=keys.includes("web");
   $("sitesBlock").hidden=!showSites;
   if(showSites){$("sites").innerHTML=SITES.filter(s=>!(keys.length===1&&keys[0]==="marketing")||/SEO|Magazine|Financial/.test(s[1]+s[0])).map(s=>`<a href="${esc(s[2])}" target="_blank" rel="noopener"><strong>${esc(s[0])}</strong><span>${esc(s[1])}</span></a>`).join("");
 }
