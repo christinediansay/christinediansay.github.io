@@ -44,8 +44,8 @@ h1,h2,h3{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balanc
 /* Focus switch */
 .focus{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:28px}
 .focus span{font-size:14px;color:var(--muted);margin-right:4px}
-.focus a{font-size:14px;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--surface);padding:6px 14px;border-radius:999px}
-.focus a[aria-current="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.focus button{font-family:inherit;cursor:pointer;font-size:14px;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--surface);padding:6px 14px;border-radius:999px}
+.focus button[aria-current="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 /* Sections */
 section.block{padding-block:28px}
 .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
@@ -286,15 +286,17 @@ const DEFAULT={tag:"Virtual Assistant | Websites, GoHighLevel, Marketing & Admin
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let lbList=[],lbIdx=0;
+let FOCUS=decodeURIComponent((location.hash||"").slice(1)).toLowerCase();
+function setFocus(k){FOCUS=k;try{history.replaceState(null,"",k?"#"+k:location.pathname+location.search)}catch(e){}render();try{window.scrollTo({top:0,behavior:"smooth"})}catch(e){window.scrollTo(0,0)}}
 
 function parseHash(){
-  const raw=decodeURIComponent((location.hash||"").slice(1)).toLowerCase();
+  const raw=FOCUS;
   let keys=raw.split(/[+,]/).map(s=>s.trim()).filter(Boolean).flatMap(k=>ROLES[k]&&ROLES[k].mix?ROLES[k].mix:[k]).filter(k=>ROLES[k]&&!ROLES[k].mix);
   return [...new Set(keys)];
 }
 function render(){
   const keys=parseHash();let R=keys.map(k=>ROLES[k]);
-  const first=decodeURIComponent((location.hash||"").slice(1)).toLowerCase().split(/[+,]/)[0];
+  const first=FOCUS.split(/[+,]/)[0];
   if(ROLES[first]&&ROLES[first].mix)R=[ROLES[first]];
   const P=R[0]||DEFAULT;
   const tagline=R.length?R.map(r=>r.tag.split("|")[0].trim()).filter((v,i,a)=>a.indexOf(v)===i).join(" & ")+" |"+R.map(r=>r.tag.split("|")[1]).join(" ·"):DEFAULT.tag;
@@ -309,8 +311,8 @@ function render(){
   document.title="Christine Diansay | "+(R.length?R.map(r=>r.name).join(" + ")+" Portfolio":"Virtual Assistant Portfolio");
   // focus nav
   const opts=[["","All work"],["tech","Tech VA"],["web","Websites"],["ghl","GoHighLevel"],["marketing","Marketing"],["pm","Projects"],["cs","Customer support"],["admin","Admin"],["ea","Executive assistant"]];
-  const cur=(location.hash||"").slice(1).toLowerCase();
-  $("focus").innerHTML=`<span>Show work for:</span>`+opts.map(([k,l])=>`<a href="#${k}" aria-current="${cur===k||(!cur&&!k)}">${esc(l)}</a>`).join("");
+  const cur=FOCUS;
+  $("focus").innerHTML=`<span>Show work for:</span>`+opts.map(([k,l])=>`<button type="button" data-focus="${k}" aria-current="${cur===k||(!cur&&!k)}">${esc(l)}</button>`).join("");
   // cases ordered by weight
   const score=c=>keys.length?keys.reduce((s,k,i)=>s+(c.w[k]||0)*(i===0?1.5:1),0):({magazine:5,finance:4,agency:3,realty:2,support:1})[c.id];
   const list=Object.entries(CASES).map(([id,c])=>({id,...c})).sort((a,b)=>score(b)-score(a));
@@ -345,8 +347,9 @@ function step(d){lbIdx=(lbIdx+d+lbList.length)%lbList.length;openLb()}
 $("lbX").onclick=()=>{$("lb").hidden=true};$("lbP").onclick=()=>step(-1);$("lbN").onclick=()=>step(1);
 $("lb").addEventListener("click",e=>{if(e.target===$("lb"))$("lb").hidden=true});
 document.addEventListener("keydown",e=>{if($("lb").hidden)return;if(e.key==="Escape")$("lb").hidden=true;if(e.key==="ArrowLeft")step(-1);if(e.key==="ArrowRight")step(1)});
-window.addEventListener("hashchange",()=>{render();window.scrollTo({top:0})});
-$("brand").addEventListener("click",e=>{e.preventDefault();history.pushState("",document.title,location.pathname);render()});
+window.addEventListener("hashchange",()=>{const h=decodeURIComponent((location.hash||"").slice(1)).toLowerCase();if(h!==FOCUS&&h!=="contact"){FOCUS=h;render();window.scrollTo({top:0})}});
+document.addEventListener("click",e=>{const f=e.target.closest("[data-focus]");if(f){e.preventDefault();setFocus(f.dataset.focus)}});
+$("brand").addEventListener("click",e=>{e.preventDefault();setFocus("")});
 render();
 </script>
 </body>
