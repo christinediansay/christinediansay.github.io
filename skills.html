@@ -88,6 +88,24 @@ details[open] .toggle{transform:rotate(45deg)}
 .lb img{max-width:min(92vw,900px);max-height:86vh;border-radius:10px}
 .lb button{position:absolute;background:rgba(255,255,255,.15);border:0;color:#fff;width:48px;height:48px;border-radius:50%;font-size:24px;cursor:pointer}
 .lb .x{top:18px;right:18px}.lb .prev{left:18px}.lb .next{right:18px}
+/* calmer overrides */
+h1{font-weight:700;font-size:clamp(32px,4.6vw,48px);line-height:1.08;letter-spacing:-.01em;margin:0 0 12px;max-width:22ch}
+.hero{padding:40px 0 24px}
+.lead{font-size:17px}
+details.skill{border-radius:16px}
+.s-title{font-size:clamp(22px,2.8vw,28px);margin:0 0 4px}
+.s-proof{margin:0;font-size:16px}
+.toggle{width:36px;height:36px;background:transparent;border:1px solid var(--line)}
+.toggle svg{width:16px;height:16px;stroke:var(--muted)}
+.brand{border-left:0;padding:0;margin:0 0 18px}
+.brand-name{font-size:19px}
+.brand-note{font-size:15px}
+.sub{font-family:var(--f-body);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:6px 0 12px}
+.count{background:none;padding:0;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400}
+.count::before{content:"· "}
+.posts button,.carousel button,.flyer button,.reel{border-radius:10px}
+.cta{border-radius:16px}
+.ba b{letter-spacing:.04em}
 summary:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
 @media (max-width:760px){
   .carousel{grid-template-columns:repeat(3,1fr)}
@@ -107,7 +125,6 @@ summary:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var
   </header>
 
   <section class="hero">
-    <span class="pill">Available now for new clients</span>
     <h1>Skills you can see, not just read about.</h1>
     <p class="lead">Social media and other graphics I've designed and written, and the systems I've built behind the scenes. Open any section to see the work.</p>
   </section>
@@ -116,10 +133,8 @@ summary:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var
   <details class="skill" open>
     <summary>
       <div>
-        <p class="s-kicker">Skill 01</p>
         <p class="s-title">Social Media &amp; Other Graphics</p>
         <p class="s-proof">Posts, carousels, reels and print pieces I designed and wrote, each built around one clear message and a consistent brand look.</p>
-        <ul class="tags"><li>Canva</li><li>Copywriting</li><li>Carousels</li><li>Reels</li><li>Print</li></ul>
       </div>
       <span class="toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
     </summary>
@@ -166,10 +181,8 @@ summary:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var
   <details class="skill">
     <summary>
       <div>
-        <p class="s-kicker">Skill 02</p>
         <p class="s-title">Technical &amp; Automation</p>
         <p class="s-proof">Moved a financial advisor's CRM and marketing to GoHighLevel and automated her newsletters, then documented it all with SOPs.</p>
-        <ul class="tags"><li>GoHighLevel</li><li>Workflows</li><li>Email automation</li><li>Trello</li></ul>
       </div>
       <span class="toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
     </summary>
