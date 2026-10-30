@@ -179,7 +179,7 @@ const CASES={
    {t:"Produced YouTube and podcast content with Descript and Doodly; scheduled social posts in Metricool.",k:["marketing"]},
    {t:"Took ad hoc work off the team: Amazon book listing (including a new account) and a trademark application.",k:["ea","admin"]},
    {t:"Kept some Redtail CRM records up to date.",k:["admin"]}],
-  imgs:[["ghl1.png","GoHighLevel CRM work"],["ghl2.png","GoHighLevel CRM management"],["ghl3.png","GoHighLevel workflow"],["ghl4.png","GoHighLevel marketing operations"],["ghl5.png","GoHighLevel system"],["ghl6.png","GoHighLevel campaign work"],["ghl7.png","GoHighLevel CRM operations"],["newsletter1.png","Scheduled newsletters in GoHighLevel"],["newsletter2.png","Newsletter campaign schedule"],["descript.png","Descript content production"],["Doodly.png","Doodly video production"],["metricool.png","Metricool social media management"],["redtail.png","Redtail CRM work"],["website3.png","Website management work"],["website4.png","Website project work"]],
+  imgs:[["ghl1.png","GoHighLevel CRM work"],["ghl2.png","GoHighLevel CRM management"],["ghl3.png","GoHighLevel workflow"],["ghl4.png","GoHighLevel marketing operations"],["ghl5.png","GoHighLevel system"],["ghl6.png","GoHighLevel campaign work"],["ghl7.png","GoHighLevel CRM operations"],["newsletter1.png","Scheduled newsletters in GoHighLevel"],["newsletter2.png","Newsletter campaign schedule"],["img/fa/fa-q-and-a.jpg","Social post: Q&A on Social Security"],["img/fa/fa-3-things.jpg","Social post: 3 things before retiring"],["img/fa/fa-linda-scenario.jpg","Social post: client scenario"],["img/fa/fa-claiming-chart.jpg","Social post: claiming-age chart"],["descript.png","Descript content production"],["Doodly.png","Doodly video production"],["metricool.png","Metricool social media management"],["redtail.png","Redtail CRM work"],["website3.png","Website management work"],["website4.png","Website project work"]],
   tags:[["GoHighLevel","ghl"],["Workflows & funnels","ghl"],["Forms & lead capture","ghl web"],["Email automation","ghl marketing"],["WordPress","web"],["Compliance-approved content","marketing"],["Video & podcast production","marketing"],["Redtail CRM","admin"]],
   w:{ghl:10,web:7,marketing:9,ea:4,admin:3,pm:4,cs:2}},
  agency:{label:"Digital Marketing Agency · Australia · 2024",title:"Website builds, QA and project coordination for an Australian agency",
@@ -207,7 +207,7 @@ const CASES={
    {t:"Added and edited MLS listings, and kept contacts organised.",k:["admin","ea"]},
    {t:"Researched FSBO and listing leads.",k:["admin"]},
    {t:"Posted consistently on her social media.",k:["marketing"]}],
-  imgs:[["crm-kwcommand.png","KW Command CRM and real estate marketing work"]],
+  imgs:[["img/realtor/realtor-just-listed.jpg","Sample social post: Just Listed"],["img/realtor/realtor-open-house.jpg","Sample social post: Open House"],["img/realtor/realtor-valuation-1.jpg","Sample carousel: free home valuation"],["img/realtor/realtor-monday-quote.jpg","Sample engagement post: Monday Motivation"],["img/realtor/realtor-flyer.jpg","Sample open house flyer"],["crm-kwcommand.png","KW Command CRM and real estate marketing work"]],
   tags:[["KW Command","ghl admin"],["Smart plans","ghl marketing"],["Facebook ads","marketing"],["Landing pages","web marketing"],["MLS listings","admin"],["Lead research","admin"],["Social media","marketing"],["Canva","marketing"]],
   w:{admin:10,marketing:9,ea:8,ghl:6,web:4,pm:3,cs:4}},
  support:{label:"Customer Support · 2009–2020",title:"10+ years of customer support: telco, retail, e-commerce and email",
@@ -319,7 +319,7 @@ function render(){
   $("casesNote").textContent=keys.length?"Most relevant to "+R.map(r=>r.name).join(" and ")+" work first.":"Five clients and roles, newest first.";
   $("cases").innerHTML=list.map((c,i)=>{
     const pts=[...c.points].sort((a,b)=>(keys.some(k=>b.k.includes(k))?1:0)-(keys.some(k=>a.k.includes(k))?1:0));
-    const imgs=c.imgs.map(([f,alt])=>({src:IMG+f,alt}));
+    const imgs=c.imgs.map(([f,alt])=>({src:/^(https?:|img\/)/.test(f)?f:IMG+f,alt}));
     const shown=imgs.slice(0,5),rest=imgs.length-shown.length;
     return `<article class="case${i===0&&keys.length?" featured":""}" id="case-${c.id}">
       <div class="meta"><span>${esc(c.label)}</span>${i===0&&keys.length?`<span class="fit">Best match</span>`:""}</div>
@@ -333,7 +333,7 @@ function render(){
       <div class="tags">${c.tags.map(([t,ks])=>`<span class="${keys.some(k=>ks.split(" ").includes(k))?"on":""}">${esc(t)}</span>`).join("")}</div>
     </article>`}).join("");
   // sites: show high for web; hide for cs-only
-  const showSites=keys.includes("web");
+  const showSites=!keys.length||keys.includes("web")||keys.includes("marketing");
   $("sitesBlock").hidden=!showSites;
   if(showSites){$("sites").innerHTML=SITES.filter(s=>!(keys.length===1&&keys[0]==="marketing")||/SEO|Magazine|Financial/.test(s[1]+s[0])).map(s=>`<a href="${esc(s[2])}" target="_blank" rel="noopener"><strong>${esc(s[0])}</strong><span>${esc(s[1])}</span></a>`).join("");
 }
@@ -341,7 +341,7 @@ function render(){
   $("tools").innerHTML=tools.map(t=>`<span>${esc(t)}</span>`).join("");
 }
 document.addEventListener("click",e=>{const b=e.target.closest(".gallery button");if(!b)return;
-  const c=CASES[b.dataset.case];lbList=c.imgs.map(([f,alt])=>({src:IMG+f,alt}));lbIdx=+b.dataset.i;openLb()});
+  const c=CASES[b.dataset.case];lbList=c.imgs.map(([f,alt])=>({src:/^(https?:|img\/)/.test(f)?f:IMG+f,alt}));lbIdx=+b.dataset.i;openLb()});
 function openLb(){const im=lbList[lbIdx];$("lbImg").src=im.src;$("lbImg").alt=im.alt;$("lbCap").textContent=im.alt+"  ("+(lbIdx+1)+" of "+lbList.length+")";$("lb").hidden=false;$("lbX").focus()}
 function step(d){lbIdx=(lbIdx+d+lbList.length)%lbList.length;openLb()}
 $("lbX").onclick=()=>{$("lb").hidden=true};$("lbP").onclick=()=>step(-1);$("lbN").onclick=()=>step(1);
