@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Ladio Family Tree</title>
+<link id="fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap">
+<style id="app-style">
+/* Layout: a zoomable canvas (Prezi-style) with the tree flowing left to right by generation; a details panel docks right on desktop and rises from the bottom on phones. Palette from Mandaya dagmay weaving of Davao Oriental: indigo, madder red, abaca gold. */
+:root{
+  --bg:#e9ece6; --paper:#fbfcf8; --ink:#1c2130; --muted:#5b6270; --line:#c6cbc0; --link:#a9ae9f;
+  --accent:#a3312a; --on-accent:#fff8f2; --gold:#b07e22; --chip:#e4e7df; --ring:rgba(163,49,42,.18);
+  --grid:rgba(28,33,48,.05); --shadow:0 1px 2px rgba(28,33,48,.08),0 4px 14px rgba(28,33,48,.06);
+  --f-display:"Young Serif",Georgia,"Times New Roman",serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141720; --paper:#1e222d; --ink:#ebe9e1; --muted:#9ca2ae; --line:#363c4b; --link:#4b5263;
+  --accent:#e06a5c; --on-accent:#1a0c0a; --gold:#d8aa4c; --chip:#2a2f3c; --ring:rgba(224,106,92,.22);
+  --grid:rgba(235,233,225,.035); --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141720; --paper:#1e222d; --ink:#ebe9e1; --muted:#9ca2ae; --line:#363c4b; --link:#4b5263;
+  --accent:#e06a5c; --on-accent:#1a0c0a; --gold:#d8aa4c; --chip:#2a2f3c; --ring:rgba(224,106,92,.22);
+  --grid:rgba(235,233,225,.035); --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}
+
+html{height:100%;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--f-body);overflow:hidden}
+button,input,textarea{font:inherit;color:inherit}
+.app{height:100%;display:grid;grid-template-rows:auto 1fr}
+
+/* header */
+.top{position:relative;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;background:var(--paper);border-bottom:1px solid var(--line);padding-block:10px 12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:4px;background:repeating-linear-gradient(90deg,var(--accent) 0 16px,var(--gold) 16px 20px,var(--ink) 20px 30px,var(--gold) 30px 34px)}
+.brand{display:flex;flex-direction:column;gap:2px;margin-right:auto;min-width:0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{margin:0;font-family:var(--f-display);font-weight:400;font-size:22px;line-height:1.1;text-wrap:balance}
+.meter{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meter .bar{display:block;width:150px;height:5px;border-radius:3px;background:var(--chip);overflow:hidden}
+.meter .bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .4s}
+.find{position:relative;flex:0 1 220px;min-width:150px}
+.find input{width:100%;height:36px;border:1px solid var(--line);border-radius:18px;background:var(--bg);padding:0 14px;font-size:15px}
+.find input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.qres{position:absolute;top:42px;left:0;right:0;min-width:240px;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:6px;display:flex;flex-direction:column;z-index:20}
+.qres button{border:0;background:transparent;text-align:left;padding:8px 10px;border-radius:8px;cursor:pointer;display:flex;flex-direction:column;gap:1px}
+.qres button:hover,.qres button:focus-visible{background:var(--chip);outline:none}
+.qres small{color:var(--muted);font-size:12px}
+.qres .none{padding:8px 10px;color:var(--muted)}
+.chip{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:var(--chip);color:var(--muted);white-space:nowrap}
+body[data-mode="edit"] .chip{background:var(--ring);color:var(--accent)}
+.icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--paper);cursor:pointer;font-size:16px;line-height:1;display:grid;place-items:center;flex:none}
+.icon-btn:hover{border-color:var(--ink)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* canvas */
+.main{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;min-height:0}
+#stage{position:relative;overflow:hidden;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;
+  background-color:var(--bg);
+  background-image:repeating-linear-gradient(45deg,var(--grid) 0 1px,transparent 1px 26px),repeating-linear-gradient(-45deg,var(--grid) 0 1px,transparent 1px 26px)}
+#stage.grabbing{cursor:grabbing}
+#world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+svg.links{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+svg.links path{fill:none;stroke:var(--link);stroke-width:1.6}
+svg.links path.lit{stroke:var(--accent);stroke-width:2.6}
+.gl{position:absolute;width:232px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.gl b{display:block;font-family:var(--f-display);font-weight:400;font-size:20px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:3px}
+.node{position:absolute;width:232px;height:66px;padding:8px 42px 8px 13px;background:var(--paper);border:1px solid var(--line);border-radius:10px;text-align:left;display:flex;flex-direction:column;justify-content:center;gap:1px;cursor:pointer;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
+.node:hover{border-color:var(--muted)}
+.node .nm{font-family:var(--f-display);font-size:15.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.node .sp{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.node .mt{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.node .mt.need{color:var(--accent);font-weight:500}
+.node .ct{position:absolute;right:10px;top:50%;transform:translateY(-50%);min-width:24px;height:24px;padding:0 6px;border-radius:12px;background:var(--chip);font-size:12px;font-weight:600;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.node .q{position:absolute;right:-7px;top:-7px;width:18px;height:18px;border-radius:50%;background:var(--gold);color:var(--paper);font-size:11px;font-weight:700;display:grid;place-items:center}
+.node.unknown{border-style:dashed;background:transparent;box-shadow:none}
+.node.on{border-color:var(--accent);box-shadow:0 0 0 4px var(--ring),var(--shadow)}
+.node.fam{border-color:var(--gold)}
+#world.far .node .sp,#world.far .node .mt{display:none}
+#world.far .node .nm{font-size:28px}
+#world.far .gl{font-size:22px}
+#world.far .gl b{font-size:40px}
+
+.ui{position:absolute;z-index:3}
+.zoom{right:max(16px,env(safe-area-inset-right,0px));bottom:76px;display:flex;flex-direction:column;gap:6px}
+.zoom button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--paper);cursor:pointer;font-size:18px;box-shadow:var(--shadow)}
+.zoom #zfit{font-size:12px;font-weight:600}
+.tour{left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px;box-shadow:var(--shadow);width:min(520px,calc(100% - 32px))}
+.tour button{width:42px;height:42px;border-radius:50%;border:0;background:var(--accent);color:var(--on-accent);font-size:22px;line-height:1;cursor:pointer;flex:none}
+.tour button:disabled{opacity:.35;cursor:default}
+.tour .tl{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;line-height:1.25}
+.tour .tl span:first-child{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums}
+.tour .tl span:last-child{font-family:var(--f-display);font-size:15px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.intro{left:max(16px,env(safe-area-inset-left,0px));top:16px;max-width:330px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);font-size:14px;line-height:1.5}
+.intro h2{margin:0 0 6px;font-family:var(--f-display);font-weight:400;font-size:18px}
+.intro ol{margin:0 0 10px;padding-left:20px;display:grid;gap:4px}
+.intro p{margin:0 0 10px;color:var(--muted);font-size:13px}
+
+/* sheet */
+.sheet{width:390px;background:var(--paper);border-left:1px solid var(--line);overflow-y:auto;padding:20px 22px 28px;display:flex;flex-direction:column;gap:18px;z-index:4}
+.sh-head{display:flex;gap:12px;align-items:flex-start}
+.sh-head>div{flex:1;min-width:0}
+h2#s-title{margin:4px 0 4px;font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.15;text-wrap:balance}
+.rel{margin:0;color:var(--muted);font-size:13.5px}
+.rel button{border:0;background:none;padding:0;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.ask{margin:0;padding:10px 12px;border-radius:10px;background:var(--chip);border:1px solid var(--gold);font-size:13.5px;line-height:1.45}
+.ask::before{content:"Question for the family";display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.kids h3,.addkid h3{margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.kidlist{display:flex;flex-wrap:wrap;gap:6px}
+.kidlist button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer}
+.kidlist button:hover{border-color:var(--accent)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:0}
+.form label.wide{grid-column:1/-1}
+.form input,.form textarea,.addkid input{width:100%;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:9px 10px;font-size:16px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:400}
+.form textarea{min-height:88px;resize:vertical;line-height:1.45}
+.form input:focus-visible,.form textarea:focus-visible,.addkid input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.actions{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:0;border-radius:10px;background:var(--accent);color:var(--on-accent);font-weight:600;padding:11px 16px;cursor:pointer;font-size:14.5px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.note{grid-column:1/-1;margin:0;font-size:13px;color:var(--muted);line-height:1.45}
+#copy-out{grid-column:1/-1;min-height:120px;font-size:14px}
+.addkid .row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.pending{margin:10px 0 0;padding-left:18px;font-size:13.5px;color:var(--muted)}
+.danger{border-top:1px solid var(--line);padding-top:14px;font-size:13.5px}
+.link-btn{border:0;background:none;padding:0;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.confirm{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+body:not([data-mode="edit"]) .edit-only{display:none!important}
+body[data-mode="edit"] .suggest-only{display:none!important}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));max-width:min(460px,calc(100% - 32px));background:var(--ink);color:var(--paper);padding:11px 16px;border-radius:12px;font-size:14px;line-height:1.4;z-index:50;box-shadow:var(--shadow)}
+
+@media (max-width:760px){
+  h1{font-size:19px}
+  .meter{order:5}
+  .meter .bar{width:110px}
+  .find{order:4;flex:1 1 160px}
+  .sheet{position:absolute;left:0;right:0;bottom:0;width:auto;height:60%;border-left:0;border-top:1px solid var(--line);border-radius:18px 18px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.18);padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+  body.sheet-open .tour,body.sheet-open .zoom{display:none}
+  .intro{right:max(16px,env(safe-area-inset-right,0px));max-width:none}
+  .zoom{bottom:80px}
+}
+@media (max-width:420px){.form{grid-template-columns:1fr}.addkid .row{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<template id="shell">
+<div class="app">
+  <header class="top">
+    <div class="brand"><span class="eyebrow">Mikit, Davao Oriental</span><h1>Ladio Family Tree</h1></div>
+    <div class="meter"><span id="progress-text">Loading…</span><span class="bar"><i id="progress-bar"></i></span></div>
+    <div class="find"><input id="q" type="search" placeholder="Find a name" autocomplete="off" aria-label="Find a name"><div id="qres" class="qres" hidden></div></div>
+        <button id="help-btn" class="icon-btn" type="button" aria-label="How to help">?</button>
+  </header>
+  <div class="main">
+    <div id="stage">
+      <div id="world"></div>
+      <div id="intro" class="intro ui">
+        <h2>Help us complete the tree</h2>
+        <ol>
+          <li>Tap <b>›</b> below to walk through each family.</li>
+          <li>Tap any name to see and fill in details: birth date, birthplace, where they live now.</li>
+          <li>Names with a red <span style="color:var(--accent)">Tap to add details</span> still need information. A gold <b>?</b> is a question for you.</li>
+        </ol>
+        <p class="suggest-only">Fill in the form, tap <b>Copy my additions</b>, and send it to the person who shared this tree.</p>
+        <p class="edit-only">You can edit. Your saves update the tree for everyone.</p>
+        <button id="intro-ok" class="btn" type="button">Got it</button>
+      </div>
+      <div class="zoom ui"><button id="zin" type="button" aria-label="Zoom in">+</button><button id="zout" type="button" aria-label="Zoom out">−</button><button id="zfit" type="button">Fit</button></div>
+      <div class="tour ui"><button id="prev" type="button" aria-label="Previous family">‹</button><div class="tl"><span id="tour-count"></span><span id="tour-label"></span></div><button id="next" type="button" aria-label="Next family">›</button></div>
+    </div>
+    <aside id="sheet" class="sheet" hidden aria-label="Person details">
+      <div class="sh-head">
+        <div><span class="eyebrow" id="s-gen"></span><h2 id="s-title"></h2><p id="s-rel" class="rel"></p></div>
+        <button id="s-close" class="icon-btn" type="button" aria-label="Close">×</button>
+      </div>
+      <p id="s-ask" class="ask" hidden></p>
+      <div id="s-kids" class="kids" hidden><h3 id="s-kids-h">Children</h3><div id="s-kidlist" class="kidlist"></div></div>
+      <form id="s-form" class="form" autocomplete="off">
+        <label class="wide" id="l-name">Full name<input id="f-name" type="text"></label>
+        <label>Nickname<input id="f-nick" type="text" placeholder="e.g. Dodong"></label>
+        <label id="l-spouse">Spouse<input id="f-spouse" type="text"></label>
+        <label>Birth date<input id="f-born" type="text" placeholder="e.g. 12 Mar 1950"></label>
+        <label>Birthplace<input id="f-place" type="text" placeholder="e.g. Mikit"></label>
+        <label>Date of passing<input id="f-died" type="text" placeholder="Blank if living"></label>
+        <label>Lives in now<input id="f-lives" type="text" placeholder="Town or city"></label>
+        <label class="wide">Notes and stories<textarea id="f-notes" placeholder="Work, school, wedding date, a memory worth keeping…"></textarea></label>
+        <div class="actions">
+          <button id="save-btn" class="btn edit-only" type="submit">Save to the tree</button>
+          <button id="copy-btn" class="btn suggest-only" type="button">Copy my additions</button>
+        </div>
+        <p class="note suggest-only">Copy your additions, then paste them in Messenger or a text to the person who shared this tree.</p>
+        <textarea id="copy-out" readonly hidden aria-label="Your additions"></textarea>
+      </form>
+      <section class="addkid">
+        <h3>Add a child</h3>
+        <div class="row"><input id="ac-name" type="text" placeholder="Child's name" aria-label="Child's name"><input id="ac-spouse" type="text" placeholder="Their spouse (optional)" aria-label="Their spouse"></div>
+        <button id="ac-btn" class="btn ghost" type="button">Add child</button>
+        <ul id="pending" class="pending suggest-only" hidden></ul>
+      </section>
+      <section class="danger edit-only" id="rm-wrap">
+        <button id="rm-btn" class="link-btn" type="button">Remove this person</button>
+        <div id="rm-confirm" class="confirm" hidden><span id="rm-text"></span><button id="rm-yes" class="btn" type="button">Remove</button><button id="rm-no" class="btn ghost" type="button">Keep</button></div>
+      </section>
+    </aside>
+  </div>
+  <div id="toast" class="toast" role="status" hidden></div>
+</div>
+</template>
+<script id="tree-data" type="application/json">{"updated":"2026-11-06T07:30:00.000Z","changes":[{"at":"2026-11-06T07:30:00.000Z","text":"Tree started"}],"people":[
+{"id":"roots","parent":null,"order":0,"name":"","spouse":"","unknown":true,"ask":"What were the names of Carlos's father and mother? Type the father in Full name and the mother in Spouse. Also: what is the birth order of Carlos and his siblings?"},
+{"id":"carlos","parent":"roots","order":0,"name":"Carlos Ladio","spouse":"Zosima Enriquez"},
+{"id":"carmen","parent":"roots","order":1,"name":"Carmen Ladio","spouse":"Liwana","ask":"What is Mr. Liwana's first name?"},
+{"id":"sofia","parent":"roots","order":2,"name":"Sofia Ladio","spouse":""},
+{"id":"eugenio","parent":"roots","order":3,"name":"Eugenio Ladio","spouse":"Erlinda"},
+{"id":"martinez","parent":"roots","order":4,"name":"Martinez Ladio","spouse":"Helen Astodillo"},
+{"id":"artellano","parent":"roots","order":5,"name":"Artellano Ladio","spouse":""},
+{"id":"rodolfo","parent":"carlos","order":0,"name":"Rodolfo E. Ladio","spouse":"Aida Borigas"},
+{"id":"rogelia","parent":"carlos","order":1,"name":"Rogelia Ladio","spouse":"Emiliano"},
+{"id":"rosalina","parent":"carlos","order":2,"name":"Rosalina Ladio","spouse":"Arnold"},
+{"id":"rodelia","parent":"carlos","order":3,"name":"Rodelia Ladio","spouse":"Heusel"},
+{"id":"zenaida","parent":"carlos","order":4,"name":"Zenaida Ladio","spouse":""},
+{"id":"maryjean","parent":"rodolfo","order":0,"name":"Maryjean","spouse":"Gilboy"},
+{"id":"aira","parent":"maryjean","order":0,"name":"Aira","spouse":""},
+{"id":"robert","parent":"rodolfo","order":1,"name":"Robert","spouse":"Irene"},
+{"id":"regine","parent":"robert","order":0,"name":"Regine","spouse":""},
+{"id":"balong","parent":"robert","order":1,"name":"Balong","spouse":""},
+{"id":"rodolfojr","parent":"rodolfo","order":2,"name":"Rodolfo Jr.","spouse":"Camiming"},
+{"id":"michelle","parent":"rodolfojr","order":0,"name":"Michelle","spouse":"","ask":"Is Jamel Michelle's child or her spouse? Correct it here if needed."},
+{"id":"jamel","parent":"michelle","order":0,"name":"Jamel","spouse":""},
+{"id":"rosevil","parent":"rodolfojr","order":1,"name":"Rosevil","spouse":""},
+{"id":"alvin","parent":"rodolfo","order":3,"name":"Alvin","spouse":"Joy"},
+{"id":"vincent","parent":"alvin","order":0,"name":"Vincent","spouse":""},
+{"id":"buday","parent":"alvin","order":1,"name":"Buday","spouse":""},
+{"id":"ariel","parent":"rodolfo","order":4,"name":"Ariel","spouse":"Judith"},
+{"id":"florencio","parent":"rodolfo","order":5,"name":"Florencio","spouse":"","ask":"Is Marian Florencio's child or his spouse?"},
+{"id":"marian","parent":"florencio","order":0,"name":"Marian","spouse":""},
+{"id":"carlos2","parent":"rodolfo","order":6,"name":"Carlos","spouse":""},
+{"id":"benjelyn","parent":"rodolfo","order":7,"name":"Benjelyn","spouse":""},
+{"id":"er","parent":"rodolfo","order":8,"name":"ER","spouse":""},
+{"id":"jong2","parent":"rodolfo","order":9,"name":"Jong2","spouse":"Suli"},
+{"id":"ann2","parent":"rodolfo","order":10,"name":"Ann2","spouse":""},
+{"id":"mylene","parent":"rodolfo","order":11,"name":"Mylene","spouse":""},
+{"id":"ian","parent":"rodolfo","order":12,"name":"Ian","spouse":""},
+{"id":"sheilamae","parent":"rodolfo","order":13,"name":"Sheila Mae","spouse":"Aldrin"},
+{"id":"cherry","parent":"sheilamae","order":0,"name":"Cherry","spouse":""},
+{"id":"apple","parent":"sheilamae","order":1,"name":"Apple","spouse":""},
+{"id":"rolando","parent":"rogelia","order":0,"name":"Rolando","spouse":""},
+{"id":"ellen","parent":"rogelia","order":1,"name":"Ellen","spouse":""},
+{"id":"romeo","parent":"rogelia","order":2,"name":"Romeo","spouse":""},
+{"id":"elmer","parent":"rogelia","order":3,"name":"Elmer","spouse":""},
+{"id":"regie","parent":"rogelia","order":4,"name":"Regie","spouse":""},
+{"id":"jakeryan","parent":"rosalina","order":0,"name":"Jake Ryan","spouse":""},
+{"id":"clyde","parent":"rosalina","order":1,"name":"Clyde","spouse":""},
+{"id":"michael","parent":"rodelia","order":0,"name":"Michael","spouse":"Judith"},
+{"id":"ronnmikko","parent":"michael","order":0,"name":"Ronn Mikko","spouse":""},
+{"id":"christinejoy","parent":"rodelia","order":1,"name":"Christine Joy","spouse":"Kher"},
+{"id":"jakkovo","parent":"christinejoy","order":0,"name":"Jakkovo Orion","spouse":""},
+{"id":"kaio","parent":"christinejoy","order":1,"name":"Kaio","spouse":""},
+{"id":"haroldjohn","parent":"rodelia","order":2,"name":"Harold John","spouse":"Cecile"},
+{"id":"mecaia","parent":"haroldjohn","order":0,"name":"Mecaia Meshia","spouse":""},
+{"id":"shulamite","parent":"haroldjohn","order":1,"name":"Shulamite Atarah","spouse":""}
+]}</script>
+<script id="app-script">
+(function(){
+"use strict";
+var RESET=':root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}';
+var tpl=document.getElementById('shell');
+document.body.appendChild(tpl.content.cloneNode(true));
+var committed=document.getElementById('tree-data').textContent;
+var state=JSON.parse(committed);
+function $(s){return document.querySelector(s);}
+var W=232,H=66,COLW=304,ROWH=82,MIN=0.05,MAX=1.6;
+var GEN=["Carlos's parents","Carlos & siblings","Children","Grandchildren","Great-grandchildren","Great-great-grandchildren","Generation 7","Generation 8"];
+var FIELDS=[["name","Full name"],["nick","Nickname"],["spouse","Spouse"],["born","Birth date"],["place","Birthplace"],["died","Date of passing"],["lives","Lives in now"],["notes","Notes"]];
+var byId=new Map(),kids=new Map(),rootId=null,bounds={x0:0,y0:0,x1:0,y1:0};
+var stage=$('#stage'),world=$('#world'),sheet=$('#sheet');
+var cam={tx:0,ty:0,s:.4},sel=null,mode='suggest',artifactNs=null,pending={},steps=[],stepIdx=0,anim=null;
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function index(){
+  byId.clear();kids=new Map();rootId=null;
+  state.people.forEach(function(p){byId.set(p.id,p);});
+  state.people.forEach(function(p){
+    var k=(p.parent&&byId.has(p.parent))?p.parent:'';
+    if(!k&&!rootId)rootId=p.id;
+    if(!kids.has(k))kids.set(k,[]);kids.get(k).push(p);
+  });
+  kids.forEach(function(a){a.sort(function(x,y){return (x.order||0)-(y.order||0);});});
+}
+function childrenOf(id){return kids.get(id)||[];}
+function depth(p){var d=0;while(p&&p.parent&&byId.has(p.parent)){d++;p=byId.get(p.parent);}return d;}
+function couple(p){if(!p)return'';var n=p.name||(p.unknown?"Carlos's father":'Unnamed');return n+(p.spouse?' & '+p.spouse:(p.unknown?' & mother':''));}
+
+function layout(){
+  var slot=0,maxD=0;
+  function place(p,d){
+    p._x=d*COLW;maxD=Math.max(maxD,d);
+    var k=childrenOf(p.id);
+    if(!k.length){p._y=slot*ROWH;slot++;}
+    else{k.forEach(function(c){place(c,d+1);});p._y=(k[0]._y+k[k.length-1]._y)/2;}
+  }
+  (kids.get('')||[]).forEach(function(r){place(r,0);slot+=0.5;});
+  bounds={x0:-10,y0:-110,x1:maxD*COLW+W+10,y1:Math.max(slot*ROWH,ROWH)+10,maxD:maxD};
+}
+
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+function render(){
+  index();layout();
+  world.textContent='';
+  var NS='http://www.w3.org/2000/svg';
+  var svg=document.createElementNS(NS,'svg');svg.setAttribute('class','links');
+  svg.setAttribute('width',String(bounds.x1+20));svg.setAttribute('height',String(bounds.y1+20));
+  state.people.forEach(function(p){
+    if(!p.parent||!byId.has(p.parent))return;
+    var a=byId.get(p.parent),x1=a._x+W,y1=a._y+H/2,x2=p._x,y2=p._y+H/2,m=(x1+x2)/2;
+    var path=document.createElementNS(NS,'path');
+    path.setAttribute('d','M'+x1+' '+y1+' C'+m+' '+y1+' '+m+' '+y2+' '+x2+' '+y2);
+    path.setAttribute('data-child',p.id);svg.appendChild(path);
+  });
+  world.appendChild(svg);
+  for(var d=0;d<=bounds.maxD;d++){
+    var g=el('div','gl','Generation '+(d+1));g.appendChild(el('b',null,GEN[d]||''));
+    g.style.left=(d*COLW)+'px';g.style.top='-96px';world.appendChild(g);
+  }
+  state.people.forEach(function(p){
+    var b=el('button','node'+(p.unknown?' unknown':''));b.type='button';b.dataset.id=p.id;
+    b.style.left=p._x+'px';b.style.top=p._y+'px';
+    b.appendChild(el('span','nm',p.name||(p.unknown?'Names needed':'Unnamed')));
+    if(p.spouse||p.unknown)b.appendChild(el('span','sp',p.spouse?'& '+p.spouse:'Father & mother of Carlos'));
+    var meta=[p.born&&('b. '+p.born),p.died&&('d. '+p.died),p.lives||p.place].filter(Boolean).join(' · ');
+    if(meta)b.appendChild(el('span','mt',meta));
+    else if(!p.unknown)b.appendChild(el('span','mt need','Tap to add details'));
+    var n=childrenOf(p.id).length;if(n)b.appendChild(el('span','ct',String(n)));
+    if(p.ask)b.appendChild(el('span','q','?'));
+    b.setAttribute('aria-label',couple(p));
+    b.addEventListener('click',function(){if(moved>6)return;select(p.id,true);});
+    world.appendChild(b);
+  });
+  buildSteps();markSel();progress();
+}
+function progress(){
+  var list=state.people.filter(function(p){return !p.unknown;});
+  var f=list.filter(function(p){return p.born;}).length;
+  $('#progress-text').textContent=f+' of '+list.length+' have a birth date';
+  $('#progress-bar').style.width=(list.length?Math.round(f/list.length*100):0)+'%';
+}
+function chain(id){var s=new Set();var p=byId.get(id);while(p){s.add(p.id);p=p.parent?byId.get(p.parent):null;}return s;}
+function markSel(){
+  var c=sel?chain(sel):new Set();
+  world.querySelectorAll('.node').forEach(function(n){
+    var p=byId.get(n.dataset.id);
+    n.classList.toggle('on',n.dataset.id===sel);
+    n.classList.toggle('fam',!!sel&&p&&p.parent===sel);
+  });
+  world.querySelectorAll('svg.links path').forEach(function(pa){
+    var ch=pa.getAttribute('data-child'),p=byId.get(ch);
+    pa.classList.toggle('lit',!!sel&&(c.has(ch)||(p&&p.parent===sel)));
+  });
+}
+
+/* camera */
+function apply(){
+  world.style.transform='translate('+cam.tx+'px,'+cam.ty+'px) scale('+cam.s+')';
+  stage.style.backgroundPosition=cam.tx+'px '+cam.ty+'px';
+  world.classList.toggle('far',cam.s<0.36);
+}
+function viewRect(){
+  var r=stage.getBoundingClientRect(),w=r.width,h=r.height;
+  var small=window.matchMedia('(max-width:760px)').matches;
+  if(small&&!sheet.hidden){h=Math.max(140,h-sheet.getBoundingClientRect().height);}
+  else{h=Math.max(140,h-64);}
+  return{w:w,h:h,cx:w/2,cy:h/2};
+}
+function setCam(c,s,v){cam.s=s;cam.tx=v.cx-c.x*s;cam.ty=v.cy-c.y*s;apply();}
+function stopAnim(){if(anim){cancelAnimationFrame(anim);anim=null;}}
+function flyTo(c1,s1,instant){
+  stopAnim();var v=viewRect(),s0=cam.s,c0={x:(v.cx-cam.tx)/s0,y:(v.cy-cam.ty)/s0};
+  if(reduce||instant){setCam(c1,s1,v);return;}
+  var dist=Math.hypot(c1.x-c0.x,c1.y-c0.y)*Math.min(s0,s1)/Math.max(1,v.w);
+  var bump=Math.min(.5,dist*.35),dur=650+Math.min(650,dist*500),t0=performance.now();
+  function step(now){
+    var t=Math.min(1,(now-t0)/dur),e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+    var s=Math.exp(Math.log(s0)+(Math.log(s1)-Math.log(s0))*e)*(1-bump*Math.sin(Math.PI*t));
+    setCam({x:c0.x+(c1.x-c0.x)*e,y:c0.y+(c1.y-c0.y)*e},s,v);
+    anim=t<1?requestAnimationFrame(step):null;
+  }
+  anim=requestAnimationFrame(step);
+}
+function frameRect(x0,y0,x1,y1,maxS,instant){
+  var v=viewRect(),pad=Math.min(56,v.w*.08);
+  var s=Math.min((v.w-2*pad)/Math.max(1,x1-x0),(v.h-2*pad)/Math.max(1,y1-y0));
+  s=Math.max(MIN,Math.min(maxS||1.15,s));
+  flyTo({x:(x0+x1)/2,y:(y0+y1)/2},s,instant);
+}
+function frameFamily(id,instant){
+  var p=byId.get(id);if(!p)return;
+  var k=childrenOf(id),x0=p._x,y0=p._y,x1=p._x+W,y1=p._y+H;
+  k.forEach(function(c){x0=Math.min(x0,c._x);y0=Math.min(y0,c._y);x1=Math.max(x1,c._x+W);y1=Math.max(y1,c._y+H);});
+  var v=viewRect(),pad=Math.min(56,v.w*.08);
+  var s=Math.min((v.w-2*pad)/(x1-x0),(v.h-2*pad)/(y1-y0));
+  if(s<0.42){
+    var s2=Math.min(0.85,(v.w-2*pad)/(W*1.6));
+    flyTo({x:p._x+W*(k.length?1.05:0.5),y:p._y+H/2},Math.max(0.42,s2),instant);
+  }else frameRect(x0,y0,x1,y1,1.1,instant);
+}
+function fitAll(instant){frameRect(bounds.x0,bounds.y0,bounds.x1,bounds.y1,1,instant);}
+function zoomAt(px,py,f){
+  var s2=Math.max(MIN,Math.min(MAX,cam.s*f));f=s2/cam.s;
+  cam.tx=px-(px-cam.tx)*f;cam.ty=py-(py-cam.ty)*f;cam.s=s2;apply();
+}
+
+/* pointer + wheel */
+var ptrs=new Map(),moved=0;
+stage.addEventListener('pointerdown',function(e){
+  if(e.target.closest('.ui'))return;
+  if(e.pointerType==='mouse'&&e.button!==0)return;
+  stopAnim();if(!ptrs.size)moved=0;
+  ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});stage.classList.add('grabbing');
+});
+function pinchInfo(){var a=Array.from(ptrs.values());return{mx:(a[0].x+a[1].x)/2,my:(a[0].y+a[1].y)/2,d:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)};}
+window.addEventListener('pointermove',function(e){
+  if(!ptrs.has(e.pointerId))return;
+  var prev=ptrs.get(e.pointerId),cur={x:e.clientX,y:e.clientY};
+  if(ptrs.size===1){
+    cam.tx+=cur.x-prev.x;cam.ty+=cur.y-prev.y;moved+=Math.abs(cur.x-prev.x)+Math.abs(cur.y-prev.y);
+    ptrs.set(e.pointerId,cur);apply();
+  }else{
+    var a=pinchInfo();ptrs.set(e.pointerId,cur);var b=pinchInfo();
+    var r=stage.getBoundingClientRect();
+    cam.tx+=b.mx-a.mx;cam.ty+=b.my-a.my;
+    if(a.d>0)zoomAt(b.mx-r.left,b.my-r.top,b.d/a.d);else apply();
+    moved+=10;
+  }
+});
+function up(e){ptrs.delete(e.pointerId);if(!ptrs.size)stage.classList.remove('grabbing');}
+window.addEventListener('pointerup',up);window.addEventListener('pointercancel',up);
+stage.addEventListener('wheel',function(e){
+  if(e.target.closest('.intro'))return;
+  e.preventDefault();stopAnim();var r=stage.getBoundingClientRect();
+  zoomAt(e.clientX-r.left,e.clientY-r.top,Math.exp(-e.deltaY*(e.ctrlKey?0.01:0.0016)));
+},{passive:false});
+function centerZoom(f){var v=viewRect();stopAnim();zoomAt(v.cx,v.cy,f);}
+$('#zin').addEventListener('click',function(){centerZoom(1.35);});
+$('#zout').addEventListener('click',function(){centerZoom(1/1.35);});
+$('#zfit').addEventListener('click',function(){goStep(0);});
+
+/* tour */
+function buildSteps(){
+  steps=['__all'];
+  (function walk(id){var k=childrenOf(id);if(k.length)steps.push(id);k.forEach(function(c){walk(c.id);});})(rootId);
+  if(stepIdx>=steps.length)stepIdx=0;tourLabel();
+}
+function tourLabel(){
+  var id=steps[stepIdx];
+  $('#tour-count').textContent=(stepIdx+1)+' / '+steps.length;
+  $('#tour-label').textContent=id==='__all'?'The whole Ladio family':(byId.get(id).unknown?'Carlos and his siblings':'Family of '+couple(byId.get(id)));
+  $('#prev').disabled=stepIdx===0;$('#next').disabled=stepIdx===steps.length-1;
+}
+function goStep(i){
+  stepIdx=Math.max(0,Math.min(steps.length-1,i));var id=steps[stepIdx];
+  closeSheet();
+  if(id==='__all'){sel=null;markSel();fitAll();}
+  else{sel=id;markSel();frameFamily(id);}
+  tourLabel();
+}
+$('#prev').addEventListener('click',function(){goStep(stepIdx-1);});
+$('#next').addEventListener('click',function(){goStep(stepIdx+1);});
+document.addEventListener('keydown',function(e){
+  if(e.target.closest&&e.target.closest('input,textarea'))return;
+  if(e.key==='ArrowRight')goStep(stepIdx+1);
+  else if(e.key==='ArrowLeft')goStep(stepIdx-1);
+  else if(e.key==='Escape')closeSheet();
+});
+
+/* selection + sheet */
+function select(id,open){
+  if(!byId.has(id))return;sel=id;markSel();
+  var si=steps.indexOf(id);if(si>=0){stepIdx=si;tourLabel();}
+  if(open)openSheet(byId.get(id));
+  requestAnimationFrame(function(){frameFamily(id);});
+}
+function closeSheet(){if(!sheet.hidden){sheet.hidden=true;document.body.classList.remove('sheet-open');}}
+function openSheet(p){
+  sheet.hidden=false;document.body.classList.add('sheet-open');
+  var d=depth(p);
+  $('#s-gen').textContent='Generation '+(d+1)+' · '+(GEN[d]||'');
+  $('#s-title').textContent=p.unknown&&!p.name?"Carlos's parents":couple(p);
+  var rel=$('#s-rel');rel.textContent='';
+  if(p.parent&&byId.has(p.parent)){
+    var par=byId.get(p.parent);rel.appendChild(document.createTextNode('Child of '));
+    var b=el('button',null,par.unknown&&!par.name?"Carlos's parents":couple(par));b.type='button';
+    b.addEventListener('click',function(){select(par.id,true);});rel.appendChild(b);
+  }else rel.textContent='The oldest generation we know of so far';
+  $('#s-ask').hidden=!p.ask;$('#s-ask').textContent=p.ask||'';
+  var k=childrenOf(p.id),kl=$('#s-kidlist');kl.textContent='';
+  $('#s-kids').hidden=!k.length;$('#s-kids-h').textContent='Children ('+k.length+')';
+  k.forEach(function(c){var b=el('button',null,c.name||'Unnamed');b.type='button';b.addEventListener('click',function(){select(c.id,true);});kl.appendChild(b);});
+  $('#l-name').firstChild.nodeValue=p.unknown?"Father's full name":'Full name';
+  $('#l-spouse').firstChild.nodeValue=p.unknown?"Mother's full name":'Spouse';
+  FIELDS.forEach(function(f){$('#f-'+f[0]).value=p[f[0]]||'';});
+  $('#copy-out').hidden=true;$('#ac-name').value='';$('#ac-spouse').value='';
+  $('#rm-wrap').hidden=!!k.length||!p.parent;$('#rm-confirm').hidden=true;$('#rm-btn').hidden=false;
+  renderPending();sheet.scrollTop=0;
+}
+$('#s-close').addEventListener('click',function(){closeSheet();});
+function cur(){return sel?byId.get(sel):null;}
+function readForm(){var o={};FIELDS.forEach(function(f){o[f[0]]=$('#f-'+f[0]).value.trim();});return o;}
+
+$('#s-form').addEventListener('submit',function(e){
+  e.preventDefault();var p=cur();if(!p)return;
+  if(mode!=='edit'){copyAdditions();return;}
+  var v=readForm(),changed=FIELDS.filter(function(f){return (p[f[0]]||'')!==v[f[0]];});
+  if(!changed.length){toast('Nothing has changed yet.');return;}
+  if(!v.name&&!p.unknown){toast('Please keep a name for this person.');return;}
+  changed.forEach(function(f){if(v[f[0]])p[f[0]]=v[f[0]];else delete p[f[0]];});
+  publishState('Updated '+couple(p),p.id);
+});
+$('#ac-btn').addEventListener('click',function(){
+  var p=cur();if(!p)return;var n=$('#ac-name').value.trim(),s=$('#ac-spouse').value.trim();
+  if(!n){toast("Type the child's name first.");$('#ac-name').focus();return;}
+  if(mode==='edit'){
+    var k=childrenOf(p.id),ord=k.length?Math.max.apply(null,k.map(function(c){return c.order||0;}))+1:0;
+    var id='n'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+    state.people.push({id:id,parent:p.id,order:ord,name:n,spouse:s});
+    publishState('Added '+n+' as a child of '+couple(p),p.id);
+  }else{
+    (pending[p.id]=pending[p.id]||[]).push({name:n,spouse:s});
+    $('#ac-name').value='';$('#ac-spouse').value='';renderPending();
+    toast('Added to your list. Tap Copy my additions to send it.');
+  }
+});
+function renderPending(){
+  var p=cur(),ul=$('#pending');ul.textContent='';var list=(p&&pending[p.id])||[];
+  ul.hidden=!list.length;
+  list.forEach(function(k){ul.appendChild(el('li',null,'New child: '+k.name+(k.spouse?' (spouse: '+k.spouse+')':'')));});
+}
+function suggestionText(){
+  var p=cur();if(!p)return null;var v=readForm(),lines=[];
+  FIELDS.forEach(function(f){if((p[f[0]]||'')!==v[f[0]]&&v[f[0]])lines.push((p.unknown&&f[0]==='name'?"Father's name":p.unknown&&f[0]==='spouse'?"Mother's name":f[1])+': '+v[f[0]]);});
+  (pending[p.id]||[]).forEach(function(k){lines.push('New child: '+k.name+(k.spouse?' (spouse: '+k.spouse+')':''));});
+  if(!lines.length)return null;
+  return 'Ladio family tree — additions for '+(p.unknown&&!p.name?"Carlos's parents":couple(p))+'\n'+lines.join('\n');
+}
+function copyAdditions(){
+  var t=suggestionText();if(!t){toast('Type something in the form first, then copy.');return;}
+  function fallback(){var ta=$('#copy-out');ta.hidden=false;ta.value=t;ta.focus();ta.select();toast('Select the text below and copy it.');}
+  try{navigator.clipboard.writeText(t).then(function(){toast('Copied. Paste it in Messenger or a text to the person who shared this tree.');},fallback);}catch(e){fallback();}
+}
+$('#copy-btn').addEventListener('click',copyAdditions);
+$('#rm-btn').addEventListener('click',function(){var p=cur();if(!p)return;$('#rm-text').textContent='Remove '+(p.name||'this person')+' from the tree?';$('#rm-confirm').hidden=false;$('#rm-btn').hidden=true;});
+$('#rm-no').addEventListener('click',function(){$('#rm-confirm').hidden=true;$('#rm-btn').hidden=false;});
+$('#rm-yes').addEventListener('click',function(){
+  var p=cur();if(!p||childrenOf(p.id).length)return;var par=p.parent;
+  state.people=state.people.filter(function(x){return x.id!==p.id;});
+  publishState('Removed '+(p.name||'a person'),par);
+});
+
+/* saving: the page republishes itself with the new tree data */
+function buildDoc(){
+  var json=JSON.stringify(state).replace(/</g,'\\u003c');
+  var parts=['<title>Ladio Family Tree</title>',
+    document.querySelector('meta[name="claude:viewport-fit-sides"]').outerHTML,
+    document.getElementById('fonts').outerHTML,
+    document.getElementById('app-style').outerHTML,
+    tpl.outerHTML,
+    '<script id="tree-data" type="application/json">'+json+'<\/script>',
+    document.getElementById('app-script').outerHTML];
+  return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>'+RESET+'</style></head><body>'+parts.join('\n')+'</body></html>';
+}
+var saving=false;
+function revert(){state=JSON.parse(committed);render();}
+function publishState(msg,focusId){
+  if(saving)return;
+  if(!artifactNs){revert();setMode('suggest');toast('Saving is not available here. Use Copy my additions instead.');return;}
+  saving=true;var now=new Date().toISOString();
+  state.updated=now;state.changes=[{at:now,text:msg}].concat(state.changes||[]).slice(0,30);
+  if(focusId)try{location.hash='p-'+focusId;}catch(e){}
+  render();if(focusId&&byId.has(focusId)){sel=focusId;markSel();openSheet(byId.get(focusId));}
+  toast('Saving…',0);
+  artifactNs.publish(buildDoc()).then(function(){
+    saving=false;committed=JSON.stringify(state);toast('Saved. Everyone with the link now sees this.');
+  },function(err){
+    saving=false;var c=err&&err.code;revert();
+    if(c==='conflict')toast('Someone else saved at the same moment, so the tree reloaded with their version. Please enter your change again.',8000);
+    else if(c==='not_writer'||c==='not_granted'){setMode('suggest');toast('You can view this tree but not save to it. Use Copy my additions and send them to the person who shared it.',8000);}
+    else toast('That did not save. Check your connection and try again.',7000);
+    if(focusId&&byId.has(focusId)){sel=focusId;markSel();openSheet(byId.get(focusId));}
+  });
+}
+function setMode(m){
+  mode=m;document.body.dataset.mode=m;
+  
+}
+
+/* search */
+var q=$('#q'),qres=$('#qres');
+function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+q.addEventListener('input',function(){
+  var v=norm(q.value.trim());qres.textContent='';
+  if(!v){qres.hidden=true;return;}
+  var hits=state.people.filter(function(p){return norm([p.name,p.spouse,p.nick].join(' ')).indexOf(v)>=0;}).slice(0,8);
+  if(!hits.length)qres.appendChild(el('div','none','No one by that name yet'));
+  hits.forEach(function(p){
+    var b=el('button');b.type='button';b.appendChild(el('span',null,p.unknown&&!p.name?"Carlos's parents":couple(p)));
+    var par=p.parent&&byId.get(p.parent);if(par)b.appendChild(el('small',null,'Child of '+(par.unknown&&!par.name?"Carlos's parents":couple(par))));
+    b.addEventListener('click',function(){qres.hidden=true;q.value='';q.blur();select(p.id,true);});
+    qres.appendChild(b);
+  });
+  qres.hidden=false;
+});
+q.addEventListener('keydown',function(e){if(e.key==='Enter'){var b=qres.querySelector('button');if(b)b.click();}else if(e.key==='Escape'){qres.hidden=true;}});
+document.addEventListener('pointerdown',function(e){if(!e.target.closest('.find'))qres.hidden=true;});
+
+/* toast + intro */
+var tt=null;
+function toast(msg,ms){var t=$('#toast');t.textContent=msg;t.hidden=false;clearTimeout(tt);if(ms!==0)tt=setTimeout(function(){t.hidden=true;},ms||4500);}
+function introOff(){try{return localStorage.getItem('ladio-intro-off')==='1';}catch(e){return false;}}
+if(introOff())$('#intro').hidden=true;
+$('#intro-ok').addEventListener('click',function(){$('#intro').hidden=true;try{localStorage.setItem('ladio-intro-off','1');}catch(e){}});
+$('#help-btn').addEventListener('click',function(){$('#intro').hidden=!$('#intro').hidden;});
+
+/* boot */
+setMode('suggest');render();
+var h=/^#p-([A-Za-z0-9-]+)$/.exec(location.hash||'');
+if(h&&byId.has(h[1])){sel=h[1];markSel();openSheet(byId.get(h[1]));frameFamily(h[1],true);}
+else{fitAll(true);}
+window.addEventListener('hashchange',function(){var m=/^#p-([A-Za-z0-9-]+)$/.exec(location.hash||'');if(m&&byId.has(m[1])&&m[1]!==sel)select(m[1],true);});
+var lastW=stage.clientWidth;
+window.addEventListener('resize',function(){var w=stage.clientWidth;if(Math.abs(w-lastW)>40){lastW=w;if(sel)frameFamily(sel,true);else fitAll(true);}});
+})();
+</script>
+
+</body>
+</html>
